@@ -1,8 +1,21 @@
 @import "tailwindcss";
+@import "../styles/fonts.css";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0A0A0A;
+  --foreground: #F5F5F5;
+  
+  /* Premium modern colors */
+  --premium-black: #000000;
+  --off-black: #0A0A0A;
+  --charcoal: #1A1A1A;
+  --graphite: #2A2A2A;
+  --slate: #3A3A3A;
+  --premium-white: #FFFFFF;
+  --off-white: #F5F5F5;
+  --soft-white: #EFEFEF;
+  --warm-white: #F8F8F8;
+  --accent-gold: #D4AF37;
 }
 
 @theme inline {
@@ -12,15 +25,69 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: light) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #F8F8F8;
+    --foreground: #0A0A0A;
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-bodoni), Arial, Helvetica, sans-serif;
+}
+
+/* Typography Classes */
+.font-title-grand {
+  font-size: 200pt;
+  line-height: 240pt;
+  font-family: var(--font-bodoni);
+}
+
+.font-sequence {
+  font-size: 50pt;
+  line-height: 65pt;
+  font-family: var(--font-bodoni);
+}
+
+.font-comment {
+  font-size: 34pt;
+  line-height: 39pt;
+  font-family: var(--font-bodoni);
+}
+
+/* Responsive typography adjustments */
+@media (max-width: 768px) {
+  .font-title-grand {
+    font-size: 120pt;
+    line-height: 140pt;
+  }
+  
+  .font-sequence {
+    font-size: 36pt;
+    line-height: 46pt;
+  }
+  
+  .font-comment {
+    font-size: 24pt;
+    line-height: 30pt;
+  }
+}
+
+@media (max-width: 480px) {
+  .font-title-grand {
+    font-size: 72pt;
+    line-height: 86pt;
+  }
+  
+  .font-sequence {
+    font-size: 28pt;
+    line-height: 36pt;
+  }
+  
+  .font-comment {
+    font-size: 20pt;
+    line-height: 26pt;
+  }
 }

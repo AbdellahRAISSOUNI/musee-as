@@ -1,0 +1,34 @@
+/* Bodoni Font Variants */
+@font-face {
+  font-family: 'Bodoni Poster';
+  src: url('/fonts/BodoniPoster.woff2') format('woff2'),
+       url('/fonts/BodoniPoster.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Bodoni Poster';
+  src: url('/fonts/BodoniPosterItalic.woff2') format('woff2'),
+       url('/fonts/BodoniPosterItalic.woff') format('woff');
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Bodoni';
+  src: url('/fonts/BodoniBold.woff2') format('woff2'),
+       url('/fonts/BodoniBold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Font fallback stacks */
+:root {
+  --font-bodoni: 'Bodoni Poster', 'Bodoni', 'Didot', 'Times New Roman', serif;
+  --font-bodoni-italic: 'Bodoni Poster', 'Bodoni', 'Didot', 'Times New Roman', serif;
+  --font-bodoni-bold: 'Bodoni', 'Didot', 'Times New Roman', serif;
+} 
