@@ -179,6 +179,54 @@ Le système est conçu pour être facilement connecté à un CMS ou une API exte
 - Structure de données cohérente pour faciliter la migration
 - Possibilité d'implémenter un fetching de données côté serveur avec Next.js
 
+### 5.3 Section Presse
+
+La section presse ("Ils Parlent de Nous") présente les mentions du musée dans les médias:
+
+#### 5.3.1 Structure des Données
+
+```tsx
+// Structure des données pour les articles de presse
+const pressArticles = [
+  {
+    id: "h24-info",
+    title: "H24 info avec Le Figaro",
+    source: "Le Figaro",
+    author: "Emilie Taillandier",
+    date: "23 février 2019",
+    content: "Résumé de l'article...",
+    link: "/fondation/presse/h24-info",
+    image: "/images/presse/h24-info/zellige.jpg"
+  },
+  // Autres articles...
+];
+```
+
+#### 5.3.2 Organisation des Pages
+
+- **Page principale** (`/fondation/presse/page.tsx`): Affiche une grille de tous les articles de presse avec un aperçu de chacun
+- **Pages individuelles** (ex: `/fondation/presse/h24-info/page.tsx`): Affiche le contenu complet d'un article spécifique
+
+#### 5.3.3 Modèles de Mise en Page
+
+La section presse utilise deux modèles de mise en page principaux:
+
+1. **Grille d'articles**: Sur la page principale, avec deux articles par ligne et le troisième en pleine largeur
+2. **Mise en page d'article**: Deux variantes principales:
+   - Layout avec image latérale: Image à gauche, contenu à droite (H24 Info, Madame Lifeguide)
+   - Layout avec image en haut: Image en largeur complète au-dessus du contenu (Les Eco Maroc)
+
+#### 5.3.4 Gestion des Images
+
+Les logos et images des publications sont stockés dans:
+```
+public/images/presse/[publication-id]/
+```
+
+Chaque article utilise le composant `Image` de Next.js avec des optimisations adaptées:
+- `object-contain` pour préserver les proportions des logos
+- Attribut `sizes` pour l'optimisation responsive
+
 ## 6. Performance et Optimisation
 
 ### 6.1 Optimisations Implémentées
@@ -299,6 +347,40 @@ const DynamicPage = () => {
 export default DynamicPage;
 ```
 
+### 9.3 Ajout d'un Nouvel Article de Presse
+
+Pour ajouter un nouvel article de presse:
+
+1. **Créer le dossier et la page**:
+```
+src/app/fondation/presse/[nouvelle-publication]/page.tsx
+```
+
+2. **Ajouter les images**:
+```
+public/images/presse/[nouvelle-publication]/
+```
+
+3. **Mettre à jour les données**:
+```tsx
+// Dans src/app/fondation/presse/page.tsx
+const pressArticles = [
+  // Articles existants...
+  {
+    id: "nouvelle-publication",
+    title: "Titre de l'Article",
+    source: "Nom de la Publication",
+    author: "Nom de l'Auteur",
+    date: "Date de Publication",
+    content: "Résumé de l'article...",
+    link: "/fondation/presse/nouvelle-publication",
+    image: "/images/presse/nouvelle-publication/image.jpg"
+  },
+];
+```
+
+4. **Créer la page de l'article** en suivant l'un des modèles existants (mise en page latérale ou en haut)
+
 ## 10. Déploiement et Infrastructure
 
 ### 10.1 Processus de Build
@@ -346,4 +428,4 @@ L'architecture du projet a été conçue pour faciliter les évolutions futures:
 
 ---
 
-Document mis à jour le: 20/07/2025 
+Document mis à jour le: 12/06/2025 

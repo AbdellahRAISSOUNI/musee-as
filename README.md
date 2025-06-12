@@ -41,6 +41,9 @@ src/
     fondation/                       # Section Fondation
       projet-musee/                  # Page du projet de musée
       presse/                        # Couverture médiatique
+        h24-info/                    # Article H24 Info
+        madame-lifeguide/            # Article Madame Lifeguide
+        les-eco-maroc/               # Article Les Eco Maroc
     collections-expositions/         # Section Collections & Expositions
       collections-permanentes/       # Collections permanentes
         [itemId]/                    # Pages dynamiques pour chaque objet de collection
@@ -67,7 +70,12 @@ src/
     HeroVideo.tsx                    # Composant vidéo pour la page d'accueil
     PageLayout.tsx                   # Layout réutilisable pour les pages
     ProjectMap.tsx                   # Composant de carte du site
+    ReturnButton.tsx                 # Bouton de retour réutilisable
   styles/                            # Styles globaux et utilitaires
+  docs/                              # Documentation technique
+    DesignSystem.md                  # Documentation du système de design
+    ProjectArchitecture.md           # Documentation de l'architecture technique
+    TypographySystem.md              # Documentation du système typographique
 ```
 
 ### Guide des Composants et Organisation du Code
@@ -170,6 +178,15 @@ Pour ajouter une nouvelle section à la navigation principale:
 1. Modifiez le composant `Header.tsx`
 2. Ajoutez la nouvelle section à l'objet `navSections`
 3. Créez les sous-menus appropriés si nécessaire
+
+#### 4. Ajouter un Nouvel Article de Presse
+
+Pour ajouter un nouvel article à la section presse:
+
+1. Créez un nouveau dossier dans `src/app/fondation/presse/[nom-publication]/`
+2. Ajoutez les images dans `public/images/presse/[nom-publication]/`
+3. Créez une page `page.tsx` en suivant l'un des modèles existants (mise en page latérale ou en haut)
+4. Mettez à jour l'objet `pressArticles` dans `src/app/fondation/presse/page.tsx`
 
 ## Organisation des Contenus
 
@@ -275,6 +292,13 @@ npm start
 - **Section "Le Projet de Musée"**: Création de pages détaillées pour:
   - "Abderrahman Slaoui, humaniste éclairé (1919-2001)"
   - "L'espace muséographique"
+- **Section "Ils Parlent de Nous"**: Développement d'une section presse complète avec:
+  - Page principale présentant tous les articles dans une grille élégante
+  - Pages détaillées pour chaque mention presse avec différentes mises en page:
+    - H24 Info: Layout avec image latérale et contenu détaillé
+    - Madame Lifeguide: Layout avec image latérale et mise en forme spécifique
+    - Les Eco Maroc: Layout avec image en largeur complète et contenu structuré
+  - Optimisation des images de logos et photos pour différents formats d'affichage
 - **Galeries d'Images**: Intégration d'images de haute qualité avec optimisation pour le chargement.
 - **Typographie Premium**: Implémentation d'un système typographique cohérent basé sur la famille de polices Bodoni.
 
