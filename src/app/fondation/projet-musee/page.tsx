@@ -4,6 +4,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
+import ReturnButton from '@/components/ReturnButton';
 
 const ProjetMuseePage = () => {
   return (
@@ -28,15 +29,8 @@ const ProjetMuseePage = () => {
       <section className="py-16 bg-white">
         <div className="container mx-auto px-6">
           <div className="max-w-5xl mx-auto">
-            {/* Breadcrumb Navigation */}
-            <div className="mb-10">
-              <Link 
-                href="/fondation" 
-                className="text-gray-600 hover:text-accent-gold transition-colors"
-              >
-                ← Retour à la Fondation
-              </Link>
-            </div>
+            {/* Return Button */}
+            <ReturnButton href="/fondation" />
 
             {/* Two Main Sections */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
@@ -85,10 +79,10 @@ const ProjetMuseePage = () => {
                 
                 <div className="mb-6 relative h-[300px] overflow-hidden">
                   <Image
-                    src="/images/projet-musee/espace-museographique/facade.jpg"
+                    src="/images/projet-musee/espace-museographique/pxjg8psj.png"
                     alt="L'espace muséographique"
                     fill
-                    className="object-cover object-center"
+                    className="object-contain"
                   />
                 </div>
                 

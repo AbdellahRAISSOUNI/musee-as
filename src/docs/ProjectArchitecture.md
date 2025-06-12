@@ -56,6 +56,7 @@ Les composants sont organisés selon leur fonction et leur réutilisabilité:
 - **Composants de Navigation**: Gèrent la navigation et les menus (`Header.tsx`)
 - **Composants de Section**: Représentent des sections spécifiques des pages (`HeroSection.tsx`)
 - **Composants de Présentation**: Affichent des éléments de contenu spécifiques
+- **Composants d'Interface**: Éléments d'interface réutilisables (`ReturnButton.tsx`)
 
 ### 3.2 Patterns de Composants
 
@@ -69,6 +70,53 @@ Les composants sont organisés selon leur fonction et leur réutilisabilité:
 - **Context API**: Pour le partage d'état entre composants sans prop drilling
 - **Refs**: Utilisation de `useRef` pour accéder aux éléments DOM et stocker des valeurs persistantes
 - **Navigation State**: Gestion intelligente de l'état des menus pendant la navigation (fermeture automatique des sections)
+
+### 3.4 Composants d'Interface Réutilisables
+
+#### 3.4.1 ReturnButton
+
+Le composant `ReturnButton` est un élément d'interface réutilisable qui fournit une navigation cohérente à travers le site:
+
+```tsx
+// src/components/ReturnButton.tsx
+import React from 'react';
+import Link from 'next/link';
+
+interface ReturnButtonProps {
+  href: string;
+}
+
+const ReturnButton: React.FC<ReturnButtonProps> = ({ href }) => {
+  return (
+    <div className="flex justify-end mb-10">
+      <Link 
+        href={href}
+        className="inline-block bg-black text-white hover:bg-black/80 transition-colors px-6 py-3 font-bodoni"
+      >
+        Retour
+      </Link>
+    </div>
+  );
+};
+
+export default ReturnButton;
+```
+
+**Utilisation**:
+```tsx
+// Exemple d'utilisation dans une page
+import ReturnButton from '@/components/ReturnButton';
+
+// Dans le composant de page
+<ReturnButton href="/page-precedente" />
+```
+
+**Caractéristiques**:
+- Bouton de retour avec fond noir et texte blanc
+- Positionné à droite de son conteneur
+- Interface TypeScript pour garantir la présence de l'URL de destination
+- Transition de couleur au survol pour l'interactivité
+- Typographie cohérente avec le design system (utilise la police Bodoni)
 
 ## 4. Styles et Design System
 
@@ -102,6 +150,7 @@ Un design system cohérent est implémenté à travers l'application:
   - Boutons avec états et variantes
   - Cartes et conteneurs de contenu
   - Grilles et layouts flexibles
+  - ReturnButton pour la navigation cohérente
 
 ### 4.3 Animations
 
@@ -171,14 +220,17 @@ Le site est actuellement uniquement en français, mais l'architecture permet une
 
 import React from 'react';
 import PageLayout from '@/components/PageLayout';
+import ReturnButton from '@/components/ReturnButton';
 
 const NouvellePage = () => {
   return (
     <PageLayout
       title="Titre de la Nouvelle Page"
       description="Description de la page."
-      parentLink={{ href: "/section-parent", label: "Retour à Section Parent" }}
     >
+      {/* Bouton de retour */}
+      <ReturnButton href="/section-parent" />
+      
       {/* Contenu de la page */}
       <section className="mb-12">
         <h2 className="font-bodoni-regular text-2xl text-premium-white mb-6">
@@ -204,6 +256,7 @@ export default NouvellePage;
 import React from 'react';
 import { useParams } from 'next/navigation';
 import PageLayout from '@/components/PageLayout';
+import ReturnButton from '@/components/ReturnButton';
 
 // Définition de l'interface de données
 interface IItemData {
@@ -227,20 +280,16 @@ const DynamicPage = () => {
   // Gestion du cas où l'item n'existe pas
   if (!item) {
     return (
-      <PageLayout
-        title="Item non trouvé"
-        parentLink={{ href: "/section", label: "Retour à la section" }}
-      >
+      <PageLayout title="Item non trouvé">
+        <ReturnButton href="/section" />
         <p className="text-soft-white">L'élément demandé n'existe pas.</p>
       </PageLayout>
     );
   }
   
   return (
-    <PageLayout
-      title={item.title}
-      parentLink={{ href: "/section", label: "Retour à la section" }}
-    >
+    <PageLayout title={item.title}>
+      <ReturnButton href="/section" />
       {/* Contenu dynamique basé sur l'item */}
       <p className="text-soft-white text-lg">{item.description}</p>
     </PageLayout>
@@ -297,4 +346,4 @@ L'architecture du projet a été conçue pour faciliter les évolutions futures:
 
 ---
 
-Document mis à jour le: 15/06/2025 
+Document mis à jour le: 20/07/2025 

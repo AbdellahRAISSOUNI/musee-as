@@ -4,6 +4,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
+import ReturnButton from '@/components/ReturnButton';
 
 const AbderrahmanSlaouiPage = () => {
   return (
@@ -31,15 +32,8 @@ const AbderrahmanSlaouiPage = () => {
       <section className="py-16 bg-white">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto">
-            {/* Breadcrumb Navigation */}
-            <div className="mb-10">
-              <Link 
-                href="/fondation/projet-musee" 
-                className="text-gray-600 hover:text-accent-gold transition-colors"
-              >
-                ← Retour au Projet de Musée
-              </Link>
-            </div>
+            {/* Return Button */}
+            <ReturnButton href="/fondation/projet-musee" />
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
               {/* Left Column - Image */}
@@ -124,13 +118,8 @@ const AbderrahmanSlaouiPage = () => {
               </div>
             </div>
             
-            <div className="mt-12 text-center">
-              <Link 
-                href="/fondation/projet-musee" 
-                className="inline-block bg-accent-gold text-white hover:bg-accent-gold/90 transition-colors px-6 py-3 font-bodoni rounded"
-              >
-                Retour au Projet de Musée
-              </Link>
+            <div className="mt-12 flex justify-end">
+              <ReturnButton href="/fondation/projet-musee" />
             </div>
           </div>
         </div>
