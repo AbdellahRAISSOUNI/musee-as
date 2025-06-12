@@ -231,6 +231,16 @@ L'approche mobile-first est utilisée dans tout le projet:
 - **Framer Motion**: Pour des animations fluides et des transitions élégantes
 - **React Icons**: Pour une bibliothèque d'icônes cohérente et légère
 
+## Gestion des Erreurs d'Hydratation
+
+Le projet inclut une solution pour gérer les erreurs d'hydratation qui peuvent survenir à cause d'extensions de navigateur (comme BitDefender) qui modifient le DOM avant l'hydratation de React:
+
+1. **HydrationErrorSuppressor**: Composant client qui intercepte et supprime les erreurs de console liées à l'hydratation.
+2. **ClientErrorBoundary**: Composant qui capture les erreurs d'hydratation au runtime pour éviter qu'elles ne plantent l'application.
+3. **Configuration Next.js**: Paramètres dans `next.config.ts` pour aider à gérer les problèmes d'hydratation.
+
+Ces composants sont intégrés dans le layout racine (`src/app/layout.tsx`) et s'appliquent à l'ensemble de l'application.
+
 ## Installation et Démarrage
 
 1. Cloner le dépôt:

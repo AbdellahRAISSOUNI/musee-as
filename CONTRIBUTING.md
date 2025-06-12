@@ -103,6 +103,21 @@ Avant de soumettre une pull request, assurez-vous de:
 3. S'assurer que le contenu en français est correctement formaté et sans erreurs
 4. Valider que le design reste cohérent avec l'identité visuelle du musée
 
+## Gestion des Erreurs d'Hydratation
+
+Le projet inclut des composants spécifiques pour gérer les erreurs d'hydratation causées par des extensions de navigateur:
+
+1. **HydrationErrorSuppressor**: Supprime les erreurs d'hydratation dans la console
+2. **ClientErrorBoundary**: Capture les erreurs d'hydratation au runtime
+
+Si vous rencontrez des erreurs d'hydratation pendant le développement:
+
+- Vérifiez si vous utilisez des valeurs aléatoires ou dépendantes du client sans précautions
+- Désactivez temporairement les extensions de navigateur qui pourraient interférer
+- Consultez le guide de dépannage dans `src/docs/Troubleshooting.md`
+
+Pour plus d'informations sur les erreurs d'hydratation et leur résolution, consultez la section dédiée dans la documentation technique.
+
 ## Mise à Jour de Contenu
 
 Pour la mise à jour du contenu existant:

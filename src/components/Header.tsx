@@ -101,7 +101,7 @@ const Header = () => {
       ],
       featured: {
         title: "Fondation Abderrahman Slaoui",
-        image: "/images/hero-background.jpg",
+        image: "/images/projet-musee/pxjg8psj.png",
         description: "Découvrez l'histoire et la mission de la Fondation Abderrahman Slaoui.",
         link: "/fondation"
       }
@@ -411,7 +411,7 @@ const Header = () => {
                         <img 
                           src={navSections[activeSection as keyof typeof navSections].featured.image}
                           alt={navSections[activeSection as keyof typeof navSections].featured.title}
-                          className="w-full h-full object-cover"
+                          className="w-full h-full object-contain"
                         />
                       </div>
                       <p className="text-soft-white text-sm mb-3">

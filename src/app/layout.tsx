@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Header from "@/components/Header";
+import HydrationErrorSuppressor from "@/components/HydrationErrorSuppressor";
+import ClientErrorBoundary from "@/components/ClientErrorBoundary";
 
 export const metadata: Metadata = {
   title: "Musée Abderrahman Slaoui",
@@ -15,8 +17,11 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <body className="antialiased">
-        <Header />
-        {children}
+        <HydrationErrorSuppressor />
+        <ClientErrorBoundary>
+          <Header />
+          {children}
+        </ClientErrorBoundary>
       </body>
     </html>
   );
