@@ -75,7 +75,7 @@ const CollectionsExpositionsPage = () => {
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="w-full h-full relative">
                     <Image
-                      src="/images/hero-background.jpg"
+                      src="/images/collections-permanentes/flacons-de-khol-et-tabatieres/khol_et_tabatiere.png"
                       alt="Expositions Temporaires"
                       fill
                       className="object-cover group-hover:scale-105 transition-transform duration-500"
