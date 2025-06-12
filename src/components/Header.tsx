@@ -18,19 +18,6 @@ const Header = () => {
   const lastScrollY = useRef(0);
   const pathname = usePathname();
 
-  // Determine active section from URL path
-  useEffect(() => {
-    if (pathname) {
-      const firstSegment = pathname.split('/')[1];
-      Object.entries(navSections).forEach(([key, section]) => {
-        const sectionPath = section.featured.link.split('/')[1];
-        if (firstSegment === sectionPath) {
-          setActiveSection(key);
-        }
-      });
-    }
-  }, [pathname]);
-
   // Detect scroll for styling and visibility
   useEffect(() => {
     const handleScroll = () => {
@@ -54,6 +41,12 @@ const Header = () => {
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Close mobile menu and dropdowns on navigation
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+    setActiveSection(null);
+  }, [pathname]);
 
   const toggleSearch = () => {
     setIsSearchActive(!isSearchActive);
@@ -83,13 +76,19 @@ const Header = () => {
       if (activeSection && !(event.target as Element).closest('.nav-item')) {
         setActiveSection(null);
       }
+      
+      // Close mobile menu when clicking outside
+      if (isMobileMenuOpen && !(event.target as Element).closest('.mobile-menu') && 
+          !(event.target as Element).closest('.mobile-menu-button')) {
+        setIsMobileMenuOpen(false);
+      }
     };
 
     document.addEventListener('mousedown', handleClickOutside);
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [activeSection]);
+  }, [activeSection, isMobileMenuOpen]);
 
   // Navigation sections with their dropdown content
   const navSections = {
@@ -183,6 +182,15 @@ const Header = () => {
     return pathname.startsWith(`/${sectionPath}`);
   };
 
+  // Determine active section from URL path
+  useEffect(() => {
+    if (pathname) {
+      // Only highlight the section in the navigation without opening the dropdown
+      // We're removing the code that sets activeSection based on URL
+      setActiveSection(null); // Reset active section on navigation
+    }
+  }, [pathname]);
+
   return (
     <>
       {/* This div adds space below the fixed header */}
@@ -196,7 +204,7 @@ const Header = () => {
           {/* Left side - Menu button for mobile */}
           <div className="w-24 flex justify-start">
             <motion.button 
-              className="md:hidden text-premium-white cursor-pointer"
+              className="md:hidden text-premium-white cursor-pointer mobile-menu-button"
               onClick={toggleMobileMenu}
               whileTap={{ scale: 0.95 }}
             >
@@ -307,7 +315,7 @@ const Header = () => {
                               <Link 
                                 href={section.featured.link}
                                 className={`font-bodoni text-xs lg:text-sm uppercase tracking-widest py-2 flex items-center whitespace-nowrap cursor-pointer relative
-                                          ${isActive ? 'text-accent-gold' : 'text-soft-white hover:text-premium-white'}`}
+                                          ${isActive ? 'text-accent-gold' : 'text-soft-white hover:text-premium-white'} transition-colors duration-200`}
                               >
                                 {section.title}
                                 
@@ -367,6 +375,7 @@ const Header = () => {
                             <Link 
                               href={item.href}
                               className="group relative block text-soft-white hover:text-premium-white transition-colors duration-200 font-bodoni text-lg py-1 cursor-pointer"
+                              onClick={() => setActiveSection(null)}
                             >
                               <span className={isItemActive ? "text-accent-gold" : ""}>
                                 {item.label}
@@ -431,7 +440,7 @@ const Header = () => {
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.3 }}
-              className="md:hidden bg-[#000000] border-t border-graphite/30 overflow-hidden"
+              className="md:hidden bg-[#000000] border-t border-graphite/30 overflow-hidden mobile-menu"
             >
               <div className="container mx-auto px-6 py-4">
                 <nav>
@@ -490,7 +499,8 @@ const Header = () => {
                                       >
                                         <Link 
                                           href={item.href}
-                                          className="group relative block py-3 text-soft-white hover:text-premium-white font-bodoni text-lg cursor-pointer"
+                                          className="group relative block py-3 text-soft-white hover:text-premium-white font-bodoni text-lg cursor-pointer transition-colors duration-200"
+                                          onClick={() => setActiveSection(null)}
                                         >
                                           <span className={isItemActive ? "text-accent-gold" : ""}>
                                             {item.label}
@@ -512,7 +522,8 @@ const Header = () => {
                           <div className="relative">
                             <Link
                               href={section.featured.link}
-                              className="font-bodoni text-base uppercase tracking-widest py-2 block text-soft-white hover:text-premium-white cursor-pointer"
+                              className={`font-bodoni text-base uppercase tracking-widest py-2 block text-soft-white hover:text-premium-white cursor-pointer`}
+                              onClick={() => setIsMobileMenuOpen(false)}
                             >
                               <span className={isMobileActive ? "text-accent-gold" : ""}>
                                 {section.title}

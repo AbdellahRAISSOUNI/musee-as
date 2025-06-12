@@ -68,6 +68,7 @@ Les composants sont organisés selon leur fonction et leur réutilisabilité:
 - **Local State**: Utilisation de `useState` pour l'état local des composants
 - **Context API**: Pour le partage d'état entre composants sans prop drilling
 - **Refs**: Utilisation de `useRef` pour accéder aux éléments DOM et stocker des valeurs persistantes
+- **Navigation State**: Gestion intelligente de l'état des menus pendant la navigation (fermeture automatique des sections)
 
 ## 4. Styles et Design System
 
@@ -109,6 +110,8 @@ Framer Motion est utilisé pour les animations:
 - **Animations d'Entrée**: Pour les éléments apparaissant dans la vue
 - **Animations de Défilement**: Effets de parallaxe et transformations basées sur le défilement
 - **Transitions d'État**: Pour les changements d'état des composants interactifs
+- **Animations d'Interaction**: Effets de survol sophistiqués comme les underlines qui grandissent depuis le centre
+- **Transitions de Navigation**: Animations fluides lors des changements de page et fermeture des menus
 
 ## 5. Gestion du Contenu
 
@@ -294,4 +297,4 @@ L'architecture du projet a été conçue pour faciliter les évolutions futures:
 
 ---
 
-Document mis à jour le: 23/07/2023 
+Document mis à jour le: 15/06/2025 
