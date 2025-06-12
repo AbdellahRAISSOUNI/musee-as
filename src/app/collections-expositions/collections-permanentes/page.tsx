@@ -60,12 +60,12 @@ const CollectionsPermanentesPage = () => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+        transition={{ duration: 0.8 }}
             className="max-w-4xl mx-auto text-center"
           >
             <h1 className="font-bodoni text-4xl md:text-5xl lg:text-6xl mb-6">
               Collections permanentes
-            </h1>
+          </h1>
           </motion.div>
         </div>
       </section>
@@ -79,15 +79,15 @@ const CollectionsPermanentesPage = () => {
               <p className="text-gray-800 text-lg leading-relaxed max-w-3xl mx-auto text-center">
                 Le Musée de la Fondation Abderrahman Slaoui ne peut se concevoir qu'à travers les yeux du collectionneur. Abderrahman Slaoui a collectionné une multitude d'objets de valeur artistique et ethnographique selon ses goûts. Le Musée ne présente donc pas une mais des collections divisées en chapitres, chacun subdivisé en séquences.
               </p>
-            </div>
-
+          </div>
+          
             {/* Collections Showcase */}
             <div className="space-y-24">
               {collectionItems.map((item, index) => (
-                <motion.div
-                  key={item.id}
+              <motion.div
+                key={item.id}
                   initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
+                animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.15, duration: 0.8 }}
                   className={`flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} items-center gap-8 md:gap-12`}
                 >
@@ -122,20 +122,20 @@ const CollectionsPermanentesPage = () => {
                     >
                       <Link href={item.href} className="block">
                         <h2 className="font-bodoni text-3xl md:text-4xl font-medium text-gray-900 mb-4 hover:text-accent-gold transition-colors duration-300">
-                          {item.title}
+                    {item.title}
                         </h2>
                         <p className="text-gray-700 text-lg mb-6">
-                          {item.description}
-                        </p>
+                    {item.description}
+                  </p>
                         <div className="inline-flex items-center text-accent-gold group">
                           <span className="mr-2 font-medium">Découvrir</span>
                           <span className="transform group-hover:translate-x-2 transition-transform duration-300">→</span>
                         </div>
-                      </Link>
+                </Link>
                     </motion.div>
                   </div>
-                </motion.div>
-              ))}
+              </motion.div>
+            ))}
             </div>
           </div>
         </div>

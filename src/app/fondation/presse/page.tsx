@@ -1,4 +1,4 @@
-"use client";
+ "use client";
 
 import React from 'react';
 import { motion } from 'framer-motion';
@@ -69,44 +69,44 @@ const PressePage = () => {
             {/* Articles Grid */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
               {/* First Article */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2, duration: 0.6 }}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2, duration: 0.6 }}
                 className="bg-white"
-              >
+            >
                 <h2 className="font-bodoni text-3xl text-accent-gold mb-6">
                   {pressArticles[0].title}
-                </h2>
+              </h2>
                 
                 <div className="mb-6 relative h-[300px] overflow-hidden">
-                  <Image
+                        <Image
                     src={pressArticles[0].image}
                     alt={pressArticles[0].title}
-                    fill
+                          fill
                     className="object-cover object-center"
                   />
-                </div>
-                
+            </div>
+
                 <p className="text-gray-700 mb-6">
                   {pressArticles[0].content}
-                </p>
-                
+              </p>
+              
                 <Link 
                   href={pressArticles[0].link}
                   className="inline-block text-accent-gold hover:text-accent-gold/80 transition-colors font-bodoni"
-                >
+                      >
                   Lire la suite
                 </Link>
-              </motion.div>
-              
+            </motion.div>
+
               {/* Second Article */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4, duration: 0.6 }}
                 className="bg-white"
-              >
+            >
                 <h2 className="font-bodoni text-3xl text-accent-gold mb-6">
                   {pressArticles[1].title}
                 </h2>
@@ -127,21 +127,21 @@ const PressePage = () => {
                 <Link 
                   href={pressArticles[1].link}
                   className="inline-block text-accent-gold hover:text-accent-gold/80 transition-colors font-bodoni"
-                >
+                  >
                   Lire la suite
                 </Link>
-              </motion.div>
-              
+            </motion.div>
+
               {/* Third Article - Full Width */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6, duration: 0.6 }}
                 className="bg-white lg:col-span-2"
-              >
+            >
                 <h2 className="font-bodoni text-3xl text-accent-gold mb-6">
                   {pressArticles[2].title}
-                </h2>
+              </h2>
                 
                 <div className="mb-6 relative h-[300px] overflow-hidden">
                   <Image
@@ -159,10 +159,10 @@ const PressePage = () => {
                 <Link 
                   href={pressArticles[2].link}
                   className="inline-block text-accent-gold hover:text-accent-gold/80 transition-colors font-bodoni"
-                >
+                  >
                   Lire la suite
                 </Link>
-              </motion.div>
+            </motion.div>
             </div>
           </div>
         </div>
