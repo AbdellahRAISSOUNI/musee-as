@@ -275,7 +275,7 @@ const Header = () => {
                             <div className="relative group">
                               <motion.button 
                                 className={`font-bodoni text-xs lg:text-sm uppercase tracking-widest py-2 flex items-center whitespace-nowrap cursor-pointer relative
-                                          ${isActive ? 'text-premium-white' : 'text-soft-white hover:text-premium-white'}`}
+                                          ${isActive ? 'text-accent-gold' : 'text-soft-white hover:text-premium-white'}`}
                                 onClick={() => toggleSection(key)}
                                 whileTap={{ scale: 0.97 }}
                               >
@@ -289,17 +289,13 @@ const Header = () => {
                                 </motion.span>
                                 
                                 {/* Animated underline element */}
-                                <motion.span 
-                                  className="absolute -bottom-1 left-1/2 h-[2px] bg-accent-gold transform -translate-x-1/2"
-                                  initial={{ width: isActive ? "60%" : "0%" }}
-                                  animate={{ width: isActive ? "60%" : "0%" }}
-                                  exit={{ width: "0%" }}
-                                  transition={{ duration: 0.3 }}
-                                />
+                                {isActive && (
+                                  <div className="absolute h-[3px] bg-accent-gold bottom-[-4px] left-1/2 w-[60%] transform -translate-x-1/2" />
+                                )}
                                 
                                 {/* Hover underline animation - grows from center */}
-                                <motion.span 
-                                  className="absolute -bottom-1 left-1/2 h-[2px] bg-accent-gold transform -translate-x-1/2 pointer-events-none"
+                                <motion.div 
+                                  className="absolute bottom-[-4px] left-1/2 h-[3px] bg-accent-gold transform -translate-x-1/2 pointer-events-none"
                                   initial={{ width: "0%" }}
                                   whileHover={{ width: isActive ? "80%" : "30%" }}
                                   transition={{ duration: 0.3 }}
@@ -311,21 +307,18 @@ const Header = () => {
                               <Link 
                                 href={section.featured.link}
                                 className={`font-bodoni text-xs lg:text-sm uppercase tracking-widest py-2 flex items-center whitespace-nowrap cursor-pointer relative
-                                          ${isActive ? 'text-premium-white' : 'text-soft-white hover:text-premium-white'}`}
+                                          ${isActive ? 'text-accent-gold' : 'text-soft-white hover:text-premium-white'}`}
                               >
                                 {section.title}
                                 
                                 {/* Animated underline element for active state */}
-                                <motion.span 
-                                  className="absolute -bottom-1 left-1/2 h-[2px] bg-accent-gold transform -translate-x-1/2"
-                                  initial={{ width: isActive ? "60%" : "0%" }}
-                                  animate={{ width: isActive ? "60%" : "0%" }}
-                                  transition={{ duration: 0.3 }}
-                                />
+                                {isActive && (
+                                  <div className="absolute h-[3px] bg-accent-gold bottom-[-4px] left-1/2 w-[60%] transform -translate-x-1/2" />
+                                )}
                                 
                                 {/* Hover underline animation - grows from center */}
-                                <motion.span 
-                                  className="absolute -bottom-1 left-1/2 h-[2px] bg-accent-gold transform -translate-x-1/2 pointer-events-none"
+                                <motion.div 
+                                  className="absolute bottom-[-4px] left-1/2 h-[3px] bg-accent-gold transform -translate-x-1/2 pointer-events-none"
                                   initial={{ width: "0%" }}
                                   whileHover={{ width: isActive ? "80%" : "30%" }}
                                   transition={{ duration: 0.3 }}
@@ -375,17 +368,17 @@ const Header = () => {
                               href={item.href}
                               className="group relative block text-soft-white hover:text-premium-white transition-colors duration-200 font-bodoni text-lg py-1 cursor-pointer"
                             >
-                              <span className={isItemActive ? "text-premium-white" : ""}>
+                              <span className={isItemActive ? "text-accent-gold" : ""}>
                                 {item.label}
                               </span>
                               
                               {/* Active underline */}
                               {isItemActive && (
-                                <span className="absolute -bottom-1 left-0 h-[1px] bg-accent-gold w-8" />
+                                <span className="absolute -bottom-1 left-0 h-[2px] bg-accent-gold w-8" />
                               )}
                               
                               {/* Hover underline animation */}
-                              <span className="absolute -bottom-1 left-0 h-[1px] bg-accent-gold w-0 group-hover:w-full transition-all duration-300 ease-out" />
+                              <span className="absolute -bottom-1 left-0 h-[2px] bg-accent-gold w-0 group-hover:w-full transition-all duration-300 ease-out" />
                             </Link>
                           </motion.div>
                         );
@@ -456,7 +449,7 @@ const Header = () => {
                                 onClick={() => toggleSection(key)}
                                 whileTap={{ scale: 0.98 }}
                               >
-                                <span className={isMobileActive ? "text-premium-white" : ""}>
+                                <span className={isMobileActive ? "text-accent-gold" : ""}>
                                   {section.title}
                                 </span>
                                 <motion.span
@@ -469,7 +462,7 @@ const Header = () => {
                               
                               {/* Active underline */}
                               {isMobileActive && (
-                                <span className="absolute bottom-0 left-0 h-[1px] bg-accent-gold w-12" />
+                                <span className="absolute bottom-0 left-0 h-[2px] bg-accent-gold w-20" />
                               )}
                             </div>
                             
@@ -499,7 +492,7 @@ const Header = () => {
                                           href={item.href}
                                           className="group relative block py-3 text-soft-white hover:text-premium-white font-bodoni text-lg cursor-pointer"
                                         >
-                                          <span className={isItemActive ? "text-premium-white" : ""}>
+                                          <span className={isItemActive ? "text-accent-gold" : ""}>
                                             {item.label}
                                           </span>
                                           
@@ -521,14 +514,14 @@ const Header = () => {
                               href={section.featured.link}
                               className="font-bodoni text-base uppercase tracking-widest py-2 block text-soft-white hover:text-premium-white cursor-pointer"
                             >
-                              <span className={isMobileActive ? "text-premium-white" : ""}>
+                              <span className={isMobileActive ? "text-accent-gold" : ""}>
                                 {section.title}
                               </span>
                             </Link>
                             
                             {/* Active underline */}
                             {isMobileActive && (
-                              <span className="absolute bottom-0 left-0 h-[1px] bg-accent-gold w-12" />
+                              <span className="absolute bottom-0 left-0 h-[2px] bg-accent-gold w-20" />
                             )}
                           </div>
                         )}
