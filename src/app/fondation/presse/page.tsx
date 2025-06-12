@@ -94,7 +94,7 @@ const PressePage = () => {
             transition={{ duration: 0.8 }}
             className="max-w-4xl mx-auto text-center"
           >
-            <h1 className="font-bodoni-regular text-4xl md:text-5xl lg:text-6xl mb-6">
+            <h1 className="font-bodoni text-4xl md:text-5xl lg:text-6xl mb-6">
               Ils Parlent de Nous
             </h1>
             <p className="text-soft-white text-lg md:text-xl">
@@ -125,7 +125,7 @@ const PressePage = () => {
               transition={{ delay: 0.2, duration: 0.6 }}
               className="mb-16"
             >
-              <h2 className="font-bodoni-regular text-3xl text-gray-900 mb-6">
+              <h2 className="font-bodoni text-3xl text-gray-900 mb-6">
                 Dans la Presse Nationale
               </h2>
               <p className="text-gray-700 mb-8">
@@ -158,7 +158,7 @@ const PressePage = () => {
                       <span className="inline-block bg-accent-gold/10 text-accent-gold text-sm px-3 py-1 rounded-full mb-3">
                         {article.source} • {article.date}
                       </span>
-                      <h3 className="font-bodoni-regular text-2xl text-gray-900 mb-3">
+                      <h3 className="font-bodoni text-2xl text-gray-900 mb-3">
                         {article.title}
                       </h3>
                       <p className="text-gray-700 mb-4">
@@ -185,7 +185,7 @@ const PressePage = () => {
               transition={{ delay: 0.6, duration: 0.6 }}
               className="mb-16"
             >
-              <h2 className="font-bodoni-regular text-3xl text-gray-900 mb-6">
+              <h2 className="font-bodoni text-3xl text-gray-900 mb-6">
                 Rayonnement International
               </h2>
               <p className="text-gray-700 mb-8">
@@ -205,7 +205,7 @@ const PressePage = () => {
                       <span className="text-accent-gold text-sm">
                         {article.source} • {article.date}
                       </span>
-                      <h3 className="font-bodoni-regular text-xl text-premium-white mt-2 mb-3">
+                      <h3 className="font-bodoni text-xl text-premium-white mt-2 mb-3">
                         {article.title}
                       </h3>
                       <p className="text-soft-white text-sm mb-3">
@@ -233,7 +233,7 @@ const PressePage = () => {
               className="bg-gray-50 rounded-lg p-10 mb-16"
             >
               <div className="text-center">
-                <h2 className="font-bodoni-regular text-3xl text-gray-900 mb-6">
+                <h2 className="font-bodoni text-3xl text-gray-900 mb-6">
                   Espace Presse
                 </h2>
                 <p className="text-gray-700 mb-8 max-w-3xl mx-auto">
@@ -242,13 +242,13 @@ const PressePage = () => {
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <a 
                     href="#" 
-                    className="inline-block bg-accent-gold text-white hover:bg-accent-gold/90 transition-colors px-6 py-3 font-bodoni-regular rounded"
+                    className="inline-block bg-accent-gold text-white hover:bg-accent-gold/90 transition-colors px-6 py-3 font-bodoni rounded"
                   >
                     Télécharger le dossier de presse
                   </a>
                   <a 
                     href="#" 
-                    className="inline-block bg-white border border-gray-300 text-gray-800 hover:bg-gray-50 transition-colors px-6 py-3 font-bodoni-regular rounded"
+                    className="inline-block bg-white border border-gray-300 text-gray-800 hover:bg-gray-50 transition-colors px-6 py-3 font-bodoni rounded"
                   >
                     Banque d'images
                   </a>
@@ -263,12 +263,12 @@ const PressePage = () => {
               transition={{ delay: 0.9, duration: 0.6 }}
               className="mb-16"
             >
-              <h2 className="font-bodoni-regular text-3xl text-gray-900 mb-6">
+              <h2 className="font-bodoni text-3xl text-gray-900 mb-6">
                 Contact Presse
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div className="bg-white p-6 border border-gray-100 rounded-lg shadow-sm">
-                  <h3 className="font-bodoni-regular text-xl text-gray-900 mb-4">
+                  <h3 className="font-bodoni text-xl text-gray-900 mb-4">
                     Relations Presse
                   </h3>
                   <p className="text-gray-700 mb-2">
@@ -283,7 +283,7 @@ const PressePage = () => {
                 </div>
                 
                 <div className="bg-white p-6 border border-gray-100 rounded-lg shadow-sm">
-                  <h3 className="font-bodoni-regular text-xl text-gray-900 mb-4">
+                  <h3 className="font-bodoni text-xl text-gray-900 mb-4">
                     Accréditation Presse
                   </h3>
                   <p className="text-gray-700 mb-4">
@@ -306,7 +306,7 @@ const PressePage = () => {
       <section className="py-16 bg-gray-100">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="font-bodoni-regular text-3xl text-gray-900 mb-6">
+            <h2 className="font-bodoni text-3xl text-gray-900 mb-6">
               Restez Informé
             </h2>
             <p className="text-gray-700 mb-8">
@@ -319,7 +319,7 @@ const PressePage = () => {
                   placeholder="Votre adresse e-mail" 
                   className="flex-grow px-4 py-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-accent-gold"
                 />
-                <button className="bg-black text-white hover:bg-black/90 transition-colors px-6 py-3 font-bodoni-regular rounded">
+                <button className="bg-black text-white hover:bg-black/90 transition-colors px-6 py-3 font-bodoni rounded">
                   S'abonner
                 </button>
               </div>

@@ -21,8 +21,6 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
 }
 
 @media (prefers-color-scheme: light) {
@@ -32,36 +30,107 @@
   }
 }
 
+/* Base typography */
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-bodoni), Arial, Helvetica, sans-serif;
+  font-family: var(--font-bodoni);
 }
 
-/* Typography Classes */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-bodoni);
+}
+
+/* Museum-quality Typography System */
+
+/* Title Grand Texte - For hero sections and main exhibition titles */
 .font-title-grand {
+  font-family: var(--font-bodoni);
   font-size: 200pt;
   line-height: 240pt;
-  font-family: var(--font-bodoni);
+  letter-spacing: -0.02em;
 }
 
+/* Sequence Text - For section headings and important text blocks */
 .font-sequence {
+  font-family: var(--font-bodoni);
   font-size: 50pt;
   line-height: 65pt;
+  letter-spacing: -0.01em;
+}
+
+/* Comment Labels - For exhibit descriptions and medium-sized text */
+.font-comment {
+  font-family: var(--font-bodoni);
+  font-size: 34pt;
+  line-height: 39pt;
+}
+
+/* Additional Typography Classes */
+.font-caption {
+  font-family: var(--font-bodoni-italic);
+  font-size: 24pt;
+  line-height: 30pt;
+  font-style: italic;
+}
+
+.font-quote {
+  font-family: var(--font-bodoni-italic);
+  font-size: 32pt;
+  line-height: 42pt;
+  font-style: italic;
+}
+
+.font-detail {
+  font-family: var(--font-bodoni);
+  font-size: 18pt;
+  line-height: 28pt;
+}
+
+.font-metadata {
+  font-family: var(--font-bodoni-bold);
+  font-size: 14pt;
+  line-height: 18pt;
+  font-weight: bold;
+}
+
+/* Font style utilities */
+.font-bodoni {
   font-family: var(--font-bodoni);
 }
 
-.font-comment {
-  font-size: 34pt;
-  line-height: 39pt;
-  font-family: var(--font-bodoni);
+.font-bodoni-italic {
+  font-family: var(--font-bodoni-italic);
+  font-style: italic;
+}
+
+.font-bodoni-bold {
+  font-family: var(--font-bodoni-bold);
+  font-weight: bold;
 }
 
 /* Responsive typography adjustments */
+@media (max-width: 1280px) {
+  .font-title-grand {
+    font-size: 160pt;
+    line-height: 190pt;
+  }
+  
+  .font-sequence {
+    font-size: 44pt;
+    line-height: 56pt;
+  }
+  
+  .font-comment {
+    font-size: 30pt;
+    line-height: 36pt;
+  }
+}
+
 @media (max-width: 768px) {
   .font-title-grand {
-    font-size: 120pt;
-    line-height: 140pt;
+    font-size: 100pt;
+    line-height: 120pt;
   }
   
   .font-sequence {
@@ -73,12 +142,22 @@ body {
     font-size: 24pt;
     line-height: 30pt;
   }
+  
+  .font-caption {
+    font-size: 20pt;
+    line-height: 26pt;
+  }
+  
+  .font-quote {
+    font-size: 26pt;
+    line-height: 34pt;
+  }
 }
 
 @media (max-width: 480px) {
   .font-title-grand {
-    font-size: 72pt;
-    line-height: 86pt;
+    font-size: 60pt;
+    line-height: 72pt;
   }
   
   .font-sequence {
@@ -89,5 +168,20 @@ body {
   .font-comment {
     font-size: 20pt;
     line-height: 26pt;
+  }
+  
+  .font-caption {
+    font-size: 16pt;
+    line-height: 22pt;
+  }
+  
+  .font-quote {
+    font-size: 22pt;
+    line-height: 30pt;
+  }
+  
+  .font-detail {
+    font-size: 16pt;
+    line-height: 24pt;
   }
 }

@@ -17,7 +17,7 @@ const ProjetMuseePage = () => {
             transition={{ duration: 0.8 }}
             className="max-w-4xl mx-auto text-center"
           >
-            <h1 className="font-bodoni-regular text-4xl md:text-5xl lg:text-6xl mb-6">
+            <h1 className="font-bodoni text-4xl md:text-5xl lg:text-6xl mb-6">
               Le Projet de Musée
             </h1>
             <p className="text-soft-white text-lg md:text-xl">
@@ -48,7 +48,7 @@ const ProjetMuseePage = () => {
               transition={{ delay: 0.2, duration: 0.6 }}
               className="mb-16"
             >
-              <h2 className="font-bodoni-regular text-3xl text-gray-900 mb-6">
+              <h2 className="font-bodoni text-3xl text-gray-900 mb-6">
                 Naissance d'un Projet Culturel
               </h2>
               <div className="prose prose-lg max-w-none">
@@ -84,7 +84,7 @@ const ProjetMuseePage = () => {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.5, duration: 0.6 }}
               >
-                <h3 className="font-bodoni-regular text-2xl text-gray-900 mb-4">
+                <h3 className="font-bodoni text-2xl text-gray-900 mb-4">
                   L'Histoire
                 </h3>
                 <p className="text-gray-700 mb-4">
@@ -100,7 +100,7 @@ const ProjetMuseePage = () => {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.6, duration: 0.6 }}
               >
-                <h3 className="font-bodoni-regular text-2xl text-gray-900 mb-4">
+                <h3 className="font-bodoni text-2xl text-gray-900 mb-4">
                   Notre Mission
                 </h3>
                 <p className="text-gray-700 mb-4">
@@ -134,7 +134,7 @@ const ProjetMuseePage = () => {
               transition={{ delay: 0.8, duration: 0.6 }}
               className="mb-16"
             >
-              <h2 className="font-bodoni-regular text-3xl text-gray-900 mb-6">
+              <h2 className="font-bodoni text-3xl text-gray-900 mb-6">
                 Les Collections
               </h2>
               <p className="text-gray-700 mb-6">
@@ -143,7 +143,7 @@ const ProjetMuseePage = () => {
               
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
                 <div className="bg-gray-100 p-6 rounded-lg">
-                  <h4 className="font-bodoni-regular text-xl text-gray-900 mb-3">
+                  <h4 className="font-bodoni text-xl text-gray-900 mb-3">
                     Bijoux Anciens
                   </h4>
                   <p className="text-gray-700">
@@ -152,7 +152,7 @@ const ProjetMuseePage = () => {
                 </div>
                 
                 <div className="bg-gray-100 p-6 rounded-lg">
-                  <h4 className="font-bodoni-regular text-xl text-gray-900 mb-3">
+                  <h4 className="font-bodoni text-xl text-gray-900 mb-3">
                     Affiches Anciennes
                   </h4>
                   <p className="text-gray-700">
@@ -161,7 +161,7 @@ const ProjetMuseePage = () => {
                 </div>
                 
                 <div className="bg-gray-100 p-6 rounded-lg">
-                  <h4 className="font-bodoni-regular text-xl text-gray-900 mb-3">
+                  <h4 className="font-bodoni text-xl text-gray-900 mb-3">
                     Art Contemporain
                   </h4>
                   <p className="text-gray-700">
@@ -173,7 +173,7 @@ const ProjetMuseePage = () => {
               <div className="mt-8 text-center">
                 <Link 
                   href="/collections-expositions" 
-                  className="inline-block bg-accent-gold text-white hover:bg-accent-gold/90 transition-colors px-6 py-3 font-bodoni-regular rounded"
+                  className="inline-block bg-accent-gold text-white hover:bg-accent-gold/90 transition-colors px-6 py-3 font-bodoni rounded"
                 >
                   Découvrir nos collections
                 </Link>
@@ -187,7 +187,7 @@ const ProjetMuseePage = () => {
               transition={{ delay: 0.9, duration: 0.6 }}
               className="mb-16"
             >
-              <h2 className="font-bodoni-regular text-3xl text-gray-900 mb-6">
+              <h2 className="font-bodoni text-3xl text-gray-900 mb-6">
                 L'Architecture
               </h2>
               <p className="text-gray-700 mb-6">
@@ -205,7 +205,7 @@ const ProjetMuseePage = () => {
       <section className="py-16 bg-gray-100">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="font-bodoni-regular text-3xl text-gray-900 mb-6">
+            <h2 className="font-bodoni text-3xl text-gray-900 mb-6">
               Visitez le Musée Abderrahman Slaoui
             </h2>
             <p className="text-gray-700 mb-8">
@@ -214,13 +214,13 @@ const ProjetMuseePage = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link 
                 href="/infos-pratiques/horaires-tarifs-acces" 
-                className="inline-block bg-charcoal text-white hover:bg-charcoal/90 transition-colors px-6 py-3 font-bodoni-regular rounded"
+                className="inline-block bg-charcoal text-white hover:bg-charcoal/90 transition-colors px-6 py-3 font-bodoni rounded"
               >
                 Informations pratiques
               </Link>
               <Link 
                 href="/visites-ateliers-activites" 
-                className="inline-block bg-white border border-charcoal text-charcoal hover:bg-gray-50 transition-colors px-6 py-3 font-bodoni-regular rounded"
+                className="inline-block bg-white border border-charcoal text-charcoal hover:bg-gray-50 transition-colors px-6 py-3 font-bodoni rounded"
               >
                 Activités et événements
               </Link>

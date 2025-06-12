@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { FiSearch, FiX } from 'react-icons/fi';
 import { RiMenu3Line } from 'react-icons/ri';
 import { IoIosArrowDown } from 'react-icons/io';
+import { usePathname } from 'next/navigation';
 
 const Header = () => {
   const [isSearchActive, setIsSearchActive] = useState(false);
@@ -15,6 +16,20 @@ const Header = () => {
   const [isVisible, setIsVisible] = useState(true);
   const searchInputRef = useRef<HTMLInputElement>(null);
   const lastScrollY = useRef(0);
+  const pathname = usePathname();
+
+  // Determine active section from URL path
+  useEffect(() => {
+    if (pathname) {
+      const firstSegment = pathname.split('/')[1];
+      Object.entries(navSections).forEach(([key, section]) => {
+        const sectionPath = section.featured.link.split('/')[1];
+        if (firstSegment === sectionPath) {
+          setActiveSection(key);
+        }
+      });
+    }
+  }, [pathname]);
 
   // Detect scroll for styling and visibility
   useEffect(() => {
@@ -161,6 +176,13 @@ const Header = () => {
     }
   };
 
+  // Helper to check if section matches current path
+  const isSectionActive = (key: string) => {
+    if (!pathname) return false;
+    const sectionPath = navSections[key as keyof typeof navSections].featured.link.split('/')[1];
+    return pathname.startsWith(`/${sectionPath}`);
+  };
+
   return (
     <>
       {/* This div adds space below the fixed header */}
@@ -174,7 +196,7 @@ const Header = () => {
           {/* Left side - Menu button for mobile */}
           <div className="w-24 flex justify-start">
             <motion.button 
-              className="md:hidden text-premium-white"
+              className="md:hidden text-premium-white cursor-pointer"
               onClick={toggleMobileMenu}
               whileTap={{ scale: 0.95 }}
             >
@@ -183,19 +205,20 @@ const Header = () => {
           </div>
           
           {/* Center - Museum Name */}
-          <Link href="/" className="flex-grow text-center">
+          <Link href="/" className="flex-grow text-center group">
             <motion.h1 
-              className="text-2xl md:text-3xl lg:text-4xl font-bodoni-italic text-premium-white tracking-wider"
+              className="text-2xl md:text-3xl lg:text-4xl font-bodoni-italic text-premium-white tracking-wider relative inline-block cursor-pointer"
               whileHover={{ color: '#D4AF37', transition: { duration: 0.3 } }}
             >
               Musée Abderrahman Slaoui
+              <span className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-accent-gold transform -translate-x-1/2 group-hover:w-1/4 transition-all duration-300 ease-out"></span>
             </motion.h1>
           </Link>
           
           {/* Right side - Search Icon */}
           <div className="w-24 flex justify-end">
             <motion.button 
-              className="text-premium-white hover:text-accent-gold transition-colors"
+              className="text-premium-white hover:text-accent-gold transition-colors cursor-pointer"
               onClick={toggleSearch}
               whileTap={{ scale: 0.95 }}
             >
@@ -224,7 +247,7 @@ const Header = () => {
                     className="w-full bg-graphite border-none py-3 px-4 pr-12 text-premium-white focus:outline-none focus:ring-1 focus:ring-accent-gold"
                   />
                   <motion.button 
-                    className="absolute right-4 top-1/2 transform -translate-y-1/2 text-soft-white hover:text-accent-gold"
+                    className="absolute right-4 top-1/2 transform -translate-y-1/2 text-soft-white hover:text-accent-gold cursor-pointer"
                     whileTap={{ scale: 0.95 }}
                   >
                     <FiSearch size={20} />
@@ -242,36 +265,77 @@ const Header = () => {
               >
                 <div className="flex justify-center py-4 min-w-max">
                   <ul className="flex justify-center space-x-6 lg:space-x-8">
-                    {Object.entries(navSections).map(([key, section]) => (
-                      <li key={key} className="relative nav-item">
-                        {section.items.length > 0 ? (
-                          <motion.button 
-                            className={`font-bodoni-regular text-xs lg:text-sm uppercase tracking-widest py-2 flex items-center whitespace-nowrap
-                                      ${activeSection === key ? 'text-accent-gold' : 'text-soft-white hover:text-premium-white'}`}
-                            onClick={() => toggleSection(key)}
-                            whileHover={{ x: 3 }}
-                            whileTap={{ scale: 0.97 }}
-                          >
-                            {section.title}
-                            <motion.span
-                              animate={{ rotate: activeSection === key ? 180 : 0 }}
-                              transition={{ duration: 0.3 }}
-                              className="ml-2"
-                            >
-                              <IoIosArrowDown size={14} />
-                            </motion.span>
-                          </motion.button>
-                        ) : (
-                          <Link 
-                            href={section.featured.link}
-                            className={`font-bodoni-regular text-xs lg:text-sm uppercase tracking-widest py-2 flex items-center whitespace-nowrap
-                                      ${activeSection === key ? 'text-accent-gold' : 'text-soft-white hover:text-premium-white'}`}
-                          >
-                            {section.title}
-                          </Link>
-                        )}
-                      </li>
-                    ))}
+                    {Object.entries(navSections).map(([key, section]) => {
+                      // Check if this section is active (either dropdown open or current page matches section)
+                      const isActive = activeSection === key || isSectionActive(key);
+                      
+                      return (
+                        <li key={key} className="relative nav-item">
+                          {section.items.length > 0 ? (
+                            <div className="relative group">
+                              <motion.button 
+                                className={`font-bodoni text-xs lg:text-sm uppercase tracking-widest py-2 flex items-center whitespace-nowrap cursor-pointer relative
+                                          ${isActive ? 'text-premium-white' : 'text-soft-white hover:text-premium-white'}`}
+                                onClick={() => toggleSection(key)}
+                                whileTap={{ scale: 0.97 }}
+                              >
+                                {section.title}
+                                <motion.span
+                                  animate={{ rotate: activeSection === key ? 180 : 0 }}
+                                  transition={{ duration: 0.3 }}
+                                  className="ml-2"
+                                >
+                                  <IoIosArrowDown size={14} />
+                                </motion.span>
+                                
+                                {/* Animated underline element */}
+                                <motion.span 
+                                  className="absolute -bottom-1 left-1/2 h-[2px] bg-accent-gold transform -translate-x-1/2"
+                                  initial={{ width: isActive ? "60%" : "0%" }}
+                                  animate={{ width: isActive ? "60%" : "0%" }}
+                                  exit={{ width: "0%" }}
+                                  transition={{ duration: 0.3 }}
+                                />
+                                
+                                {/* Hover underline animation - grows from center */}
+                                <motion.span 
+                                  className="absolute -bottom-1 left-1/2 h-[2px] bg-accent-gold transform -translate-x-1/2 pointer-events-none"
+                                  initial={{ width: "0%" }}
+                                  whileHover={{ width: isActive ? "80%" : "30%" }}
+                                  transition={{ duration: 0.3 }}
+                                />
+                              </motion.button>
+                            </div>
+                          ) : (
+                            <div className="relative group">
+                              <Link 
+                                href={section.featured.link}
+                                className={`font-bodoni text-xs lg:text-sm uppercase tracking-widest py-2 flex items-center whitespace-nowrap cursor-pointer relative
+                                          ${isActive ? 'text-premium-white' : 'text-soft-white hover:text-premium-white'}`}
+                              >
+                                {section.title}
+                                
+                                {/* Animated underline element for active state */}
+                                <motion.span 
+                                  className="absolute -bottom-1 left-1/2 h-[2px] bg-accent-gold transform -translate-x-1/2"
+                                  initial={{ width: isActive ? "60%" : "0%" }}
+                                  animate={{ width: isActive ? "60%" : "0%" }}
+                                  transition={{ duration: 0.3 }}
+                                />
+                                
+                                {/* Hover underline animation - grows from center */}
+                                <motion.span 
+                                  className="absolute -bottom-1 left-1/2 h-[2px] bg-accent-gold transform -translate-x-1/2 pointer-events-none"
+                                  initial={{ width: "0%" }}
+                                  whileHover={{ width: isActive ? "80%" : "30%" }}
+                                  transition={{ duration: 0.3 }}
+                                />
+                              </Link>
+                            </div>
+                          )}
+                        </li>
+                      );
+                    })}
                   </ul>
                 </div>
               </motion.nav>
@@ -294,24 +358,38 @@ const Header = () => {
                   {/* Left side - Links */}
                   <div className="md:col-span-2 lg:col-span-3">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                      {navSections[activeSection as keyof typeof navSections].items.map((item, index) => (
-                        <motion.div
-                          key={index}
-                          initial={{ opacity: 0, y: 10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ 
-                            duration: 0.3,
-                            delay: index * 0.05
-                          }}
-                        >
-                          <Link 
-                            href={item.href}
-                            className="block text-soft-white hover:text-accent-gold transition-colors duration-200 font-bodoni-regular text-lg py-1"
+                      {navSections[activeSection as keyof typeof navSections].items.map((item, index) => {
+                        const isItemActive = pathname === item.href;
+                        
+                        return (
+                          <motion.div
+                            key={index}
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ 
+                              duration: 0.3,
+                              delay: index * 0.05
+                            }}
                           >
-                            {item.label}
-                          </Link>
-                        </motion.div>
-                      ))}
+                            <Link 
+                              href={item.href}
+                              className="group relative block text-soft-white hover:text-premium-white transition-colors duration-200 font-bodoni text-lg py-1 cursor-pointer"
+                            >
+                              <span className={isItemActive ? "text-premium-white" : ""}>
+                                {item.label}
+                              </span>
+                              
+                              {/* Active underline */}
+                              {isItemActive && (
+                                <span className="absolute -bottom-1 left-0 h-[1px] bg-accent-gold w-8" />
+                              )}
+                              
+                              {/* Hover underline animation */}
+                              <span className="absolute -bottom-1 left-0 h-[1px] bg-accent-gold w-0 group-hover:w-full transition-all duration-300 ease-out" />
+                            </Link>
+                          </motion.div>
+                        );
+                      })}
                     </div>
                   </div>
                   
@@ -323,7 +401,7 @@ const Header = () => {
                       transition={{ duration: 0.5, delay: 0.2 }}
                       className="bg-graphite/20 p-4 rounded"
                     >
-                      <h3 className="text-accent-gold font-bodoni-regular text-xl mb-3">
+                      <h3 className="text-accent-gold font-bodoni text-xl mb-3">
                         {navSections[activeSection as keyof typeof navSections].featured.title}
                       </h3>
                       <div className="aspect-video bg-graphite/30 mb-3 overflow-hidden">
@@ -339,9 +417,10 @@ const Header = () => {
                       </p>
                       <Link 
                         href={navSections[activeSection as keyof typeof navSections].featured.link}
-                        className="text-accent-gold hover:text-premium-white text-sm font-bodoni-regular underline"
+                        className="group relative inline-block text-accent-gold hover:text-premium-white text-sm font-bodoni cursor-pointer"
                       >
                         En savoir plus
+                        <span className="absolute -bottom-1 left-0 h-[1px] bg-accent-gold w-0 group-hover:w-full transition-all duration-300 ease-out" />
                       </Link>
                     </motion.div>
                   </div>
@@ -363,66 +442,99 @@ const Header = () => {
             >
               <div className="container mx-auto px-6 py-4">
                 <nav>
-                  {Object.entries(navSections).map(([key, section]) => (
-                    <div key={key} className="mb-4">
-                      {section.items.length > 0 ? (
-                        <>
-                          <motion.button 
-                            className={`font-bodoni-regular text-base uppercase tracking-widest py-2 flex items-center justify-between w-full
-                                      ${activeSection === key ? 'text-accent-gold' : 'text-soft-white'}`}
-                            onClick={() => toggleSection(key)}
-                            whileTap={{ scale: 0.98 }}
-                          >
-                            {section.title}
-                            <motion.span
-                              animate={{ rotate: activeSection === key ? 180 : 0 }}
-                              transition={{ duration: 0.3 }}
-                            >
-                              <IoIosArrowDown size={18} />
-                            </motion.span>
-                          </motion.button>
-                          
-                          <AnimatePresence>
-                            {activeSection === key && (
-                              <motion.div
-                                initial={{ opacity: 0, height: 0 }}
-                                animate={{ opacity: 1, height: 'auto' }}
-                                exit={{ opacity: 0, height: 0 }}
-                                transition={{ duration: 0.2 }}
-                                className="pl-4 border-l border-graphite/50 ml-2 mt-2 overflow-hidden"
+                  {Object.entries(navSections).map(([key, section]) => {
+                    const isMobileActive = isSectionActive(key);
+                    
+                    return (
+                      <div key={key} className="mb-4">
+                        {section.items.length > 0 ? (
+                          <>
+                            <div className="relative">
+                              <motion.button 
+                                className={`font-bodoni text-base uppercase tracking-widest py-2 flex items-center justify-between w-full cursor-pointer
+                                          ${activeSection === key ? 'text-accent-gold' : 'text-soft-white'}`}
+                                onClick={() => toggleSection(key)}
+                                whileTap={{ scale: 0.98 }}
                               >
-                                {section.items.map((item, index) => (
-                                  <motion.div
-                                    key={index}
-                                    initial={{ opacity: 0, x: -10 }}
-                                    animate={{ opacity: 1, x: 0 }}
-                                    transition={{ 
-                                      duration: 0.2,
-                                      delay: index * 0.05
-                                    }}
-                                  >
-                                    <Link 
-                                      href={item.href}
-                                      className="block py-3 text-soft-white hover:text-premium-white font-bodoni-regular"
-                                    >
-                                      {item.label}
-                                    </Link>
-                                  </motion.div>
-                                ))}
-                              </motion.div>
+                                <span className={isMobileActive ? "text-premium-white" : ""}>
+                                  {section.title}
+                                </span>
+                                <motion.span
+                                  animate={{ rotate: activeSection === key ? 180 : 0 }}
+                                  transition={{ duration: 0.3 }}
+                                >
+                                  <IoIosArrowDown size={18} />
+                                </motion.span>
+                              </motion.button>
+                              
+                              {/* Active underline */}
+                              {isMobileActive && (
+                                <span className="absolute bottom-0 left-0 h-[1px] bg-accent-gold w-12" />
+                              )}
+                            </div>
+                            
+                            <AnimatePresence>
+                              {activeSection === key && (
+                                <motion.div
+                                  initial={{ opacity: 0, height: 0 }}
+                                  animate={{ opacity: 1, height: 'auto' }}
+                                  exit={{ opacity: 0, height: 0 }}
+                                  transition={{ duration: 0.2 }}
+                                  className="pl-4 border-l border-graphite/50 ml-2 mt-2 overflow-hidden"
+                                >
+                                  {section.items.map((item, index) => {
+                                    const isItemActive = pathname === item.href;
+                                    
+                                    return (
+                                      <motion.div
+                                        key={index}
+                                        initial={{ opacity: 0, x: -10 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{ 
+                                          duration: 0.2,
+                                          delay: index * 0.05
+                                        }}
+                                      >
+                                        <Link 
+                                          href={item.href}
+                                          className="group relative block py-3 text-soft-white hover:text-premium-white font-bodoni text-lg cursor-pointer"
+                                        >
+                                          <span className={isItemActive ? "text-premium-white" : ""}>
+                                            {item.label}
+                                          </span>
+                                          
+                                          {/* Active indicator */}
+                                          {isItemActive && (
+                                            <span className="absolute -left-4 top-1/2 h-2 w-2 bg-accent-gold rounded-full transform -translate-y-1/2" />
+                                          )}
+                                        </Link>
+                                      </motion.div>
+                                    );
+                                  })}
+                                </motion.div>
+                              )}
+                            </AnimatePresence>
+                          </>
+                        ) : (
+                          <div className="relative">
+                            <Link
+                              href={section.featured.link}
+                              className="font-bodoni text-base uppercase tracking-widest py-2 block text-soft-white hover:text-premium-white cursor-pointer"
+                            >
+                              <span className={isMobileActive ? "text-premium-white" : ""}>
+                                {section.title}
+                              </span>
+                            </Link>
+                            
+                            {/* Active underline */}
+                            {isMobileActive && (
+                              <span className="absolute bottom-0 left-0 h-[1px] bg-accent-gold w-12" />
                             )}
-                          </AnimatePresence>
-                        </>
-                      ) : (
-                        <Link
-                          href={section.featured.link}
-                          className="font-bodoni-regular text-base uppercase tracking-widest py-2 block text-soft-white hover:text-premium-white"
-                        >
-                          {section.title}
-                        </Link>
-                      )}
-                    </div>
-                  ))}
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
                 </nav>
                 
                 {/* Mobile Search */}
@@ -439,7 +551,7 @@ const Header = () => {
                       className="w-full bg-graphite border-none py-3 px-4 pr-12 text-premium-white focus:outline-none focus:ring-1 focus:ring-accent-gold"
                     />
                     <motion.button 
-                      className="absolute right-4 top-1/2 transform -translate-y-1/2 text-soft-white hover:text-accent-gold"
+                      className="absolute right-4 top-1/2 transform -translate-y-1/2 text-soft-white hover:text-accent-gold cursor-pointer"
                       whileTap={{ scale: 0.95 }}
                     >
                       <FiSearch size={20} />

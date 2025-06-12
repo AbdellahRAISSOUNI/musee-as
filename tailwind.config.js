@@ -8,15 +8,19 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        'bodoni-regular': 'var(--font-bodoni)',
-        'bodoni-italic': 'var(--font-bodoni-italic)',
-        'bodoni-bold': 'var(--font-bodoni-bold)',
+        'bodoni': ['var(--font-bodoni)', 'Bodoni', 'Didot', 'Baskerville', 'Times New Roman', 'serif'],
+        'bodoni-italic': ['var(--font-bodoni-italic)', 'Bodoni Italic', 'Didot Italic', 'Baskerville Italic', 'Times New Roman', 'serif'],
+        'bodoni-bold': ['var(--font-bodoni-bold)', 'Bodoni Bold', 'Didot Bold', 'Baskerville Bold', 'Times New Roman Bold', 'serif'],
       },
       fontSize: {
         // Slaoui Foundation brand guidelines typography system
-        'title-grand': ['200pt', { lineHeight: '240pt' }],
-        'sequence': ['50pt', { lineHeight: '65pt' }],
+        'title-grand': ['200pt', { lineHeight: '240pt', letterSpacing: '-0.02em' }],
+        'sequence': ['50pt', { lineHeight: '65pt', letterSpacing: '-0.01em' }],
         'comment': ['34pt', { lineHeight: '39pt' }],
+        'caption': ['24pt', { lineHeight: '30pt' }],
+        'quote': ['32pt', { lineHeight: '42pt' }],
+        'detail': ['18pt', { lineHeight: '28pt' }],
+        'metadata': ['14pt', { lineHeight: '18pt' }],
       },
       colors: {
         // Modern premium black & white palette
@@ -50,7 +54,26 @@ module.exports = {
       backgroundSize: {
         '200%': '200% 200%',
       },
+      typography: (theme) => ({
+        DEFAULT: {
+          css: {
+            'h1, h2, h3, h4, h5, h6': {
+              fontFamily: theme('fontFamily.bodoni'),
+            },
+            'blockquote p': {
+              fontFamily: theme('fontFamily.bodoni-italic'),
+              fontStyle: 'italic',
+            },
+            'strong': {
+              fontFamily: theme('fontFamily.bodoni-bold'),
+              fontWeight: 'bold',
+            },
+          },
+        },
+      }),
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/typography'),
+  ],
 }; 
