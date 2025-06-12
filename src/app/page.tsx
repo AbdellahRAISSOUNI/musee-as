@@ -1,238 +1,325 @@
-import Image from "next/image";
-import PremiumDecorative from "@/components/MoroccanDecorative";
-import { TitleGrand, SequenceText, CommentLabel, ItalicText, BoldText } from "@/components/Typography";
-import { PremiumBorder } from "@/components/MoroccanIcons";
-import HeroSection from "@/components/HeroSection";
+"use client";
 
-export default function Home() {
+import React from 'react';
+import { motion } from 'framer-motion';
+import Link from 'next/link';
+import Image from 'next/image';
+import { FaChevronDown } from 'react-icons/fa';
+import HeroSection from '@/components/HeroSection';
+
+const HomePage = () => {
+  // Featured sections to display on homepage
+  const featuredSections = [
+    {
+      title: "Fondation Abderrahman Slaoui",
+      description: "Découvrez l'histoire et la mission de notre fondation dédiée à la préservation du patrimoine artistique marocain.",
+      image: "/images/hero-background.jpg",
+      link: "/fondation"
+    },
+    {
+      title: "Collections & Expositions",
+      description: "Explorez nos collections permanentes d'art marocain et nos expositions temporaires.",
+      image: "/images/hero-background.jpg",
+      link: "/collections-expositions"
+    },
+    {
+      title: "Tempus Fugit",
+      description: "Une exposition unique explorant la relation entre l'art, le temps et la mémoire.",
+      image: "/images/hero-background.jpg",
+      link: "/tempus-fugit",
+      featured: true
+    }
+  ];
+
+  // Current events and activities
+  const currentEvents = [
+    {
+      title: "Atelier de Calligraphie",
+      date: "24 Juin 2023",
+      image: "/images/hero-background.jpg",
+      link: "/visites-ateliers-activites/ateliers-artistiques"
+    },
+    {
+      title: "Visite Guidée Thématique",
+      date: "30 Juin 2023",
+      image: "/images/hero-background.jpg",
+      link: "/visites-ateliers-activites/visites-guidees"
+    },
+    {
+      title: "Rencontre avec l'Artiste",
+      date: "5 Juillet 2023",
+      image: "/images/hero-background.jpg",
+      link: "/visites-ateliers-activites/rencontres"
+    }
+  ];
+
+  // Navigation sections for quick access
+  const navSections = [
+    { title: "Jeune Public", link: "/jeune-public", icon: "👨‍👩‍👧‍👦" },
+    { title: "Horaires & Tarifs", link: "/infos-pratiques/horaires-tarifs-acces", icon: "🕒" },
+    { title: "Contact", link: "/infos-pratiques/contact", icon: "✉️" },
+    { title: "Plan du Site", link: "/site-map", icon: "🗺️" }
+  ];
+
   return (
-    <div className="min-h-screen bg-off-black text-premium-white">
+    <main className="min-h-screen bg-black text-premium-white">
       {/* Hero Section */}
       <HeroSection />
-
-      {/* Typography Showcase */}
-      <section className="py-16 bg-off-black">
-        <div className="container mx-auto px-6">
-          <PremiumBorder className="mb-12" />
-          <SequenceText className="text-center mb-12 text-premium-white">
-            Typographie
-          </SequenceText>
+      
+      {/* Featured Sections */}
+      <section className="py-20 px-6 bg-black">
+        <div className="container mx-auto max-w-7xl">
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="text-4xl md:text-5xl font-bodoni-regular text-center mb-16"
+          >
+            Découvrez le Musée Abderrahman Slaoui
+          </motion.h2>
           
-          <div className="grid gap-8 max-w-4xl mx-auto">
-            <div className="bg-charcoal p-8 overflow-hidden">
-              <CommentLabel className="text-soft-white mb-4">
-                Title Grand Texte
-              </CommentLabel>
-              <div className="overflow-hidden">
-                <div className="text-6xl lg:text-7xl xl:text-8xl font-bodoni-regular text-premium-white truncate">
-                  Bodoni Poster
-                </div>
-              </div>
-              <div className="text-sm text-soft-white mt-4">
-                200pt/240pt line height (responsive)
-              </div>
-            </div>
-            
-            <div className="bg-charcoal p-8">
-              <CommentLabel className="text-soft-white mb-4">
-                Sequence Text
-              </CommentLabel>
-              <div className="text-3xl lg:text-4xl font-bodoni-regular text-premium-white">
-                Bodoni Poster Regular
-              </div>
-              <div className="text-sm text-soft-white mt-4">
-                50pt/65pt line height (responsive)
-              </div>
-            </div>
-            
-            <div className="bg-charcoal p-8">
-              <CommentLabel className="text-soft-white mb-4">
-                Comment Labels
-              </CommentLabel>
-              <div className="text-xl lg:text-2xl font-bodoni-regular text-premium-white">
-                Bodoni Poster Regular
-              </div>
-              <div className="text-sm text-soft-white mt-4">
-                34pt/39pt line height (responsive)
-              </div>
-            </div>
-            
-            <div className="grid md:grid-cols-2 gap-8">
-              <div className="bg-charcoal p-8">
-                <CommentLabel className="text-soft-white mb-4">
-                  Bodoni Poster Italic
-                </CommentLabel>
-                <div className="text-xl lg:text-2xl font-bodoni-italic text-accent-gold">
-                  Elegant Italic Variant
-                </div>
-              </div>
-              
-              <div className="bg-charcoal p-8">
-                <CommentLabel className="text-soft-white mb-4">
-                  Bodoni Bold
-                </CommentLabel>
-                <div className="text-xl lg:text-2xl font-bodoni-bold text-premium-white">
-                  Strong Bold Variant
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Color Palette */}
-      <section className="py-16 bg-charcoal">
-        <div className="container mx-auto px-6">
-          <PremiumBorder className="mb-12" />
-          <SequenceText className="text-center mb-12 text-premium-white">
-            Palette de Couleurs
-          </SequenceText>
-          
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-4 max-w-4xl mx-auto">
-            <div className="flex flex-col">
-              <div className="h-24 bg-premium-black"></div>
-              <div className="bg-slate p-4">
-                <div className="font-bodoni-regular text-premium-white">Premium Black</div>
-                <div className="text-sm text-soft-white">#000000</div>
-              </div>
-            </div>
-            
-            <div className="flex flex-col">
-              <div className="h-24 bg-charcoal"></div>
-              <div className="bg-slate p-4">
-                <div className="font-bodoni-regular text-premium-white">Charcoal</div>
-                <div className="text-sm text-soft-white">#1A1A1A</div>
-              </div>
-            </div>
-            
-            <div className="flex flex-col">
-              <div className="h-24 bg-slate"></div>
-              <div className="bg-slate p-4">
-                <div className="font-bodoni-regular text-premium-white">Slate</div>
-                <div className="text-sm text-soft-white">#3A3A3A</div>
-              </div>
-            </div>
-            
-            <div className="flex flex-col">
-              <div className="h-24 bg-premium-white"></div>
-              <div className="bg-slate p-4">
-                <div className="font-bodoni-regular text-premium-white">Premium White</div>
-                <div className="text-sm text-soft-white">#FFFFFF</div>
-              </div>
-            </div>
-            
-            <div className="flex flex-col">
-              <div className="h-24 bg-accent-gold"></div>
-              <div className="bg-slate p-4">
-                <div className="font-bodoni-regular text-premium-white">Accent Gold</div>
-                <div className="text-sm text-soft-white">#D4AF37</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Featured Exhibitions */}
-      <section id="exhibitions" className="py-16 bg-off-black">
-        <div className="container mx-auto px-6">
-          <PremiumBorder className="mb-12" />
-          <h2 className="text-3xl font-bodoni-regular text-premium-white mb-12 text-center">Expositions Actuelles</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[1, 2, 3].map((i) => (
-              <div key={i} className="bg-charcoal overflow-hidden">
-                <div className="h-64 bg-graphite relative">
-                  {/* Placeholder for exhibition image */}
-                  <div className="absolute inset-0 bg-graphite animate-pulse"></div>
-                </div>
-                <div className="p-6 border-t border-accent-gold/20">
-                  <h3 className="text-xl font-bodoni-regular text-premium-white mb-2">Titre de l'exposition {i}</h3>
-                  <p className="text-soft-white mb-4">Une brève description de cette superbe exposition présentant des œuvres d'art remarquables.</p>
-                  <p className="text-sm text-soft-white/70">Jusqu'à décembre 2023</p>
-                </div>
-              </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {featuredSections.map((section, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: index * 0.1 }}
+                className={`group ${section.featured ? 'lg:col-span-3 lg:row-span-2' : ''}`}
+              >
+                <Link href={section.link}>
+                  <div className={`relative overflow-hidden rounded-lg mb-4 ${section.featured ? 'aspect-[21/9]' : 'aspect-square'}`}>
+            <Image
+                      src={section.image}
+                      alt={section.title}
+                      fill
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-black/50 group-hover:bg-black/40 transition-colors duration-300"></div>
+                    
+                    <div className="absolute inset-0 flex items-center justify-center p-6">
+                      <div className="text-center">
+                        <h3 className="font-bodoni-regular text-2xl md:text-3xl text-premium-white mb-3 group-hover:text-accent-gold transition-colors">
+                          {section.title}
+                        </h3>
+                        <p className="text-soft-white max-w-lg mx-auto">
+                          {section.description}
+                        </p>
+                        
+                        <div className="mt-6 inline-block border-b border-accent-gold text-accent-gold">
+                          En savoir plus
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </Link>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
-
-      {/* Artists Spotlight */}
-      <section id="artists" className="py-16 bg-charcoal">
-        <div className="container mx-auto px-6">
-          <PremiumBorder className="mb-12" />
-          <h2 className="text-3xl font-bodoni-regular text-premium-white mb-12 text-center">Artistes à l'Honneur</h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            {[1, 2, 3].map((i) => (
-              <div key={i} className="text-center">
-                <div className="w-32 h-32 mx-auto rounded-full bg-graphite mb-4 overflow-hidden relative border border-accent-gold/30">
-                  {/* Placeholder for artist image */}
-                  <div className="absolute inset-0 bg-graphite animate-pulse"></div>
-                </div>
-                <h3 className="text-xl font-bodoni-regular text-premium-white mb-1">Nom de l'Artiste {i}</h3>
-                <p className="text-soft-white">Contemporain</p>
-              </div>
+      
+      {/* Quote Section */}
+      <section className="py-24 px-6 bg-charcoal">
+        <div className="container mx-auto max-w-4xl text-center">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1 }}
+          >
+            <h2 className="font-bodoni-italic text-3xl md:text-4xl lg:text-5xl text-premium-white mb-8 leading-relaxed">
+              "L'art est le témoin indélébile de l'histoire d'un peuple et le reflet de son âme."
+            </h2>
+            <p className="text-accent-gold text-lg">
+              — Abderrahman Slaoui
+            </p>
+          </motion.div>
+        </div>
+      </section>
+      
+      {/* Current Events Section */}
+      <section className="py-20 px-6 bg-black">
+        <div className="container mx-auto max-w-7xl">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              <h2 className="text-4xl md:text-5xl font-bodoni-regular mb-4">
+                Actualités & Événements
+              </h2>
+              <p className="text-soft-white max-w-2xl">
+                Découvrez nos activités culturelles et nos événements à venir.
+              </p>
+            </motion.div>
+            
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="mt-6 md:mt-0"
+            >
+              <Link 
+                href="/visites-ateliers-activites" 
+                className="inline-block bg-transparent border border-accent-gold text-accent-gold hover:bg-accent-gold/10 transition-colors px-6 py-3 font-bodoni-regular"
+              >
+                Voir tous les événements
+              </Link>
+            </motion.div>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {currentEvents.map((event, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: index * 0.1 }}
+                className="group"
+              >
+                <Link href={event.link}>
+                  <div className="relative overflow-hidden rounded-lg mb-4 aspect-[4/3]">
+          <Image
+                      src={event.image}
+                      alt={event.title}
+                      fill
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-black/50 group-hover:bg-black/40 transition-colors duration-300"></div>
+                  </div>
+                  
+                  <p className="text-accent-gold text-sm mb-2">
+                    {event.date}
+                  </p>
+                  
+                  <h3 className="font-bodoni-regular text-xl text-premium-white group-hover:text-accent-gold transition-colors">
+                    {event.title}
+                  </h3>
+                </Link>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
-
-      {/* Visit Information */}
-      <section id="visit" className="py-16 bg-off-black">
-        <div className="container mx-auto px-6">
-          <PremiumBorder className="mb-12" />
-          <h2 className="text-3xl font-bodoni-regular text-premium-white mb-8 text-center">Planifiez Votre Visite</h2>
-          <div className="grid md:grid-cols-2 gap-12">
-            <div>
-              <h3 className="text-xl font-bodoni-regular text-premium-white mb-4">Horaires & Emplacement</h3>
-              <p className="text-soft-white mb-2">Mardi - Dimanche: 10h - 18h</p>
-              <p className="text-soft-white mb-2">Lundi: Fermé</p>
-              <p className="text-soft-white mb-6">12, rue du Parc, Casablanca, Maroc</p>
-              
-              <h3 className="text-xl font-bodoni-regular text-premium-white mb-4">Tarifs</h3>
-              <p className="text-soft-white mb-2">Adultes: 30 DH</p>
-              <p className="text-soft-white mb-2">Étudiants & Seniors: 15 DH</p>
-              <p className="text-soft-white">Enfants de moins de 12 ans: Gratuit</p>
-            </div>
-            <div className="bg-charcoal p-6 border border-slate/30">
-              <h3 className="text-xl font-bodoni-regular text-premium-white mb-4">Contactez-nous</h3>
-              <form>
-                <div className="mb-4">
-                  <label htmlFor="name" className="block text-sm font-bodoni-regular text-soft-white mb-1">Nom</label>
-                  <input type="text" id="name" className="w-full px-3 py-2 border border-slate bg-graphite text-premium-white focus:outline-none focus:border-accent-gold" />
-                </div>
-                <div className="mb-4">
-                  <label htmlFor="email" className="block text-sm font-bodoni-regular text-soft-white mb-1">Email</label>
-                  <input type="email" id="email" className="w-full px-3 py-2 border border-slate bg-graphite text-premium-white focus:outline-none focus:border-accent-gold" />
-                </div>
-                <div className="mb-4">
-                  <label htmlFor="message" className="block text-sm font-bodoni-regular text-soft-white mb-1">Message</label>
-                  <textarea id="message" rows={4} className="w-full px-3 py-2 border border-slate bg-graphite text-premium-white focus:outline-none focus:border-accent-gold"></textarea>
-                </div>
-                <button type="submit" className="w-full bg-premium-black border border-accent-gold text-premium-white py-2 px-4 hover:bg-graphite transition-colors font-bodoni-regular">Envoyer</button>
-              </form>
-            </div>
+      
+      {/* Quick Links Navigation */}
+      <section className="py-16 px-6 bg-charcoal/50">
+        <div className="container mx-auto max-w-7xl">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {navSections.map((section, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="bg-charcoal p-6 rounded-lg text-center group"
+              >
+                <Link href={section.link} className="block">
+                  <span className="text-4xl block mb-4">{section.icon}</span>
+                  <h3 className="font-bodoni-regular text-xl text-premium-white group-hover:text-accent-gold transition-colors">
+                    {section.title}
+                  </h3>
+                </Link>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
-
-      {/* Footer */}
-      <footer className="bg-premium-black text-premium-white py-8 border-t border-accent-gold/20">
-        <div className="container mx-auto px-6">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="mb-4 md:mb-0">
-              <h2 className="text-xl font-bodoni-regular">Musée Abderrahman Slaoui</h2>
-              <p className="text-soft-white text-sm mt-1">Un patrimoine artistique et culturel marocain d'exception</p>
-            </div>
-            <div className="flex space-x-6">
-              <a href="#" className="text-soft-white hover:text-premium-white hover:border-b hover:border-accent-gold transition-colors">Instagram</a>
-              <a href="#" className="text-soft-white hover:text-premium-white hover:border-b hover:border-accent-gold transition-colors">Twitter</a>
-              <a href="#" className="text-soft-white hover:text-premium-white hover:border-b hover:border-accent-gold transition-colors">Facebook</a>
-            </div>
+      
+      {/* Newsletter & Footer Info */}
+      <section className="py-20 px-6 bg-black">
+        <div className="container mx-auto max-w-7xl">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              <h2 className="text-3xl md:text-4xl font-bodoni-regular mb-6">
+                Restons en contact
+              </h2>
+              <p className="text-soft-white mb-8 max-w-lg">
+                Inscrivez-vous à notre newsletter pour recevoir les dernières actualités du musée, les invitations aux vernissages et les informations sur nos événements.
+              </p>
+              
+              <div className="flex flex-col sm:flex-row gap-4">
+                <input 
+                  type="email" 
+                  placeholder="Votre adresse email" 
+                  className="bg-charcoal border-none py-3 px-4 text-premium-white focus:outline-none focus:ring-1 focus:ring-accent-gold rounded-sm flex-grow"
+                />
+                <button className="bg-accent-gold hover:bg-accent-gold/90 text-black py-3 px-6 font-bodoni-regular transition-colors">
+                  S'inscrire
+                </button>
+              </div>
+            </motion.div>
+            
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              <h2 className="text-3xl md:text-4xl font-bodoni-regular mb-6">
+                Informations
+              </h2>
+              
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div>
+                  <h3 className="text-accent-gold text-lg mb-3">Adresse</h3>
+                  <p className="text-soft-white">
+                    Musée Abderrahman Slaoui<br />
+                    12, rue du Caire<br />
+                    Quartier Racine<br />
+                    Casablanca, Maroc
+                  </p>
+                </div>
+                
+                <div>
+                  <h3 className="text-accent-gold text-lg mb-3">Horaires</h3>
+                  <p className="text-soft-white">
+                    Mardi - Dimanche<br />
+                    10h00 - 18h00<br />
+                    Fermé le Lundi
+                  </p>
+                </div>
+                
+                <div>
+                  <h3 className="text-accent-gold text-lg mb-3">Contact</h3>
+                  <p className="text-soft-white">
+                    Téléphone: +212 5 22 xx xx xx<br />
+                    Email: contact@musee-as.ma
+                  </p>
+                </div>
+                
+                <div>
+                  <h3 className="text-accent-gold text-lg mb-3">Suivez-nous</h3>
+                  <p className="text-soft-white">
+                    Instagram • Facebook • Twitter
+                  </p>
+                </div>
+              </div>
+            </motion.div>
           </div>
-          <div className="mt-8 pt-6 border-t border-graphite text-center text-soft-white text-sm">
-            &copy; {new Date().getFullYear()} Fondation Musée Abderrahman Slaoui. Tous droits réservés.
+          
+          <div className="mt-20 pt-8 border-t border-graphite/30 text-center">
+            <p className="text-soft-white text-sm">
+              © 2023 Fondation Abderrahman Slaoui. Tous droits réservés.
+            </p>
           </div>
-        </div>
-      </footer>
     </div>
+      </section>
+    </main>
   );
-}
+};
+
+export default HomePage;

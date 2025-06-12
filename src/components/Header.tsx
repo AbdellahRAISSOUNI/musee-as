@@ -78,64 +78,85 @@ const Header = () => {
 
   // Navigation sections with their dropdown content
   const navSections = {
-    exhibitions: {
-      title: "EXPOSITIONS",
+    fondation: {
+      title: "FONDATION",
       items: [
-        { label: "Expositions Actuelles", href: "#current" },
-        { label: "Expositions Passées", href: "#past" },
-        { label: "Expositions à Venir", href: "#upcoming" },
-        { label: "Catalogue des Expositions", href: "#catalog" }
+        { label: "Fondation Abderrahman Slaoui", href: "/fondation" },
+        { label: "Le Projet de Musée", href: "/fondation/projet-musee" },
+        { label: "Ils Parlent de Nous", href: "/fondation/presse" }
       ],
       featured: {
-        title: "À ne pas manquer",
+        title: "Fondation Abderrahman Slaoui",
         image: "/images/hero-background.jpg",
-        description: "Découvrez notre nouvelle exposition temporaire sur l'art contemporain marocain.",
-        link: "#featured-exhibition"
+        description: "Découvrez l'histoire et la mission de la Fondation Abderrahman Slaoui.",
+        link: "/fondation"
       }
     },
     collections: {
-      title: "COLLECTIONS",
+      title: "COLLECTIONS & EXPOSITIONS",
       items: [
-        { label: "Art Marocain", href: "#moroccan" },
-        { label: "Art Contemporain", href: "#contemporary" },
-        { label: "Objets Historiques", href: "#historical" },
-        { label: "Archives et Manuscrits", href: "#archives" }
+        { label: "Collections Permanentes", href: "/collections-expositions/collections-permanentes" },
+        { label: "Expositions Temporaires", href: "/collections-expositions/expositions-temporaires" }
       ],
       featured: {
-        title: "Collection en vedette",
+        title: "Collections Actuelles",
         image: "/images/hero-background.jpg",
-        description: "Explorez notre collection d'objets d'art marocain traditionnels datant du 19ème siècle.",
-        link: "#featured-collection"
+        description: "Explorez nos collections d'art marocain et nos expositions temporaires.",
+        link: "/collections-expositions"
       }
     },
-    visit: {
-      title: "VISITE",
+    visites: {
+      title: "VISITES & ATELIERS",
       items: [
-        { label: "Heures et Admission", href: "#hours" },
-        { label: "Visites Guidées", href: "#guided" },
-        { label: "Plan du Musée", href: "#map" },
-        { label: "Accessibilité", href: "#accessibility" }
+        { label: "Actualités", href: "/visites-ateliers-activites/actualites" },
+        { label: "Ateliers Artistiques", href: "/visites-ateliers-activites/ateliers-artistiques" },
+        { label: "Rencontres", href: "/visites-ateliers-activites/rencontres" },
+        { label: "Visites Guidées", href: "/visites-ateliers-activites/visites-guidees" },
+        { label: "Privatisation", href: "/visites-ateliers-activites/privatisation" }
       ],
       featured: {
-        title: "Planifiez votre visite",
+        title: "Découvrez Nos Activités",
         image: "/images/hero-background.jpg",
-        description: "Tout ce que vous devez savoir avant de visiter le musée Abderrahman Slaoui.",
-        link: "#plan-visit"
+        description: "Participez à nos ateliers, visites guidées et événements culturels.",
+        link: "/visites-ateliers-activites"
       }
     },
-    about: {
-      title: "À PROPOS",
+    jeune: {
+      title: "JEUNE PUBLIC",
       items: [
-        { label: "Notre Histoire", href: "#history" },
-        { label: "Équipe et Direction", href: "#team" },
-        { label: "Fondation", href: "#foundation" },
-        { label: "Contactez-nous", href: "#contact" }
+        { label: "Visites Scolaires Guidées", href: "/jeune-public/visites-scolaires" },
+        { label: "Ateliers Pédagogiques", href: "/jeune-public/ateliers-pedagogiques" }
       ],
       featured: {
-        title: "Notre mission",
+        title: "Espace Jeune Public",
         image: "/images/hero-background.jpg",
-        description: "Découvrez l'histoire et la mission du Musée Abderrahman Slaoui et sa contribution à la culture marocaine.",
-        link: "#mission"
+        description: "Des programmes éducatifs et créatifs pour les enfants et les groupes scolaires.",
+        link: "/jeune-public"
+      }
+    },
+    infos: {
+      title: "INFOS PRATIQUES",
+      items: [
+        { label: "Horaires, Tarifs et Accès", href: "/infos-pratiques/horaires-tarifs-acces" },
+        { label: "Le Café du Musée", href: "/infos-pratiques/cafe-musee" },
+        { label: "Le Comptoir de Vente", href: "/infos-pratiques/comptoir-vente" },
+        { label: "Contact", href: "/infos-pratiques/contact" }
+      ],
+      featured: {
+        title: "Planifiez Votre Visite",
+        image: "/images/hero-background.jpg",
+        description: "Tout ce que vous devez savoir pour préparer votre visite au musée.",
+        link: "/infos-pratiques"
+      }
+    },
+    tempus: {
+      title: "TEMPUS FUGIT",
+      items: [],
+      featured: {
+        title: "Tempus Fugit",
+        image: "/images/hero-background.jpg",
+        description: "Une exploration artistique du temps et de la mémoire.",
+        link: "/tempus-fugit"
       }
     }
   };
@@ -217,30 +238,42 @@ const Header = () => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.3 }}
-                className="container mx-auto hidden md:block bg-[#000000]"
+                className="container mx-auto hidden md:block bg-[#000000] overflow-x-auto"
               >
-                <ul className="flex justify-center space-x-12 py-4">
-                  {Object.entries(navSections).map(([key, section]) => (
-                    <li key={key} className="relative nav-item">
-                      <motion.button 
-                        className={`font-bodoni-regular text-base uppercase tracking-widest py-2 flex items-center
-                                  ${activeSection === key ? 'text-accent-gold' : 'text-soft-white hover:text-premium-white'}`}
-                        onClick={() => toggleSection(key)}
-                        whileHover={{ x: 3 }}
-                        whileTap={{ scale: 0.97 }}
-                      >
-                        {section.title}
-                        <motion.span
-                          animate={{ rotate: activeSection === key ? 180 : 0 }}
-                          transition={{ duration: 0.3 }}
-                          className="ml-2"
-                        >
-                          <IoIosArrowDown size={16} />
-                        </motion.span>
-                      </motion.button>
-                    </li>
-                  ))}
-                </ul>
+                <div className="flex justify-center py-4 min-w-max">
+                  <ul className="flex justify-center space-x-6 lg:space-x-8">
+                    {Object.entries(navSections).map(([key, section]) => (
+                      <li key={key} className="relative nav-item">
+                        {section.items.length > 0 ? (
+                          <motion.button 
+                            className={`font-bodoni-regular text-xs lg:text-sm uppercase tracking-widest py-2 flex items-center whitespace-nowrap
+                                      ${activeSection === key ? 'text-accent-gold' : 'text-soft-white hover:text-premium-white'}`}
+                            onClick={() => toggleSection(key)}
+                            whileHover={{ x: 3 }}
+                            whileTap={{ scale: 0.97 }}
+                          >
+                            {section.title}
+                            <motion.span
+                              animate={{ rotate: activeSection === key ? 180 : 0 }}
+                              transition={{ duration: 0.3 }}
+                              className="ml-2"
+                            >
+                              <IoIosArrowDown size={14} />
+                            </motion.span>
+                          </motion.button>
+                        ) : (
+                          <Link 
+                            href={section.featured.link}
+                            className={`font-bodoni-regular text-xs lg:text-sm uppercase tracking-widest py-2 flex items-center whitespace-nowrap
+                                      ${activeSection === key ? 'text-accent-gold' : 'text-soft-white hover:text-premium-white'}`}
+                          >
+                            {section.title}
+                          </Link>
+                        )}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </motion.nav>
             )}
           </AnimatePresence>
@@ -332,51 +365,62 @@ const Header = () => {
                 <nav>
                   {Object.entries(navSections).map(([key, section]) => (
                     <div key={key} className="mb-4">
-                      <motion.button 
-                        className={`font-bodoni-regular text-base uppercase tracking-widest py-2 flex items-center justify-between w-full
-                                  ${activeSection === key ? 'text-accent-gold' : 'text-soft-white'}`}
-                        onClick={() => toggleSection(key)}
-                        whileTap={{ scale: 0.98 }}
-                      >
-                        {section.title}
-                        <motion.span
-                          animate={{ rotate: activeSection === key ? 180 : 0 }}
-                          transition={{ duration: 0.3 }}
-                        >
-                          <IoIosArrowDown size={18} />
-                        </motion.span>
-                      </motion.button>
-                      
-                      <AnimatePresence>
-                        {activeSection === key && (
-                          <motion.div
-                            initial={{ opacity: 0, height: 0 }}
-                            animate={{ opacity: 1, height: 'auto' }}
-                            exit={{ opacity: 0, height: 0 }}
-                            transition={{ duration: 0.2 }}
-                            className="pl-4 border-l border-graphite/50 ml-2 mt-2 overflow-hidden"
+                      {section.items.length > 0 ? (
+                        <>
+                          <motion.button 
+                            className={`font-bodoni-regular text-base uppercase tracking-widest py-2 flex items-center justify-between w-full
+                                      ${activeSection === key ? 'text-accent-gold' : 'text-soft-white'}`}
+                            onClick={() => toggleSection(key)}
+                            whileTap={{ scale: 0.98 }}
                           >
-                            {section.items.map((item, index) => (
+                            {section.title}
+                            <motion.span
+                              animate={{ rotate: activeSection === key ? 180 : 0 }}
+                              transition={{ duration: 0.3 }}
+                            >
+                              <IoIosArrowDown size={18} />
+                            </motion.span>
+                          </motion.button>
+                          
+                          <AnimatePresence>
+                            {activeSection === key && (
                               <motion.div
-                                key={index}
-                                initial={{ opacity: 0, x: -10 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                transition={{ 
-                                  duration: 0.2,
-                                  delay: index * 0.05
-                                }}
+                                initial={{ opacity: 0, height: 0 }}
+                                animate={{ opacity: 1, height: 'auto' }}
+                                exit={{ opacity: 0, height: 0 }}
+                                transition={{ duration: 0.2 }}
+                                className="pl-4 border-l border-graphite/50 ml-2 mt-2 overflow-hidden"
                               >
-                                <Link 
-                                  href={item.href}
-                                  className="block py-3 text-soft-white hover:text-premium-white font-bodoni-regular"
-                                >
-                                  {item.label}
-                                </Link>
+                                {section.items.map((item, index) => (
+                                  <motion.div
+                                    key={index}
+                                    initial={{ opacity: 0, x: -10 }}
+                                    animate={{ opacity: 1, x: 0 }}
+                                    transition={{ 
+                                      duration: 0.2,
+                                      delay: index * 0.05
+                                    }}
+                                  >
+                                    <Link 
+                                      href={item.href}
+                                      className="block py-3 text-soft-white hover:text-premium-white font-bodoni-regular"
+                                    >
+                                      {item.label}
+                                    </Link>
+                                  </motion.div>
+                                ))}
                               </motion.div>
-                            ))}
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
+                            )}
+                          </AnimatePresence>
+                        </>
+                      ) : (
+                        <Link
+                          href={section.featured.link}
+                          className="font-bodoni-regular text-base uppercase tracking-widest py-2 block text-soft-white hover:text-premium-white"
+                        >
+                          {section.title}
+                        </Link>
+                      )}
                     </div>
                   ))}
                 </nav>
