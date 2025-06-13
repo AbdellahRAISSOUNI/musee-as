@@ -1,3 +1,5 @@
+import { Instagram, Twitter, Facebook } from 'lucide-react';
+
 const Footer = () => {
   return (
     <footer className="bg-premium-black text-premium-white py-8">
