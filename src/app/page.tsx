@@ -6,59 +6,63 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { FaChevronDown } from 'react-icons/fa';
 import HeroSection from '@/components/HeroSection';
+import CreativeGrid, { GridItem } from '@/components/CreativeGrid';
 
 const HomePage = () => {
-  // Featured sections to display on homepage
-  const featuredSections = [
+  // Featured exhibitions and events for the creative grid
+  const featuredItems: GridItem[] = [
     {
-      title: "Fondation Abderrahman Slaoui",
-      description: "Découvrez l'histoire et la mission de notre fondation dédiée à la préservation du patrimoine artistique marocain.",
-      image: "/images/hero-background.jpg",
-      link: "/fondation"
-    },
-    {
-      title: "Collections & Expositions",
-      description: "Explorez nos collections permanentes d'art marocain et nos expositions temporaires.",
-      image: "/images/hero-background.jpg",
-      link: "/collections-expositions"
-    },
-    {
-      title: "Tempus Fugit",
-      description: "Une exposition unique explorant la relation entre l'art, le temps et la mémoire.",
-      image: "/images/hero-background.jpg",
-      link: "/tempus-fugit",
+      id: "mamlouks",
+      title: "MAMLOUKS, 1250-1517",
+      description: "Puissance guerrière, politique et culturelle... Partez à la rencontre des Mamlouks, un empire glorieux et pourtant méconnu qui marqua l'histoire du Proche-Orient islamique. Du 20 avril au 28 juillet",
+      image: "/images/collections-permanentes/affiches-orientalistes/Affiches_orientalistes.jpg",
+      link: "/collections-expositions/collections-permanentes/affiches-orientalistes",
+      category: "Exposition",
+      width: 800,
+      height: 600,
+      priority: true,
       featured: true
-    }
-  ];
-
-  // Current events and activities
-  const currentEvents = [
-    {
-      title: "Atelier de Calligraphie",
-      date: "24 Juin 2023",
-      image: "/images/hero-background.jpg",
-      link: "/visites-ateliers-activites/ateliers-artistiques"
     },
     {
-      title: "Visite Guidée Thématique",
-      date: "30 Juin 2023",
-      image: "/images/hero-background.jpg",
-      link: "/visites-ateliers-activites/visites-guidees"
+      id: "etes-louvre",
+      title: "LES ÉTÉS DU LOUVRE",
+      description: "En juillet, redécouvrez la beauté des cours et des jardins du Louvre à travers une programmation de plus de 30 concerts, spectacles, performances et projections.",
+      image: "/images/expositions-temporaires/noise-on-paper/photo_rognee.jpg",
+      link: "/collections-expositions/expositions-temporaires/noise-on-paper",
+      category: "Événement",
+      width: 500,
+      height: 500
     },
     {
-      title: "Rencontre avec l'Artiste",
-      date: "5 Juillet 2023",
-      image: "/images/hero-background.jpg",
-      link: "/visites-ateliers-activites/rencontres"
+      id: "passion-chinoise",
+      title: "UNE PASSION CHINOISE: LA COLLECTION DE MONSIEUR THIERS",
+      description: "Fruit de 120 ans d'art et de collections du Louvre enrichies par la lumière la passion d'Adolphe Thiers pour la Chine, son histoire, sa culture et son contexte diplomatique. Du 14 mai au 25 août",
+      image: "/images/collections-permanentes/affiches-orientalistes/majorelle_ok2.jpg",
+      link: "/collections-expositions/collections-permanentes/affiches-orientalistes",
+      category: "Exposition",
+      width: 400,
+      height: 600
+    },
+    {
+      id: "nature-prague",
+      title: "L'EXPÉRIENCE DE LA NATURE: LES ARTS À PRAGUE À LA COUR DE RODOLPHE II",
+      description: "Découvrez comment l'empereur Rodolphe II (1552-1612), grand protecteur des arts et des sciences, a fait de Prague un véritable laboratoire dédié à l'étude de la nature. Du 19 mars au 30 juin",
+      image: "/images/collections-permanentes/affiches-orientalistes/orient_express2.jpg",
+      link: "/collections-expositions/collections-permanentes/affiches-orientalistes",
+      category: "Exposition",
+      width: 600,
+      height: 400
+    },
+    {
+      id: "ete-tuileries",
+      title: "BIENTÔT L'ÉTÉ AUX TUILERIES",
+      description: "Ateliers, visites, pauses gourmandes... En famille ou entre amis, venez profiter d'un bol d'air frais au cœur de Paris",
+      image: "/images/expositions-temporaires/orient-fantasme/Exposition-Orient-Fantasme.jpg",
+      link: "/collections-expositions/expositions-temporaires/orient-fantasme",
+      category: "Jardin des Tuileries",
+      width: 600,
+      height: 400
     }
-  ];
-
-  // Navigation sections for quick access
-  const navSections = [
-    { title: "Jeune Public", link: "/jeune-public", icon: "👨‍👩‍👧‍👦" },
-    { title: "Horaires & Tarifs", link: "/infos-pratiques/horaires-tarifs-acces", icon: "🕒" },
-    { title: "Contact", link: "/infos-pratiques/contact", icon: "✉️" },
-    { title: "Plan du Site", link: "/site-map", icon: "🗺️" }
   ];
 
   return (
@@ -66,60 +70,17 @@ const HomePage = () => {
       {/* Hero Section */}
       <HeroSection />
       
-      {/* Featured Sections */}
-      <section className="py-20 px-6 bg-black">
-        <div className="container mx-auto max-w-7xl">
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="text-4xl md:text-5xl font-bodoni-regular text-center mb-16"
-          >
-            Découvrez le Musée Abderrahman Slaoui
-          </motion.h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {featuredSections.map((section, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: index * 0.1 }}
-                className={`group ${section.featured ? 'lg:col-span-3 lg:row-span-2' : ''}`}
-              >
-                <Link href={section.link}>
-                  <div className={`relative overflow-hidden rounded-lg mb-4 ${section.featured ? 'aspect-[21/9]' : 'aspect-square'}`}>
-            <Image
-                      src={section.image}
-                      alt={section.title}
-                      fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-black/50 group-hover:bg-black/40 transition-colors duration-300"></div>
-                    
-                    <div className="absolute inset-0 flex items-center justify-center p-6">
-                      <div className="text-center">
-                        <h3 className="font-bodoni-regular text-2xl md:text-3xl text-premium-white mb-3 group-hover:text-accent-gold transition-colors">
-                          {section.title}
-                        </h3>
-                        <p className="text-soft-white max-w-lg mx-auto">
-                          {section.description}
-                        </p>
-                        
-                        <div className="mt-6 inline-block border-b border-accent-gold text-accent-gold">
-                          En savoir plus
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </Link>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* À LA UNE - Creative Grid Section */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1.2 }}
+      >
+        <CreativeGrid 
+          title="À LA UNE" 
+          items={featuredItems} 
+        />
+      </motion.div>
       
       {/* Quote Section */}
       <section className="py-24 px-6 bg-charcoal">
@@ -137,100 +98,6 @@ const HomePage = () => {
               — Abderrahman Slaoui
             </p>
           </motion.div>
-        </div>
-      </section>
-      
-      {/* Current Events Section */}
-      <section className="py-20 px-6 bg-black">
-        <div className="container mx-auto max-w-7xl">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-            >
-              <h2 className="text-4xl md:text-5xl font-bodoni-regular mb-4">
-                Actualités & Événements
-              </h2>
-              <p className="text-soft-white max-w-2xl">
-                Découvrez nos activités culturelles et nos événements à venir.
-              </p>
-            </motion.div>
-            
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="mt-6 md:mt-0"
-            >
-              <Link 
-                href="/visites-ateliers-activites" 
-                className="inline-block bg-transparent border border-accent-gold text-accent-gold hover:bg-accent-gold/10 transition-colors px-6 py-3 font-bodoni-regular"
-              >
-                Voir tous les événements
-              </Link>
-            </motion.div>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {currentEvents.map((event, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: index * 0.1 }}
-                className="group"
-              >
-                <Link href={event.link}>
-                  <div className="relative overflow-hidden rounded-lg mb-4 aspect-[4/3]">
-          <Image
-                      src={event.image}
-                      alt={event.title}
-                      fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-black/50 group-hover:bg-black/40 transition-colors duration-300"></div>
-                  </div>
-                  
-                  <p className="text-accent-gold text-sm mb-2">
-                    {event.date}
-                  </p>
-                  
-                  <h3 className="font-bodoni-regular text-xl text-premium-white group-hover:text-accent-gold transition-colors">
-                    {event.title}
-                  </h3>
-                </Link>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-      
-      {/* Quick Links Navigation */}
-      <section className="py-16 px-6 bg-charcoal/50">
-        <div className="container mx-auto max-w-7xl">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {navSections.map((section, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-charcoal p-6 rounded-lg text-center group"
-              >
-                <Link href={section.link} className="block">
-                  <span className="text-4xl block mb-4">{section.icon}</span>
-                  <h3 className="font-bodoni-regular text-xl text-premium-white group-hover:text-accent-gold transition-colors">
-                    {section.title}
-                  </h3>
-                </Link>
-              </motion.div>
-            ))}
-          </div>
         </div>
       </section>
       

@@ -9,10 +9,12 @@ const FlaconsDeKholEtTabatieresPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentImage, setCurrentImage] = useState('');
   const [currentImageData, setCurrentImageData] = useState<any>(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-  const openModal = (imageSrc: string, imageData: any) => {
+  const openModal = (imageSrc: string, imageData: any, index: number) => {
     setCurrentImage(imageSrc);
     setCurrentImageData(imageData);
+    setCurrentIndex(index);
     setIsModalOpen(true);
     document.body.style.overflow = 'hidden';
   };
@@ -20,6 +22,18 @@ const FlaconsDeKholEtTabatieresPage = () => {
   const closeModal = () => {
     setIsModalOpen(false);
     document.body.style.overflow = 'auto';
+  };
+
+  const navigateImage = (direction: 'prev' | 'next') => {
+    let newIndex = currentIndex;
+    if (direction === 'prev') {
+      newIndex = currentIndex === 0 ? collectionImages.length - 1 : currentIndex - 1;
+    } else {
+      newIndex = currentIndex === collectionImages.length - 1 ? 0 : currentIndex + 1;
+    }
+    setCurrentIndex(newIndex);
+    setCurrentImage(collectionImages[newIndex].src);
+    setCurrentImageData(collectionImages[newIndex]);
   };
 
   // Collection images
@@ -105,7 +119,7 @@ const FlaconsDeKholEtTabatieresPage = () => {
                 >
                   <div 
                     className="relative aspect-square cursor-pointer overflow-hidden bg-gray-100 rounded-lg shadow-lg"
-                    onClick={() => openModal(image.src, image)}
+                    onClick={() => openModal(image.src, image, image.id - 1)}
                   >
                     {/* Hover overlay */}
                     <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 transition-opacity duration-300 z-10"></div>
@@ -170,7 +184,7 @@ const FlaconsDeKholEtTabatieresPage = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4 backdrop-blur-sm"
+            className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4 backdrop-blur-sm overflow-hidden"
             onClick={closeModal}
           >
             <motion.div 
@@ -178,49 +192,89 @@ const FlaconsDeKholEtTabatieresPage = () => {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="relative w-full max-w-5xl"
+              className="relative w-full max-w-6xl max-h-[90vh] bg-white shadow-2xl"
               onClick={(e) => e.stopPropagation()}
             >
               <button 
-                className="absolute top-4 right-4 bg-black text-white w-10 h-10 rounded-full flex items-center justify-center text-2xl z-10 hover:bg-gray-800 transition-colors cursor-pointer"
+                className="absolute top-4 right-4 bg-black text-white w-10 h-10 rounded-full flex items-center justify-center text-2xl z-10 hover:bg-gray-800 transition-colors cursor-pointer shadow-md"
                 onClick={closeModal}
                 aria-label="Fermer"
               >
                 ×
               </button>
               
-              <div className="flex flex-row gap-8 max-h-[90vh] overflow-y-auto bg-white">
-                {/* Image */}
-                <div className="relative w-2/3 h-[50vh] md:h-[70vh] bg-gray-100">
+              <div className="flex flex-col md:flex-row h-full max-h-[90vh]">
+                {/* Image Container */}
+                <div className="relative w-full md:w-2/3 h-[40vh] md:h-auto bg-gray-100 flex-shrink-0">
+                  <div className="absolute inset-0 flex items-center justify-center">
                   <Image
                     src={currentImage}
                     alt="Image agrandie"
                     fill
                     className="object-contain"
-                    sizes="66vw"
+                      sizes="(max-width: 768px) 100vw, 66vw"
                   />
+                  </div>
+                  
+                  {/* Navigation Arrows */}
+                  <button 
+                    className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white w-12 h-12 rounded-full flex items-center justify-center text-2xl z-10 transition-colors shadow-lg"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      navigateImage('prev');
+                    }}
+                    aria-label="Image précédente"
+                  >
+                    ←
+                  </button>
+                  <button 
+                    className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white w-12 h-12 rounded-full flex items-center justify-center text-2xl z-10 transition-colors shadow-lg"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      navigateImage('next');
+                    }}
+                    aria-label="Image suivante"
+                  >
+                    →
+                  </button>
                 </div>
                 
-                {/* Details */}
+                {/* Details Container with its own scrolling */}
                 {currentImageData && (
-                  <div className="w-1/3 p-6 md:p-8 text-gray-800 border-l border-gray-200 flex flex-col justify-center">
-                    <h3 className="font-bodoni text-xl md:text-3xl mb-4">{currentImageData.title}</h3>
-                    <div className="w-12 h-0.5 bg-accent-gold mb-6"></div>
-                    <p className="text-gray-700 mb-8 text-sm md:text-base">{currentImageData.description}</p>
+                  <div className="w-full md:w-1/3 p-6 md:p-8 text-gray-800 border-t md:border-l md:border-t-0 border-gray-200 overflow-y-auto max-h-[50vh] md:max-h-[90vh] bg-white">
+                    <div className="mb-8 border-b border-accent-gold/30 pb-6">
+                      <h3 className="font-bodoni text-2xl md:text-3xl mb-4">{currentImageData.title}</h3>
+                      <div className="w-16 h-0.5 bg-accent-gold mb-6"></div>
+                      <div className="text-gray-700 text-base md:text-lg space-y-4">
+                        {currentImageData.description}
+                      </div>
+                    </div>
                     
-                    <div className="space-y-4">
+                    <div className="space-y-6">
+                      {currentImageData.period && (
+                        <div>
+                          <h4 className="text-xs md:text-sm uppercase tracking-wider text-gray-500 mb-1 font-medium">Période</h4>
+                          <p className="font-bodoni text-lg md:text-xl">{currentImageData.period}</p>
+                        </div>
+                      )}
+                      {currentImageData.origin && (
                       <div>
-                        <h4 className="text-xs md:text-sm uppercase tracking-wider text-gray-500 mb-1">Matériaux</h4>
-                        <p className="font-medium text-sm md:text-base">{currentImageData.material}</p>
+                          <h4 className="text-xs md:text-sm uppercase tracking-wider text-gray-500 mb-1 font-medium">Origine</h4>
+                          <p className="font-bodoni text-lg md:text-xl">{currentImageData.origin}</p>
                       </div>
+                      )}
+                      {currentImageData.material && (
                       <div>
-                        <h4 className="text-xs md:text-sm uppercase tracking-wider text-gray-500 mb-1">Période</h4>
-                        <p className="font-medium text-sm md:text-base">{currentImageData.period}</p>
+                          <h4 className="text-xs md:text-sm uppercase tracking-wider text-gray-500 mb-1 font-medium">Matériaux</h4>
+                          <p className="font-bodoni text-lg md:text-xl">{currentImageData.material}</p>
                       </div>
+                      )}
+                      {currentImageData.technique && (
                       <div>
-                        <h4 className="text-xs md:text-sm uppercase tracking-wider text-gray-500 mb-1">Origine</h4>
-                        <p className="font-medium text-sm md:text-base">{currentImageData.origin}</p>
+                          <h4 className="text-xs md:text-sm uppercase tracking-wider text-gray-500 mb-1 font-medium">Technique</h4>
+                          <p className="font-bodoni text-lg md:text-xl">{currentImageData.technique}</p>
                       </div>
+                      )}
                     </div>
                   </div>
                 )}

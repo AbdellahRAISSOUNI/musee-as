@@ -101,7 +101,7 @@ const FondationPage = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
             className="max-w-5xl mx-auto text-center"
-          >
+      >
             <span className="inline-block text-accent-gold uppercase tracking-widest font-bodoni-regular text-sm md:text-base mb-4">
               Découvrir
             </span>
@@ -124,14 +124,14 @@ const FondationPage = () => {
         <div className="container mx-auto px-6">
           <div className="max-w-5xl mx-auto">
             {/* Premium Carousel */}
-            <motion.div
+          <motion.div
               ref={ref}
-              initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: 0.1 }}
               className="mb-20"
-            >
+          >
               <div className="relative overflow-hidden rounded-lg h-[60vh] max-h-[500px] bg-premium-white shadow-lg">
                 {/* Images */}
                 {carouselImages.map((image, index) => (
@@ -141,13 +141,13 @@ const FondationPage = () => {
                       currentSlide === index ? "opacity-100" : "opacity-0"
                     }`}
                   >
-                    <Image
+              <Image
                       src={image.src}
                       alt={image.alt}
-                      fill
-                      className="object-cover"
+                fill
+                className="object-cover"
                       priority={index === 0}
-                    />
+              />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
                     
                     {/* Caption */}
@@ -189,12 +189,12 @@ const FondationPage = () => {
                     />
                   ))}
                 </div>
-              </div>
-            </motion.div>
-            
+            </div>
+          </motion.div>
+          
             {/* Introduction with Logo */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: 0.2 }}
@@ -226,7 +226,7 @@ const FondationPage = () => {
               </div>
             </motion.div>
           </div>
-        </div>
+                </div>
       </section>
       
       {/* Quote Section - Elegant Light Background */}
@@ -305,8 +305,8 @@ const FondationPage = () => {
                 <div className="bg-warm-white p-8 rounded-lg shadow-sm hover:shadow-md transition-all group border-t-2 border-accent-gold/80">
                   <div className="w-16 h-16 mb-6 bg-accent-gold rounded-full flex items-center justify-center text-white">
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                    </svg>
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                  </svg>
                   </div>
                   <h3 className="font-bodoni text-2xl text-premium-black mb-4 group-hover:text-accent-gold transition-colors">
                     Éduquer
@@ -317,16 +317,16 @@ const FondationPage = () => {
                 </div>
               </div>
             </motion.div>
-          </div>
-        </div>
+              </div>
+            </div>
       </section>
-      
+          
       {/* Explore More Sections - Light Gray Background */}
       <section className="py-20 bg-soft-white border-y border-accent-gold/10">
         <div className="container mx-auto px-6">
           <div className="max-w-5xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: 0.5 }}
@@ -350,11 +350,11 @@ const FondationPage = () => {
                       <h3 className="font-bodoni text-2xl text-white mb-2">Le Projet de Musée</h3>
                       <p className="text-soft-white text-sm">
                         Découvrez l'histoire et la vision derrière le Musée Abderrahman Slaoui
-                      </p>
+              </p>
                       <div className="mt-4 w-12 h-[1px] bg-accent-gold transition-all duration-300 group-hover:w-24"></div>
                     </div>
                   </div>
-                </Link>
+              </Link>
                 
                 <Link href="/fondation/presse" className="group">
                   <div className="relative h-64 overflow-hidden rounded-lg shadow-md">
@@ -369,23 +369,23 @@ const FondationPage = () => {
                       <h3 className="font-bodoni text-2xl text-white mb-2">Ils Parlent de Nous</h3>
                       <p className="text-soft-white text-sm">
                         Retrouvez les articles et mentions du Musée dans la presse nationale et internationale
-                      </p>
+              </p>
                       <div className="mt-4 w-12 h-[1px] bg-accent-gold transition-all duration-300 group-hover:w-24"></div>
                     </div>
                   </div>
-                </Link>
-              </div>
-            </motion.div>
+              </Link>
+            </div>
+          </motion.div>
           </div>
         </div>
       </section>
-      
+          
       {/* Contact Section - Elegant White Background */}
       <section className="py-20 bg-premium-white">
         <div className="container mx-auto px-6">
           <div className="max-w-5xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: 0.6 }}
@@ -397,27 +397,27 @@ const FondationPage = () => {
               {/* Content */}
               <div className="relative z-10">
                 <h2 className="font-bodoni text-3xl text-premium-black mb-6">
-                  Contactez la Fondation
-                </h2>
+              Contactez la Fondation
+            </h2>
                 <p className="text-graphite mb-8 max-w-2xl mx-auto">
                   Pour toute question concernant la Fondation Abderrahman Slaoui, nos collections ou nos événements, n'hésitez pas à nous contacter.
-                </p>
-                <div className="flex flex-col sm:flex-row justify-center gap-4">
-                  <Link 
-                    href="/infos-pratiques/contact" 
+            </p>
+            <div className="flex flex-col sm:flex-row justify-center gap-4">
+              <Link 
+                href="/infos-pratiques/contact" 
                     className="bg-accent-gold text-premium-white hover:bg-accent-gold/90 transition-colors px-8 py-3 rounded-sm font-bodoni tracking-wider"
-                  >
-                    Nous contacter
-                  </Link>
-                  <Link 
-                    href="/infos-pratiques/horaires-tarifs-acces" 
+              >
+                Nous contacter
+              </Link>
+              <Link 
+                href="/infos-pratiques/horaires-tarifs-acces" 
                     className="bg-transparent border border-accent-gold text-accent-gold hover:bg-accent-gold/10 transition-colors px-8 py-3 rounded-sm font-bodoni tracking-wider"
-                  >
-                    Informations pratiques
-                  </Link>
+              >
+                Informations pratiques
+              </Link>
                 </div>
-              </div>
-            </motion.div>
+            </div>
+          </motion.div>
           </div>
         </div>
       </section>
