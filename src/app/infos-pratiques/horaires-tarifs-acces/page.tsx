@@ -41,7 +41,7 @@ const HorairesTarifsAccesPage = () => {
           </motion.div>
         </div>
       </section>
-
+          
       {/* Main Content */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-6">
@@ -50,17 +50,17 @@ const HorairesTarifsAccesPage = () => {
               {/* Left Column */}
               <div>
                 {/* Horaires Section */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.7, delay: 0.1, ease: [0.4, 0, 0.2, 1] }}
                   className="mb-16"
-                >
+          >
                   <div className="flex items-center mb-8">
                     <FaClock className="mr-3 text-2xl" style={{ color: gold }} />
                     <h2 className="font-bodoni text-2xl md:text-3xl">Horaires d'ouverture</h2>
-                  </div>
+            </div>
                   <div className="border-l-2 pl-8" style={{ borderColor: gold }}>
                     <p className="font-bodoni text-lg mb-4">
                       <strong>Ouvert du mardi au samedi</strong>
@@ -68,21 +68,21 @@ const HorairesTarifsAccesPage = () => {
                     <p className="font-bodoni text-lg mb-6 leading-relaxed">
                       De 10h à 18h y compris les jours fériés (à l'exception des fêtes de l'Aïd Al Fitr, l'Aïd Al Adha et l'Aïd Al Mawlid)
                     </p>
-                  </div>
-                </motion.div>
-
+            </div>
+          </motion.div>
+          
                 {/* Tarifs Section */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.7, delay: 0.2, ease: [0.4, 0, 0.2, 1] }}
                   className="mb-16"
-                >
+          >
                   <div className="flex items-center mb-8">
                     <FaTicketAlt className="mr-3 text-2xl" style={{ color: gold }} />
                     <h2 className="font-bodoni text-2xl md:text-3xl">Tarifs</h2>
-                  </div>
+            </div>
                   <div className="border-l-2 pl-8" style={{ borderColor: gold }}>
                     <ul className="space-y-6 font-bodoni">
                       <li className="flex flex-col">
@@ -100,20 +100,20 @@ const HorairesTarifsAccesPage = () => {
                         <span className="text-gray-600 ml-4 font-bodoni mt-1">Enfants de moins de 12 ans (accompagnés de leurs parents), carte ICOM, étudiants en école d'art et d'architecture, journalistes</span>
                       </li>
                     </ul>
-                  </div>
-                </motion.div>
-              </div>
-
+            </div>
+          </motion.div>
+        </div>
+        
               {/* Right Column */}
-              <div>
+        <div>
                 {/* Visites Section */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.7, delay: 0.3, ease: [0.4, 0, 0.2, 1] }}
                   className="mb-16"
-                >
+          >
                   <h2 className="font-bodoni text-2xl md:text-3xl mb-8" style={{ color: gold }}>Visite guidée</h2>
                   <div className="border-l-2 pl-8" style={{ borderColor: gold }}>
                     <p className="font-bodoni text-lg mb-6">
@@ -123,16 +123,16 @@ const HorairesTarifsAccesPage = () => {
                       <li className="flex justify-between">
                         <span className="text-lg font-bodoni">Adulte:</span>
                         <span className="font-bodoni">100 dh par personne + frais d'entrée au Musée</span>
-                      </li>
+                </li>
                       <li className="flex justify-between">
                         <span className="text-lg font-bodoni">Famille:</span>
                         <span className="font-bodoni">forfait de 100 dh + frais d'entrée au Musée</span>
-                      </li>
+                </li>
                       <li className="flex justify-between">
                         <span className="text-lg font-bodoni">Groupe:</span>
                         <span className="font-bodoni">forfait de 500 dh + frais d'entrée au Musée</span>
-                      </li>
-                    </ul>
+                </li>
+              </ul>
                     
                     <div className="mt-8">
                       <h3 className="font-bodoni text-xl mb-4">Visite scolaire</h3>
@@ -145,20 +145,20 @@ const HorairesTarifsAccesPage = () => {
                         <a href="tel:+212522206217" className="font-bodoni text-black hover:text-[#bfa76a] transition-colors duration-300">+212 (0)5 22 20 62 17</a>
                       </p>
                     </div>
-                  </div>
-                </motion.div>
-
+            </div>
+          </motion.div>
+          
                 {/* Accès Section */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.7, delay: 0.4, ease: [0.4, 0, 0.2, 1] }}
-                >
+          >
                   <div className="flex items-center mb-8">
                     <FaMapMarkerAlt className="mr-3 text-2xl" style={{ color: gold }} />
                     <h2 className="font-bodoni text-2xl md:text-3xl">Venir au Musée</h2>
-                  </div>
+            </div>
                   <div className="border-l-2 pl-8" style={{ borderColor: gold }}>
                     <address className="not-italic font-bodoni mb-8 leading-relaxed">
                       <strong className="font-bodoni">Musée de la Fondation Abderrahman Slaoui</strong><br />
@@ -171,10 +171,10 @@ const HorairesTarifsAccesPage = () => {
                       <p className="mb-4 font-bodoni"><strong>En tramway:</strong> arrêt Mohammed V</p>
                       <p className="font-bodoni"><strong>En taxi:</strong> si le chauffeur ne connait pas le Musée, demandez lui de vous conduire à l'Agence Urbaine de Casablanca ou l'école des Beaux-arts.</p>
                     </div>
-                  </div>
-                </motion.div>
-              </div>
             </div>
+          </motion.div>
+        </div>
+      </div>
           </div>
         </div>
       </section>

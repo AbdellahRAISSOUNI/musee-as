@@ -19,8 +19,8 @@ export default function RootLayout({
       <body className="antialiased">
         <HydrationErrorSuppressor />
         <ClientErrorBoundary>
-          <Header />
-          {children}
+        <Header />
+        {children}
         </ClientErrorBoundary>
       </body>
     </html>
