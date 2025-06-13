@@ -1,234 +1,101 @@
 "use client";
 
-import React, { useEffect, useState } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import React from 'react';
+import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
 
+const gold = '#bfa76a';
+
 const TempusFugitPage = () => {
-  const [imagesLoaded, setImagesLoaded] = useState(false);
-  const { scrollYProgress } = useScroll();
-  
-  const titleOpacity = useTransform(scrollYProgress, [0, 0.1, 0.2], [1, 1, 0]);
-  const titleY = useTransform(scrollYProgress, [0, 0.1, 0.2], [0, -50, -100]);
-  
-  const image1Scale = useTransform(scrollYProgress, [0.1, 0.3], [0.8, 1.1]);
-  const image1Opacity = useTransform(scrollYProgress, [0.1, 0.2, 0.4, 0.5], [0, 1, 1, 0]);
-  
-  const image2Scale = useTransform(scrollYProgress, [0.3, 0.5], [0.8, 1.1]);
-  const image2Opacity = useTransform(scrollYProgress, [0.3, 0.4, 0.6, 0.7], [0, 1, 1, 0]);
-  
-  const image3Scale = useTransform(scrollYProgress, [0.5, 0.7], [0.8, 1.1]);
-  const image3Opacity = useTransform(scrollYProgress, [0.5, 0.6, 0.8, 0.9], [0, 1, 1, 0]);
-  
-  const textOpacity = useTransform(scrollYProgress, [0.7, 0.8, 1], [0, 1, 1]);
-  const textY = useTransform(scrollYProgress, [0.7, 0.8, 1], [100, 0, 0]);
-
-  // Images preloading for smooth animation
-  useEffect(() => {
-    const imageUrls = [
-      '/images/hero-background.jpg',
-      '/images/hero-background.jpg',
-      '/images/hero-background.jpg',
-    ];
-    
-    const preloadImages = async () => {
-      const promises = imageUrls.map((url) => {
-        return new Promise((resolve) => {
-          const img = new globalThis.Image();
-          img.src = url;
-          img.onload = resolve;
-        });
-      });
-      
-      await Promise.all(promises);
-      setImagesLoaded(true);
-    };
-    
-    preloadImages();
-  }, []);
-
-  if (!imagesLoaded) {
-    return (
-      <div className="min-h-screen bg-black flex items-center justify-center">
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: [0.2, 1, 0.2] }}
-          transition={{ duration: 1.5, repeat: Infinity }}
-          className="text-accent-gold font-bodoni-italic text-3xl"
-        >
-          Tempus Fugit
-        </motion.div>
-      </div>
-    );
-  }
-
   return (
-    <main className="min-h-screen bg-black text-premium-white">
-      {/* Intro Section with Parallax Title */}
-      <section className="h-screen relative flex items-center justify-center overflow-hidden">
-        <motion.div 
-          className="text-center z-10"
-          style={{ opacity: titleOpacity, y: titleY }}
-        >
-          <motion.span
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1 }}
-            className="block text-accent-gold uppercase tracking-widest font-bodoni-regular text-sm md:text-base mb-4"
-          >
-            Musée Abderrahman Slaoui présente
-          </motion.span>
-          
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
+    <main className="min-h-screen bg-white text-gray-900">
+      {/* Hero Section */}
+      <section className="relative h-[50vh] flex items-center justify-center bg-black">
+        {/* Background Image with overlay */}
+        <div className="absolute inset-0">
+          <Image
+            src="/images/tempus-fugit/Tempus-Fugit_1.jpg"
+            alt="Tempus Fugit Exhibition"
+            fill
+            className="object-cover opacity-60"
+            priority
+          />
+          <div className="absolute inset-0 bg-black/70" />
+        </div>
+        <div className="relative z-10 w-full">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.5 }}
-            className="font-bodoni-italic text-6xl md:text-7xl lg:text-8xl text-premium-white mb-8"
+            transition={{ duration: 0.7, ease: [0.4, 0, 0.2, 1] }}
+            className="max-w-3xl mx-auto text-center px-4"
           >
-            Tempus Fugit
-          </motion.h1>
-          
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.8 }}
-            className="text-soft-white text-lg md:text-xl max-w-xl mx-auto"
-          >
-            Une réflexion artistique sur le temps, la mémoire et l'éphémère
-          </motion.p>
-        </motion.div>
-        
-        <div className="absolute inset-0 z-0 bg-gradient-to-b from-black to-transparent"></div>
+            <h1 className="font-bodoni text-4xl md:text-5xl lg:text-6xl uppercase tracking-tight text-white mb-4">
+              Tempus Fugit
+            </h1>
+            <div className="w-20 h-[2px] mx-auto mb-6" style={{ backgroundColor: gold }} />
+            <p className="text-lg md:text-2xl text-white/90 font-light font-bodoni">
+              Le temps qui s'enfuit
+            </p>
+          </motion.div>
+        </div>
       </section>
-      
-      {/* Scrolling Image Sections */}
-      <section className="relative min-h-[300vh]">
-        {/* Image 1 */}
-        <motion.div 
-          className="h-screen sticky top-0 flex items-center justify-center overflow-hidden"
-          style={{ opacity: image1Opacity }}
-        >
-          <motion.div 
-            className="relative w-full h-full"
-            style={{ scale: image1Scale }}
-          >
-            <Image 
-              src="/images/hero-background.jpg"
-              alt="Tempus Fugit - Image 1"
-              fill
-              className="object-cover"
-            />
-            <div className="absolute inset-0 bg-black/30"></div>
-            
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="text-center max-w-2xl px-6">
-                <h2 className="font-bodoni-regular text-4xl md:text-5xl text-premium-white mb-6">
-                  Le Passé
-                </h2>
-                <p className="text-soft-white text-lg">
-                  L'héritage artistique marocain résonne à travers les siècles, témoin silencieux du passage du temps.
-                </p>
-              </div>
-            </div>
-          </motion.div>
-        </motion.div>
-        
-        {/* Image 2 */}
-        <motion.div 
-          className="h-screen sticky top-0 flex items-center justify-center overflow-hidden"
-          style={{ opacity: image2Opacity }}
-        >
-          <motion.div 
-            className="relative w-full h-full"
-            style={{ scale: image2Scale }}
-          >
-            <Image 
-              src="/images/hero-background.jpg"
-              alt="Tempus Fugit - Image 2"
-              fill
-              className="object-cover"
-            />
-            <div className="absolute inset-0 bg-black/30"></div>
-            
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="text-center max-w-2xl px-6">
-                <h2 className="font-bodoni-regular text-4xl md:text-5xl text-premium-white mb-6">
-                  Le Présent
-                </h2>
-                <p className="text-soft-white text-lg">
-                  Dans le moment présent, l'art devient le miroir de notre époque, reflétant nos questionnements et nos aspirations.
-                </p>
-              </div>
-            </div>
-          </motion.div>
-        </motion.div>
-        
-        {/* Image 3 */}
-        <motion.div 
-          className="h-screen sticky top-0 flex items-center justify-center overflow-hidden"
-          style={{ opacity: image3Opacity }}
-        >
-          <motion.div 
-            className="relative w-full h-full"
-            style={{ scale: image3Scale }}
-          >
-            <Image 
-              src="/images/hero-background.jpg"
-              alt="Tempus Fugit - Image 3"
-              fill
-              className="object-cover"
-            />
-            <div className="absolute inset-0 bg-black/30"></div>
-            
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="text-center max-w-2xl px-6">
-                <h2 className="font-bodoni-regular text-4xl md:text-5xl text-premium-white mb-6">
-                  Le Futur
-                </h2>
-                <p className="text-soft-white text-lg">
-                  L'avenir de l'art marocain s'écrit aujourd'hui, entre tradition et innovation, mémoire et vision.
-                </p>
-              </div>
-            </div>
-          </motion.div>
-        </motion.div>
-      </section>
-      
-      {/* Final Text Section */}
-      <section className="min-h-screen relative flex items-center justify-center py-24 px-6">
-        <motion.div 
-          className="max-w-3xl mx-auto text-center"
-          style={{ opacity: textOpacity, y: textY }}
-        >
-          <h2 className="font-bodoni-italic text-4xl md:text-5xl text-premium-white mb-8">
-            L'exposition
-          </h2>
-          
-          <p className="text-soft-white text-lg mb-8 leading-relaxed">
-            "Tempus Fugit" est une exposition unique qui explore la relation complexe entre l'art, le temps et la mémoire. À travers une sélection d'œuvres d'artistes marocains contemporains, l'exposition invite à réfléchir sur la nature éphémère de l'existence et la permanence de l'expression artistique.
-          </p>
-          
-          <p className="text-soft-white text-lg mb-12 leading-relaxed">
-            Du 15 octobre au 30 décembre 2023, le Musée Abderrahman Slaoui vous invite à une expérience immersive où le passé, le présent et le futur se rencontrent dans un dialogue poétique et philosophique.
-          </p>
-          
-          <div className="space-x-4">
-            <Link 
-              href="/visites-ateliers-activites/visites-guidees" 
-              className="inline-block bg-transparent border border-accent-gold text-accent-gold hover:bg-accent-gold/10 transition-colors px-6 py-3 font-bodoni-regular"
+
+      {/* Main Content */}
+      <section className="py-12 bg-white">
+        <div className="container mx-auto px-6">
+          <div className="max-w-3xl mx-auto">
+            {/* Exhibition Image */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: 0.1, ease: [0.4, 0, 0.2, 1] }}
+              className="mb-8 flex justify-center"
             >
-              Réserver une visite guidée
-            </Link>
-            
-            <Link 
-              href="/collections-expositions/expositions-temporaires" 
-              className="inline-block bg-transparent border border-soft-white text-soft-white hover:bg-white/10 transition-colors px-6 py-3 font-bodoni-regular"
+              <div className="relative w-full max-w-xl h-[340px] md:h-[420px]">
+                <Image
+                  src="/images/tempus-fugit/Tempus-Fugit_1.jpg"
+                  alt="Tempus Fugit Exhibition"
+                  fill
+                  className="object-contain"
+                  priority
+                />
+              </div>
+            </motion.div>
+
+            {/* Exhibition Content */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: 0.2, ease: [0.4, 0, 0.2, 1] }}
+              className="prose prose-lg max-w-none mx-auto mb-10"
             >
-              Autres expositions
-            </Link>
+              <p className="font-bodoni text-gray-800 leading-relaxed">
+                L'exposition <strong>"Tempus Fugit"</strong> rassemble les travaux de huit photographes marocains réalisés pendant les périodes de confinement et de déconfinement, témoignant ainsi d'un espace-temps particulier. Chacun des photographes a eu la liberté d'exprimer sa vision personnelle, offrant des portraits mélancoliques et poétiques, des explorations architecturales, des réorganisations visuelles de leur environnement et des documentations détachées de la vie en état de siège, tout en ajoutant une touche d'humanité aux moments quotidiens. Ces photographies forment un corpus varié de plus de 50 tirages, tissant plusieurs histoires qui dialoguent et s'assemblent grâce à une scénographie épurée. Cette cartographie exhaustive de la période atypique reflète les changements de perception de l'espace, du temps et des relations humaines, offrant une mosaïque captivante d'instants de vie, d'archives contemporaines et de facettes multiples du Maroc actuel, le tout convergeant dans un projet photographique empreint de sens, réinventant le monde à la lumière de l'absurdité de la condition humaine, selon les mots d'Albert Camus dans "Le Mythe de Sisyphe".
+              </p>
+            </motion.div>
+
+            <div className="mt-10 flex justify-center space-x-6">
+              <Link 
+                href="/visites-ateliers-activites/visites-guidees" 
+                className="inline-flex items-center font-bodoni text-[#bfa76a] border-b-2 border-transparent hover:border-[#bfa76a] transition-all duration-300 pb-1 tracking-wide group"
+              >
+                <span className="mr-2">Réserver une visite guidée</span>
+                <span className="transform group-hover:translate-x-2 transition-transform duration-300">→</span>
+              </Link>
+              
+              <Link 
+                href="/collections-expositions/expositions-temporaires" 
+                className="inline-flex items-center font-bodoni text-[#bfa76a] border-b-2 border-transparent hover:border-[#bfa76a] transition-all duration-300 pb-1 tracking-wide group"
+              >
+                <span className="mr-2">Autres expositions</span>
+                <span className="transform group-hover:translate-x-2 transition-transform duration-300">→</span>
+              </Link>
+            </div>
           </div>
-        </motion.div>
+        </div>
       </section>
     </main>
   );
