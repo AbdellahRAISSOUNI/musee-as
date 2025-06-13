@@ -114,7 +114,7 @@ const Header = () => {
       ],
       featured: {
         title: "Collections Actuelles",
-        image: "/images/hero-background.jpg",
+        image: "/images/collections-permanentes/flacons-de-khol-et-tabatieres/khol_et_tabatiere.png",
         description: "Explorez nos collections d'art marocain et nos expositions temporaires.",
         link: "/collections-expositions"
       }
@@ -158,9 +158,9 @@ const Header = () => {
       ],
       featured: {
         title: "Planifiez Votre Visite",
-        image: "/images/hero-background.jpg",
+        image: "/images/infos-pratiques/cafe-musee/cafe-terasse1.jpg",
         description: "Tout ce que vous devez savoir pour préparer votre visite au musée.",
-        link: "/infos-pratiques"
+        link: "/infos-pratiques/horaires-tarifs-acces"
       }
     },
     tempus: {
@@ -403,26 +403,27 @@ const Header = () => {
                       transition={{ duration: 0.5, delay: 0.2 }}
                       className="bg-graphite/20 p-4 rounded"
                     >
-                      <h3 className="text-accent-gold font-bodoni text-xl mb-3">
-                        {navSections[activeSection as keyof typeof navSections].featured.title}
-                      </h3>
-                      <div className="aspect-video bg-graphite/30 mb-3 overflow-hidden">
-                        {/* Featured image */}
-                        <img 
-                          src={navSections[activeSection as keyof typeof navSections].featured.image}
-                          alt={navSections[activeSection as keyof typeof navSections].featured.title}
-                          className="w-full h-full object-contain"
-                        />
-                      </div>
-                      <p className="text-soft-white text-sm mb-3">
-                        {navSections[activeSection as keyof typeof navSections].featured.description}
-                      </p>
-                      <Link 
-                        href={navSections[activeSection as keyof typeof navSections].featured.link}
-                        className="group relative inline-block text-accent-gold hover:text-premium-white text-sm font-bodoni cursor-pointer"
-                      >
-                        En savoir plus
-                        <span className="absolute -bottom-1 left-0 h-[1px] bg-accent-gold w-0 group-hover:w-full transition-all duration-300 ease-out" />
+                      <Link href={navSections[activeSection as keyof typeof navSections].featured.link} className="block">
+                        <h3 className="text-accent-gold font-bodoni text-xl mb-3">
+                          {navSections[activeSection as keyof typeof navSections].featured.title}
+                        </h3>
+                        <div className="aspect-video bg-graphite/30 mb-3 overflow-hidden">
+                          {/* Featured image */}
+                          <img 
+                            src={navSections[activeSection as keyof typeof navSections].featured.image}
+                            alt={navSections[activeSection as keyof typeof navSections].featured.title}
+                            className={`w-full h-full ${activeSection === 'fondation' || activeSection === 'collections' ? 'object-contain' : 'object-cover'}`}
+                          />
+                        </div>
+                        <p className="text-soft-white text-sm mb-3">
+                          {navSections[activeSection as keyof typeof navSections].featured.description}
+                        </p>
+                        <span 
+                          className="group relative inline-block text-accent-gold hover:text-premium-white text-sm font-bodoni cursor-pointer"
+                        >
+                          En savoir plus
+                          <span className="absolute -bottom-1 left-0 h-[1px] bg-accent-gold w-0 group-hover:w-full transition-all duration-300 ease-out" />
+                        </span>
                       </Link>
                     </motion.div>
                   </div>
