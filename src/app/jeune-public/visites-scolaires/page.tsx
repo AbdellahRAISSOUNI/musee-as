@@ -4,11 +4,11 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
-import { FaPalette } from 'react-icons/fa';
+import { FaGraduationCap } from 'react-icons/fa';
 
 const gold = '#bfa76a';
 
-const AteliersPedagogiquesPage = () => {
+const VisitesScolairesPage = () => {
   return (
     <main className="min-h-screen bg-white text-gray-900">
       {/* Hero Section */}
@@ -16,8 +16,8 @@ const AteliersPedagogiquesPage = () => {
         {/* Background Image with overlay */}
         <div className="absolute inset-0">
           <Image
-            src="/images/jeune-public/ateliers-pedagogiques/ateliers-pedagogiques.jpg"
-            alt="Ateliers Pédagogiques"
+            src="/images/jeune-public/visites-scolaires/visites-scolaires-guidees2.png"
+            alt="Visites Scolaires Guidées"
             fill
             className="object-cover opacity-60"
             priority
@@ -32,11 +32,11 @@ const AteliersPedagogiquesPage = () => {
             className="max-w-3xl mx-auto text-center px-4"
           >
             <h1 className="font-bodoni text-4xl md:text-5xl lg:text-6xl uppercase tracking-tight text-white mb-4">
-              Ateliers Pédagogiques
+              Visites Scolaires
             </h1>
             <div className="w-24 h-[2px] mx-auto mb-6" style={{ backgroundColor: gold }} />
             <p className="text-lg md:text-xl text-white/90 font-light font-bodoni italic">
-              Éveil artistique et culturel pour les enfants
+              Découvrez le patrimoine culturel marocain
             </p>
           </motion.div>
         </div>
@@ -57,12 +57,15 @@ const AteliersPedagogiquesPage = () => {
                   className="mb-16"
                 >
                   <div className="flex items-center mb-8">
-                    <FaPalette className="mr-3 text-2xl" style={{ color: gold }} />
-                    <h2 className="font-bodoni text-2xl md:text-3xl">Ateliers créatifs</h2>
+                    <FaGraduationCap className="mr-3 text-2xl" style={{ color: gold }} />
+                    <h2 className="font-bodoni text-2xl md:text-3xl">Visite guidée</h2>
                   </div>
                   <div className="border-l-2 pl-8" style={{ borderColor: gold }}>
                     <p className="font-bodoni text-lg mb-6 leading-relaxed">
-                      Le musée propose régulièrement des ateliers à destination du jeune public. Pour plus d'information, merci de consulter l'équipe du musée.
+                      Le Musée de la Fondation Abderrahman Slaoui s'engage dans la transmission du patrimoine auprès du public scolaire. Accompagné d'un médiateur, la visite conduit les élèves dans la découverte d'Abderrahman Slaoui, ses collections et les expositions temporaires. Le langage adapté au niveau des élèves leur apporte des connaissances sur l'histoire, la symbolique et la remise en contexte des objets.
+                    </p>
+                    <p className="font-bodoni text-lg mb-6 leading-relaxed">
+                      Pour plus d'information, ou pour avoir accès au dossier pédagogique n'hésitez pas à rentrer en contact avec le musée.
                     </p>
                     <div className="mt-8">
                       <p className="font-bodoni mt-4">
@@ -75,24 +78,24 @@ const AteliersPedagogiquesPage = () => {
                 </motion.div>
                 
                 <div className="mb-16">
-                  <h3 className="font-bodoni text-2xl mb-6" style={{ color: gold }}>Types d'ateliers</h3>
+                  <h3 className="font-bodoni text-2xl mb-6" style={{ color: gold }}>Objectifs pédagogiques</h3>
                   <div className="border-l-2 pl-8" style={{ borderColor: gold }}>
                     <ul className="space-y-4">
                       <li className="font-bodoni text-lg">
                         <span className="inline-block w-3 h-3 mr-2 transform rotate-45" style={{ backgroundColor: gold }}></span>
-                        Initiation à la peinture et au dessin
+                        Sensibiliser les élèves au patrimoine culturel marocain
                       </li>
                       <li className="font-bodoni text-lg">
                         <span className="inline-block w-3 h-3 mr-2 transform rotate-45" style={{ backgroundColor: gold }}></span>
-                        Calligraphie arabe et art du zellige
+                        Développer leur sens de l'observation et leur esprit critique
                       </li>
                       <li className="font-bodoni text-lg">
                         <span className="inline-block w-3 h-3 mr-2 transform rotate-45" style={{ backgroundColor: gold }}></span>
-                        Ateliers de modelage et sculpture
+                        Enrichir leurs connaissances historiques et artistiques
                       </li>
                       <li className="font-bodoni text-lg">
                         <span className="inline-block w-3 h-3 mr-2 transform rotate-45" style={{ backgroundColor: gold }}></span>
-                        Contes et illustrations du patrimoine marocain
+                        Favoriser l'échange et le dialogue autour des œuvres
                       </li>
                     </ul>
                   </div>
@@ -109,8 +112,8 @@ const AteliersPedagogiquesPage = () => {
                 >
                   <div className="relative h-[400px] overflow-hidden rounded-lg mb-6">
                     <Image
-                      src="/images/jeune-public/ateliers-pedagogiques/ateliers-pedagogiques.jpg"
-                      alt="Ateliers Pédagogiques"
+                      src="/images/jeune-public/visites-scolaires/visites-scolaires-guidees2.png"
+                      alt="Visites Scolaires Guidées"
                       fill
                       className="object-cover"
                     />
@@ -118,11 +121,11 @@ const AteliersPedagogiquesPage = () => {
                   
                   <div className="mt-8 text-center">
                     <Link
-                      href="/infos-pratiques/contact"
+                      href="/infos-pratiques/horaires-tarifs-acces"
                       className="inline-block px-6 py-3 font-bodoni text-white transition-colors duration-300"
                       style={{ backgroundColor: gold }}
                     >
-                      Réserver un atelier
+                      Réserver une visite
                     </Link>
                   </div>
                 </motion.div>
@@ -135,6 +138,4 @@ const AteliersPedagogiquesPage = () => {
   );
 };
 
-export default AteliersPedagogiquesPage;
-
- 
+export default VisitesScolairesPage; 

@@ -143,7 +143,7 @@ const Header = () => {
       ],
       featured: {
         title: "Espace Jeune Public",
-        image: "/images/hero-background.jpg",
+        image: "/images/jeune-public/visites-scolaires/visites-scolaires-guidees2.png",
         description: "Des programmes éducatifs et créatifs pour les enfants et les groupes scolaires.",
         link: "/jeune-public"
       }
