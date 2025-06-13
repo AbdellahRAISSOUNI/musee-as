@@ -2,198 +2,183 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 import Image from 'next/image';
-import { FaClock, FaTicketAlt, FaMapMarkerAlt, FaAccessibleIcon, FaRegQuestionCircle } from 'react-icons/fa';
-import PageLayout from '@/components/PageLayout';
+import { FaClock, FaTicketAlt, FaMapMarkerAlt } from 'react-icons/fa';
+
+const gold = '#bfa76a';
 
 const HorairesTarifsAccesPage = () => {
   return (
-    <PageLayout
-      title="Horaires, Tarifs et Accès"
-      description="Toutes les informations pratiques pour préparer votre visite au Musée Abderrahman Slaoui."
-      parentLink={{ href: "/infos-pratiques", label: "Retour aux Infos Pratiques" }}
-    >
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-        {/* Left column - Information */}
-        <div>
-          {/* Horaires section */}
+    <main className="min-h-screen bg-white text-gray-900">
+      {/* Hero Section */}
+      <section className="relative h-[45vh] flex items-center justify-center bg-black">
+        {/* Background Image with overlay */}
+        <div className="absolute inset-0">
+          <Image
+            src="/images/projet-musee/espace-museographique/espace_3.jpg"
+            alt="Musée Abderrahman Slaoui"
+            fill
+            className="object-cover opacity-60"
+            priority
+          />
+          <div className="absolute inset-0 bg-black/70" />
+        </div>
+        <div className="relative z-10 w-full">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="mb-12"
+            transition={{ duration: 0.7, ease: [0.4, 0, 0.2, 1] }}
+            className="max-w-3xl mx-auto text-center px-4"
           >
-            <div className="flex items-center mb-4">
-              <FaClock className="text-accent-gold text-2xl mr-3" />
-              <h2 className="font-bodoni-regular text-2xl text-premium-white">Horaires d'ouverture</h2>
-            </div>
-            
-            <div className="bg-charcoal p-6 rounded-lg">
-              <div className="grid grid-cols-2 gap-4 mb-4 pb-4 border-b border-graphite/50">
-                <div className="font-medium text-soft-white">Mardi - Dimanche</div>
-                <div className="text-premium-white">10h00 - 18h00</div>
-              </div>
-              
-              <div className="grid grid-cols-2 gap-4 mb-4 pb-4 border-b border-graphite/50">
-                <div className="font-medium text-soft-white">Lundi</div>
-                <div className="text-premium-white">Fermé</div>
-              </div>
-              
-              <div className="grid grid-cols-2 gap-4">
-                <div className="font-medium text-soft-white">Jours fériés</div>
-                <div className="text-premium-white">Fermé (sauf exception)</div>
-              </div>
-              
-              <div className="mt-4 text-sm text-soft-white italic">
-                Le musée peut être fermé exceptionnellement pour des événements privés. Consultez notre site avant votre visite.
-              </div>
-            </div>
-          </motion.div>
-          
-          {/* Tarifs section */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-            className="mb-12"
-          >
-            <div className="flex items-center mb-4">
-              <FaTicketAlt className="text-accent-gold text-2xl mr-3" />
-              <h2 className="font-bodoni-regular text-2xl text-premium-white">Tarifs</h2>
-            </div>
-            
-            <div className="bg-charcoal p-6 rounded-lg">
-              <div className="grid grid-cols-2 gap-4 mb-4 pb-4 border-b border-graphite/50">
-                <div className="font-medium text-soft-white">Plein tarif</div>
-                <div className="text-premium-white">50 DH</div>
-              </div>
-              
-              <div className="grid grid-cols-2 gap-4 mb-4 pb-4 border-b border-graphite/50">
-                <div className="font-medium text-soft-white">Étudiants & Seniors</div>
-                <div className="text-premium-white">30 DH (sur présentation d'un justificatif)</div>
-              </div>
-              
-              <div className="grid grid-cols-2 gap-4 mb-4 pb-4 border-b border-graphite/50">
-                <div className="font-medium text-soft-white">Enfants (moins de 12 ans)</div>
-                <div className="text-premium-white">Gratuit</div>
-              </div>
-              
-              <div className="grid grid-cols-2 gap-4">
-                <div className="font-medium text-soft-white">Groupes (10+)</div>
-                <div className="text-premium-white">40 DH par personne (sur réservation)</div>
-              </div>
-            </div>
-          </motion.div>
-          
-          {/* FAQ section */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
-            className="mb-12"
-          >
-            <div className="flex items-center mb-4">
-              <FaRegQuestionCircle className="text-accent-gold text-2xl mr-3" />
-              <h2 className="font-bodoni-regular text-2xl text-premium-white">Questions fréquentes</h2>
-            </div>
-            
-            <div className="space-y-4">
-              <div className="bg-charcoal p-4 rounded-lg">
-                <h3 className="font-medium text-accent-gold mb-2">Peut-on prendre des photos dans le musée ?</h3>
-                <p className="text-soft-white">La photographie sans flash est autorisée dans les espaces d'exposition permanente. La photographie est interdite dans les expositions temporaires, sauf indication contraire.</p>
-              </div>
-              
-              <div className="bg-charcoal p-4 rounded-lg">
-                <h3 className="font-medium text-accent-gold mb-2">Y a-t-il une consigne pour les bagages ?</h3>
-                <p className="text-soft-white">Des casiers sont disponibles à l'entrée du musée pour les petits bagages. Les grands sacs et valises ne sont pas acceptés dans le musée.</p>
-              </div>
-              
-              <div className="bg-charcoal p-4 rounded-lg">
-                <h3 className="font-medium text-accent-gold mb-2">Faut-il réserver à l'avance ?</h3>
-                <p className="text-soft-white">La réservation n'est pas obligatoire pour les visites individuelles, mais fortement recommandée pour les groupes et les visites guidées.</p>
-              </div>
-            </div>
+            <h1 className="font-bodoni text-4xl md:text-5xl lg:text-6xl uppercase tracking-tight text-white mb-4">
+              Horaires, Tarifs et Accès
+            </h1>
+            <div className="w-24 h-[2px] mx-auto mb-6" style={{ backgroundColor: gold }} />
+            <p className="text-lg md:text-xl text-white/90 font-light font-bodoni italic">
+              Planifiez votre visite au Musée
+            </p>
           </motion.div>
         </div>
-        
-        {/* Right column - Map and accessibility */}
-        <div>
-          {/* Map section */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="mb-12"
-          >
-            <div className="flex items-center mb-4">
-              <FaMapMarkerAlt className="text-accent-gold text-2xl mr-3" />
-              <h2 className="font-bodoni-regular text-2xl text-premium-white">Accès et localisation</h2>
-            </div>
-            
-            <div className="bg-charcoal p-6 rounded-lg">
-              <div className="aspect-[4/3] relative mb-6 overflow-hidden rounded">
-                {/* Map placeholder - In production, replace with an actual map */}
-                <div className="absolute inset-0 bg-graphite flex items-center justify-center text-soft-white">
-                  Carte interactive
-                </div>
+      </section>
+
+      {/* Main Content */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-6">
+          <div className="max-w-4xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
+              {/* Left Column */}
+              <div>
+                {/* Horaires Section */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.7, delay: 0.1, ease: [0.4, 0, 0.2, 1] }}
+                  className="mb-16"
+                >
+                  <div className="flex items-center mb-8">
+                    <FaClock className="mr-3 text-2xl" style={{ color: gold }} />
+                    <h2 className="font-bodoni text-2xl md:text-3xl">Horaires d'ouverture</h2>
+                  </div>
+                  <div className="border-l-2 pl-8" style={{ borderColor: gold }}>
+                    <p className="font-bodoni text-lg mb-4">
+                      <strong>Ouvert du mardi au samedi</strong>
+                    </p>
+                    <p className="font-bodoni text-lg mb-6 leading-relaxed">
+                      De 10h à 18h y compris les jours fériés (à l'exception des fêtes de l'Aïd Al Fitr, l'Aïd Al Adha et l'Aïd Al Mawlid)
+                    </p>
+                  </div>
+                </motion.div>
+
+                {/* Tarifs Section */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.7, delay: 0.2, ease: [0.4, 0, 0.2, 1] }}
+                  className="mb-16"
+                >
+                  <div className="flex items-center mb-8">
+                    <FaTicketAlt className="mr-3 text-2xl" style={{ color: gold }} />
+                    <h2 className="font-bodoni text-2xl md:text-3xl">Tarifs</h2>
+                  </div>
+                  <div className="border-l-2 pl-8" style={{ borderColor: gold }}>
+                    <ul className="space-y-6 font-bodoni">
+                      <li className="flex flex-col">
+                        <span className="text-lg font-bodoni"><strong>Tarif public:</strong> 60 dh</span>
+                      </li>
+                      <li className="flex flex-col">
+                        <span className="text-lg font-bodoni"><strong>Tarif citoyens marocains et étrangers résidents au Maroc:</strong> 40 dh</span>
+                      </li>
+                      <li className="flex flex-col">
+                        <span className="text-lg font-bodoni"><strong>Tarif réduit:</strong> 10 dh (sur présentation d'un justificatif)</span>
+                        <span className="text-gray-600 ml-4 font-bodoni mt-1">Etudiants, enfants de plus de 12 ans</span>
+                      </li>
+                      <li className="flex flex-col">
+                        <span className="text-lg font-bodoni"><strong>Gratuité</strong> (sur présentation d'un justificatif)</span>
+                        <span className="text-gray-600 ml-4 font-bodoni mt-1">Enfants de moins de 12 ans (accompagnés de leurs parents), carte ICOM, étudiants en école d'art et d'architecture, journalistes</span>
+                      </li>
+                    </ul>
+                  </div>
+                </motion.div>
               </div>
-              
-              <h3 className="font-medium text-accent-gold mb-2">Adresse</h3>
-              <p className="text-soft-white mb-4">
-                Musée Abderrahman Slaoui<br />
-                12, rue du Caire<br />
-                Quartier Racine<br />
-                Casablanca, Maroc
-              </p>
-              
-              <h3 className="font-medium text-accent-gold mb-2">Transport</h3>
-              <ul className="text-soft-white mb-4 space-y-2">
-                <li>
-                  <span className="font-medium text-premium-white">Tramway:</span> Ligne 1, station "Place des Nations Unies" (10 min à pied)
-                </li>
-                <li>
-                  <span className="font-medium text-premium-white">Bus:</span> Lignes 20, 30, 32 - Arrêt "Racine" (2 min à pied)
-                </li>
-                <li>
-                  <span className="font-medium text-premium-white">Parking:</span> Parking souterrain à 200m du musée (payant)
-                </li>
-              </ul>
+
+              {/* Right Column */}
+              <div>
+                {/* Visites Section */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.7, delay: 0.3, ease: [0.4, 0, 0.2, 1] }}
+                  className="mb-16"
+                >
+                  <h2 className="font-bodoni text-2xl md:text-3xl mb-8" style={{ color: gold }}>Visite guidée</h2>
+                  <div className="border-l-2 pl-8" style={{ borderColor: gold }}>
+                    <p className="font-bodoni text-lg mb-6">
+                      Sur réservation
+                    </p>
+                    <ul className="space-y-4 font-bodoni">
+                      <li className="flex justify-between">
+                        <span className="text-lg font-bodoni">Adulte:</span>
+                        <span className="font-bodoni">100 dh par personne + frais d'entrée au Musée</span>
+                      </li>
+                      <li className="flex justify-between">
+                        <span className="text-lg font-bodoni">Famille:</span>
+                        <span className="font-bodoni">forfait de 100 dh + frais d'entrée au Musée</span>
+                      </li>
+                      <li className="flex justify-between">
+                        <span className="text-lg font-bodoni">Groupe:</span>
+                        <span className="font-bodoni">forfait de 500 dh + frais d'entrée au Musée</span>
+                      </li>
+                    </ul>
+                    
+                    <div className="mt-8">
+                      <h3 className="font-bodoni text-xl mb-4">Visite scolaire</h3>
+                      <p className="font-bodoni">
+                        Sur réservation
+                      </p>
+                      <p className="font-bodoni mt-4">
+                        Pour tout renseignement contactez-nous: <br />
+                        <a href="mailto:fas.musee@gmail.com" className="font-bodoni text-black hover:text-[#bfa76a] transition-colors duration-300">fas.musee@gmail.com</a> <br />
+                        <a href="tel:+212522206217" className="font-bodoni text-black hover:text-[#bfa76a] transition-colors duration-300">+212 (0)5 22 20 62 17</a>
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
+
+                {/* Accès Section */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.7, delay: 0.4, ease: [0.4, 0, 0.2, 1] }}
+                >
+                  <div className="flex items-center mb-8">
+                    <FaMapMarkerAlt className="mr-3 text-2xl" style={{ color: gold }} />
+                    <h2 className="font-bodoni text-2xl md:text-3xl">Venir au Musée</h2>
+                  </div>
+                  <div className="border-l-2 pl-8" style={{ borderColor: gold }}>
+                    <address className="not-italic font-bodoni mb-8 leading-relaxed">
+                      <strong className="font-bodoni">Musée de la Fondation Abderrahman Slaoui</strong><br />
+                      12 rue du parc<br />
+                      20070 Casablanca<br />
+                      <a href="tel:+212522206217" className="font-bodoni text-black hover:text-[#bfa76a] transition-colors duration-300">+212 (0)5 22 20 62 17</a>
+                    </address>
+                    
+                    <div className="font-bodoni leading-relaxed">
+                      <p className="mb-4 font-bodoni"><strong>En tramway:</strong> arrêt Mohammed V</p>
+                      <p className="font-bodoni"><strong>En taxi:</strong> si le chauffeur ne connait pas le Musée, demandez lui de vous conduire à l'Agence Urbaine de Casablanca ou l'école des Beaux-arts.</p>
+                    </div>
+                  </div>
+                </motion.div>
+              </div>
             </div>
-          </motion.div>
-          
-          {/* Accessibility section */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-            className="mb-12"
-          >
-            <div className="flex items-center mb-4">
-              <FaAccessibleIcon className="text-accent-gold text-2xl mr-3" />
-              <h2 className="font-bodoni-regular text-2xl text-premium-white">Accessibilité</h2>
-            </div>
-            
-            <div className="bg-charcoal p-6 rounded-lg">
-              <p className="text-soft-white mb-4">
-                Le Musée Abderrahman Slaoui s'engage à être accessible à tous les visiteurs.
-              </p>
-              
-              <ul className="text-soft-white space-y-2 mb-4">
-                <li>• Entrée accessible aux personnes à mobilité réduite</li>
-                <li>• Ascenseur desservant tous les étages</li>
-                <li>• Toilettes accessibles</li>
-                <li>• Chiens-guides autorisés</li>
-                <li>• Dispositifs d'aide à la visite disponibles sur demande</li>
-              </ul>
-              
-              <p className="text-soft-white text-sm italic">
-                Pour toute demande spécifique d'accessibilité, veuillez nous contacter au moins 48h avant votre visite.
-              </p>
-            </div>
-          </motion.div>
+          </div>
         </div>
-      </div>
-    </PageLayout>
+      </section>
+    </main>
   );
 };
 
