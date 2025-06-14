@@ -113,7 +113,7 @@ const HomePage = () => {
       <HeroSection />
       
       {/* À LA UNE - Creative Grid Section */}
-      <motion.div
+              <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1.2 }}
@@ -123,7 +123,7 @@ const HomePage = () => {
           items={featuredItems}
           artistic={true}
         />
-      </motion.div>
+              </motion.div>
       
       {/* Quote Section */}
       <QuoteSection 
@@ -154,7 +154,7 @@ const HomePage = () => {
           overlayOpacity={40}
           parallaxStrength={30}
         />
-      </div>
+    </div>
     </main>
   );
 };

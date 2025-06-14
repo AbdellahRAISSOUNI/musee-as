@@ -96,7 +96,7 @@ const HeroSection: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.2 }}
-          className="mb-6 sm:mb-8 mt-[85px] md:mt-[75px]" // Adjusted top margin for different screen sizes
+          className="mb-4 sm:mb-6 mt-[85px] md:mt-[75px]" // Adjusted top margin and bottom margin
         >
           <span className="text-accent-gold uppercase tracking-widest font-bodoni-regular text-sm md:text-base px-3 py-1 border-t border-b border-accent-gold/30 inline-block">
             Fondation
@@ -107,10 +107,13 @@ const HeroSection: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.4 }}
-          className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-bodoni-regular text-premium-white max-w-6xl leading-tight mb-6 sm:mb-8 tracking-tight px-2"
+          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bodoni-regular text-premium-white max-w-6xl leading-tight mb-4 sm:mb-6 tracking-tight px-2"
           style={{ textShadow: "0px 2px 4px rgba(0, 0, 0, 0.3)" }}
         >
-          Musée Abderrahman Slaoui
+          <div className="flex flex-col items-center">
+            <span className="whitespace-nowrap">Musée Abderrahman</span>
+            <span>Slaoui</span>
+          </div>
         </motion.h1>
         
         <motion.div

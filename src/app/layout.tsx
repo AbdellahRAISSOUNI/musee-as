@@ -4,6 +4,7 @@ import Header from "@/components/Header";
 import HydrationErrorSuppressor from "@/components/HydrationErrorSuppressor";
 import ClientErrorBoundary from "@/components/ClientErrorBoundary";
 import Footer from '@/components/Footer';
+import ThemeProvider from "@/components/ThemeProvider";
 
 export const metadata: Metadata = {
   title: "Musée Abderrahman Slaoui",
@@ -16,13 +17,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr">
+    <html lang="fr" className="dark">
       <body className="antialiased">
         <HydrationErrorSuppressor />
         <ClientErrorBoundary>
-        <Header />
-        {children}
-        <Footer />
+        <ThemeProvider>
+          <Header />
+          {children}
+          <Footer />
+        </ThemeProvider>
         </ClientErrorBoundary>
       </body>
     </html>

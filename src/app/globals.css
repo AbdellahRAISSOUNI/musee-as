@@ -23,11 +23,11 @@
   --color-foreground: var(--foreground);
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    --background: #F8F8F8;
-    --foreground: #0A0A0A;
-  }
+/* Force dark mode regardless of system preference */
+:root {
+  --background: #0A0A0A;
+  --foreground: #F5F5F5;
+  color-scheme: dark;
 }
 
 /* Base typography */
