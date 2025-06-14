@@ -34,6 +34,13 @@ module.exports = {
         'soft-white': '#EFEFEF',
         'warm-white': '#F8F8F8',
         'accent-gold': '#D4AF37',
+        'premium-white': '#F8F8F8',
+        'soft-white': '#E0E0E0',
+        'charcoal': '#222222',
+        'graphite': '#444444',
+        'stone': '#666666',
+        'accent-gold': '#D4AF37',
+        'accent-gold-light': '#F2E8C9',
       },
       backgroundImage: {
         'moroccan-pattern': "url('/images/moroccan-pattern.png')",
@@ -71,9 +78,39 @@ module.exports = {
           },
         },
       }),
+      textShadow: {
+        'sm': '0 1px 2px rgba(0, 0, 0, 0.3)',
+        'DEFAULT': '0 2px 4px rgba(0, 0, 0, 0.4)',
+        'lg': '0 2px 10px rgba(0, 0, 0, 0.5)',
+      },
     },
   },
   plugins: [
     require('@tailwindcss/typography'),
+    function({ addUtilities }) {
+      const newUtilities = {
+        '.scrollbar-hide': {
+          /* Firefox */
+          'scrollbar-width': 'none',
+          /* Safari and Chrome */
+          '&::-webkit-scrollbar': {
+            display: 'none'
+          }
+        },
+        '.text-shadow-sm': {
+          textShadow: '0 1px 2px rgba(0, 0, 0, 0.3)',
+        },
+        '.text-shadow': {
+          textShadow: '0 2px 4px rgba(0, 0, 0, 0.4)',
+        },
+        '.text-shadow-lg': {
+          textShadow: '0 2px 10px rgba(0, 0, 0, 0.5)',
+        },
+        '.text-shadow-none': {
+          textShadow: 'none',
+        },
+      }
+      addUtilities(newUtilities);
+    }
   ],
 }; 

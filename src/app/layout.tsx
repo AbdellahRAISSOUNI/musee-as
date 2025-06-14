@@ -3,6 +3,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import HydrationErrorSuppressor from "@/components/HydrationErrorSuppressor";
 import ClientErrorBoundary from "@/components/ClientErrorBoundary";
+import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
   title: "Musée Abderrahman Slaoui",
@@ -21,6 +22,7 @@ export default function RootLayout({
         <ClientErrorBoundary>
         <Header />
         {children}
+        <Footer />
         </ClientErrorBoundary>
       </body>
     </html>
