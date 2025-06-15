@@ -395,10 +395,8 @@ const Header = () => {
           <Link href="/" className="flex-grow text-center group">
             <motion.h1 
               className="text-xl md:text-3xl lg:text-4xl font-bodoni-italic text-premium-white tracking-wider relative inline-block cursor-pointer"
-              whileHover={{ color: '#D4AF37', transition: { duration: 0.3 } }}
             >
               Musée Abderrahman Slaoui
-              <span className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-accent-gold transform -translate-x-1/2 group-hover:w-1/4 transition-all duration-300 ease-out"></span>
             </motion.h1>
           </Link>
           
