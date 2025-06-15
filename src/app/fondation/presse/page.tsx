@@ -1,10 +1,12 @@
- "use client";
+"use client";
 
 import React from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
 import ReturnButton from '@/components/ReturnButton';
+
+const gold = '#bfa76a';
 
 const PressePage = () => {
   // Press articles data from the screenshots
@@ -42,19 +44,31 @@ const PressePage = () => {
   ];
 
   return (
-    <main className="min-h-screen bg-white text-gray-800 pt-12">
+    <main className="min-h-screen bg-white text-gray-800">
       {/* Hero Section */}
-      <section className="bg-black text-white py-16">
-        <div className="container mx-auto px-6">
+      <section className="relative h-[50vh] flex items-center justify-center bg-black">
+        {/* Background Image with overlay */}
+        <div className="absolute inset-0">
+          <Image
+            src="/images/presse/h24-info/zellige.jpg"
+            alt="Zellige traditionnel"
+            fill
+            className="object-cover opacity-60"
+            priority
+          />
+          <div className="absolute inset-0 bg-black/70" />
+        </div>
+        <div className="relative z-10 w-full">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="max-w-4xl mx-auto text-center"
+            transition={{ duration: 0.7, ease: [0.4, 0, 0.2, 1] }}
+            className="max-w-3xl mx-auto text-center px-4"
           >
-            <h1 className="font-bodoni text-4xl md:text-5xl lg:text-6xl mb-6">
+            <h1 className="font-bodoni text-4xl md:text-5xl lg:text-6xl uppercase tracking-tight text-white mb-4">
               Ils Parlent de Nous
             </h1>
+            <div className="w-24 h-[2px] mx-auto mb-6" style={{ backgroundColor: gold }} />
           </motion.div>
         </div>
       </section>
@@ -69,100 +83,94 @@ const PressePage = () => {
             {/* Articles Grid */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
               {/* First Article */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.6 }}
-                className="bg-white"
-            >
-                <h2 className="font-bodoni text-3xl text-accent-gold mb-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2, duration: 0.6 }}
+                className="relative bg-white group"
+              >
+                <Link href={pressArticles[0].link} className="absolute inset-0 z-10" aria-label={pressArticles[0].title}></Link>
+                <h2 className="font-bodoni text-3xl text-accent-gold mb-6 relative z-0">
                   {pressArticles[0].title}
-              </h2>
+                </h2>
                 
-                <div className="mb-6 relative h-[300px] overflow-hidden">
-                        <Image
+                <div className="mb-6 relative h-[300px] overflow-hidden z-0">
+                  <Image
                     src={pressArticles[0].image}
                     alt={pressArticles[0].title}
-                          fill
-                    className="object-cover object-center"
+                    fill
+                    className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
                   />
-            </div>
+                </div>
 
-                <p className="text-gray-700 mb-6">
+                <p className="text-gray-700 mb-6 relative z-0">
                   {pressArticles[0].content}
-              </p>
-              
-                <Link 
-                  href={pressArticles[0].link}
-                  className="inline-block text-accent-gold hover:text-accent-gold/80 transition-colors font-bodoni"
-                      >
+                </p>
+                
+                <div className="relative z-0 inline-block text-accent-gold hover:text-accent-gold/80 transition-colors font-bodoni group-hover:underline">
                   Lire la suite
-                </Link>
-            </motion.div>
+                </div>
+              </motion.div>
 
               {/* Second Article */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4, duration: 0.6 }}
-                className="bg-white"
-            >
-                <h2 className="font-bodoni text-3xl text-accent-gold mb-6">
+                className="relative bg-white group"
+              >
+                <Link href={pressArticles[1].link} className="absolute inset-0 z-10" aria-label={pressArticles[1].title}></Link>
+                <h2 className="font-bodoni text-3xl text-accent-gold mb-6 relative z-0">
                   {pressArticles[1].title}
                 </h2>
                 
-                <div className="mb-6 relative h-[300px] overflow-hidden">
+                <div className="mb-6 relative h-[300px] overflow-hidden z-0">
                   <Image
                     src={pressArticles[1].image}
                     alt={pressArticles[1].title}
                     fill
-                    className="object-contain"
+                    className="object-contain transition-transform duration-700 group-hover:scale-105"
                   />
                 </div>
                 
-                <p className="text-gray-700 mb-6">
+                <p className="text-gray-700 mb-6 relative z-0">
                   {pressArticles[1].content}
                 </p>
                 
-                <Link 
-                  href={pressArticles[1].link}
-                  className="inline-block text-accent-gold hover:text-accent-gold/80 transition-colors font-bodoni"
-                  >
+                <div className="relative z-0 inline-block text-accent-gold hover:text-accent-gold/80 transition-colors font-bodoni group-hover:underline">
                   Lire la suite
-                </Link>
-            </motion.div>
+                </div>
+              </motion.div>
 
               {/* Third Article - Full Width */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6, duration: 0.6 }}
-                className="bg-white lg:col-span-2"
-            >
-                <h2 className="font-bodoni text-3xl text-accent-gold mb-6">
+                className="relative bg-white lg:col-span-2 group"
+              >
+                <Link href={pressArticles[2].link} className="absolute inset-0 z-10" aria-label={pressArticles[2].title}></Link>
+                <h2 className="font-bodoni text-3xl text-accent-gold mb-6 relative z-0">
                   {pressArticles[2].title}
-              </h2>
+                </h2>
                 
-                <div className="mb-6 relative h-[300px] overflow-hidden">
+                <div className="mb-6 relative h-[300px] overflow-hidden z-0">
                   <Image
                     src={pressArticles[2].image}
                     alt={pressArticles[2].title}
                     fill
-                    className="object-contain"
+                    className="object-contain transition-transform duration-700 group-hover:scale-105"
                   />
                 </div>
                 
-                <p className="text-gray-700 mb-6">
+                <p className="text-gray-700 mb-6 relative z-0">
                   {pressArticles[2].content}
                 </p>
                 
-                <Link 
-                  href={pressArticles[2].link}
-                  className="inline-block text-accent-gold hover:text-accent-gold/80 transition-colors font-bodoni"
-                  >
+                <div className="relative z-0 inline-block text-accent-gold hover:text-accent-gold/80 transition-colors font-bodoni group-hover:underline">
                   Lire la suite
-                </Link>
-            </motion.div>
+                </div>
+              </motion.div>
             </div>
           </div>
         </div>

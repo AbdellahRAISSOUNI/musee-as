@@ -6,7 +6,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useInView } from 'react-intersection-observer';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
-import { FaQuoteLeft } from 'react-icons/fa';
+import { FaQuoteLeft, FaBook, FaNewspaper } from 'react-icons/fa';
 
 const gold = '#bfa76a';
 
@@ -88,9 +88,9 @@ const FondationPage = () => {
 
   return (
     <main className="min-h-screen bg-white">
-      {/* Hero Section with Premium Title */}
-      <section className="relative h-[60vh] flex items-center justify-center bg-black overflow-hidden">
-        {/* Background Image */}
+      {/* Hero Section */}
+      <section className="relative h-[50vh] flex items-center justify-center bg-black">
+        {/* Background Image with overlay */}
         <div className="absolute inset-0">
           <Image
             src="/images/fondation/entree_musee.jpg"
@@ -99,30 +99,19 @@ const FondationPage = () => {
             className="object-cover opacity-60"
             priority
           />
-          <div className="absolute inset-0 bg-black/60" />
+          <div className="absolute inset-0 bg-black/70" />
         </div>
-        
-        {/* Gold accent line top */}
-        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-accent-gold to-transparent"></div>
-        
-        {/* Content */}
-        <div className="relative z-10 max-w-[1440px] mx-auto px-6">
+        <div className="relative z-10 w-full">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
-            className="max-w-5xl mx-auto text-center"
+            transition={{ duration: 0.7, ease: [0.4, 0, 0.2, 1] }}
+            className="max-w-3xl mx-auto text-center px-4"
           >
-            <span className="inline-block text-accent-gold uppercase tracking-widest font-bodoni text-sm md:text-base mb-4">
-              Découvrir
-            </span>
-            
-            <h1 className="font-bodoni text-4xl md:text-5xl lg:text-7xl text-white mb-8 leading-tight">
+            <h1 className="font-bodoni text-4xl md:text-5xl lg:text-6xl uppercase tracking-tight text-white mb-4">
               Fondation Abderrahman Slaoui
             </h1>
-            
-            <div className="w-32 h-[2px] mx-auto mb-8" style={{ backgroundColor: gold }}></div>
-            
+            <div className="w-24 h-[2px] mx-auto mb-6" style={{ backgroundColor: gold }} />
             <p className="text-gray-200 text-lg md:text-xl max-w-3xl mx-auto font-light">
               Un écrin pour le patrimoine artistique et culturel marocain d'exception
             </p>
@@ -130,31 +119,38 @@ const FondationPage = () => {
         </div>
       </section>
       
-      {/* Carousel Section - White Background */}
-      <section className="py-24 bg-white">
-        <div className="max-w-[1440px] mx-auto px-6">
+      {/* Carousel Section */}
+      <section className="py-16 bg-gray-50">
+        <div className="container mx-auto px-6">
           <div className="max-w-6xl mx-auto">
             {/* Section Title */}
             <div className="text-center mb-16">
-              <h2 className="font-bodoni text-4xl text-gray-900 mb-4">
-                Explorez le Musée
-              </h2>
-              <div className="w-24 h-[2px] mx-auto mb-6" style={{ backgroundColor: gold }}></div>
-              <p className="text-gray-600 max-w-3xl mx-auto">
-                Découvrez les espaces et collections du Musée Abderrahman Slaoui à travers cette galerie d'images
-              </p>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7 }}
+              >
+                <h2 className="font-bodoni text-3xl md:text-4xl text-gray-900 mb-4">
+                  Explorez le Musée
+                </h2>
+                <div className="w-24 h-[2px] mx-auto mb-6" style={{ backgroundColor: gold }}></div>
+                <p className="text-gray-600 max-w-3xl mx-auto">
+                  Découvrez les espaces et collections du Musée Abderrahman Slaoui à travers cette galerie d'images
+                </p>
+              </motion.div>
             </div>
             
-            {/* Premium Carousel */}
+            {/* Carousel */}
             <motion.div
               ref={ref}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: 0.1 }}
-              className="mb-20"
+              className="mb-16"
             >
-              <div className="relative overflow-hidden rounded-lg h-[70vh] max-h-[600px] bg-white shadow-xl border border-gray-100">
+              <div className="relative overflow-hidden h-[70vh] max-h-[600px] bg-white shadow-xl border border-gray-100">
                 {/* Images */}
                 {carouselImages.map((image, index) => (
                   <div
@@ -182,7 +178,7 @@ const FondationPage = () => {
                 {/* Controls */}
                 <button 
                   onClick={prevSlide}
-                  className="absolute left-6 top-1/2 -translate-y-1/2 w-14 h-14 rounded-full bg-white/70 backdrop-blur-sm text-gray-900 flex items-center justify-center hover:bg-white transition-colors z-10 shadow-lg"
+                  className="absolute left-6 top-1/2 -translate-y-1/2 w-14 h-14 bg-white/70 backdrop-blur-sm text-gray-900 flex items-center justify-center hover:bg-white transition-colors z-10 shadow-lg"
                   aria-label="Image précédente"
                 >
                   <IoIosArrowBack size={28} />
@@ -190,7 +186,7 @@ const FondationPage = () => {
                 
                 <button 
                   onClick={nextSlide}
-                  className="absolute right-6 top-1/2 -translate-y-1/2 w-14 h-14 rounded-full bg-white/70 backdrop-blur-sm text-gray-900 flex items-center justify-center hover:bg-white transition-colors z-10 shadow-lg"
+                  className="absolute right-6 top-1/2 -translate-y-1/2 w-14 h-14 bg-white/70 backdrop-blur-sm text-gray-900 flex items-center justify-center hover:bg-white transition-colors z-10 shadow-lg"
                   aria-label="Image suivante"
                 >
                   <IoIosArrowForward size={28} />
@@ -202,7 +198,7 @@ const FondationPage = () => {
                     <button
                       key={index}
                       onClick={() => goToSlide(index)}
-                      className={`h-2 rounded-full transition-all ${
+                      className={`h-2 transition-all ${
                         currentSlide === index 
                           ? "bg-accent-gold w-10" 
                           : "bg-white/70 w-2 hover:bg-white"
@@ -213,56 +209,62 @@ const FondationPage = () => {
                 </div>
               </div>
             </motion.div>
-          
-            {/* Introduction with Logo */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7, delay: 0.2 }}
-              className="flex flex-col md:flex-row items-center gap-12 mb-20 bg-gray-50 p-12 rounded-lg shadow-sm border border-gray-100"
-            >
-              {/* Logo */}
-              <div className="w-full md:w-1/3 flex justify-center md:justify-start">
-                <div className="relative w-56 h-56 bg-transparent">
-                  <Image
-                    src="/images/projet-musee/pxjg8psj.png"
-                    alt="Logo Fondation Abderrahman Slaoui"
-                    fill
-                    className="object-contain"
-                  />
-                </div>
-              </div>
-              
-              {/* Text */}
-              <div className="w-full md:w-2/3">
-                <h2 className="font-bodoni text-3xl text-gray-900 mb-6">
-                  Notre Vision
-                </h2>
-                <p className="text-gray-700 text-lg leading-relaxed mb-6">
-                  La Fondation Abderrahman Slaoui est dédiée à la préservation et à la promotion du patrimoine artistique marocain. Depuis sa création, elle s'engage à faire découvrir au public la richesse culturelle du Maroc à travers des collections permanentes, des expositions temporaires et des activités culturelles diverses.
-                </p>
-                <p className="text-gray-700 text-lg leading-relaxed">
-                  Notre mission est de valoriser et transmettre le patrimoine artistique marocain aux générations actuelles et futures, tout en œuvrant pour la reconnaissance de l'excellence artisanale et artistique du Maroc.
-                </p>
-              </div>
-            </motion.div>
           </div>
         </div>
       </section>
       
-      {/* Quote Section - Dark Background */}
+      {/* Introduction Section - Moved under carousel */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-6">
+          <div className="max-w-6xl mx-auto">
+            {/* Introduction Text with Logo */}
+            <div className="mb-16">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7 }}
+                className="flex flex-col md:flex-row items-center gap-12"
+              >
+                <div className="w-full md:w-1/3 flex justify-center">
+                  <div className="relative w-64 h-64">
+                    <Image
+                      src="/images/projet-musee/espace-museographique/pxjg8psj.png"
+                      alt="Logo Fondation Abderrahman Slaoui"
+                      fill
+                      className="object-contain"
+                    />
+                  </div>
+                </div>
+                <div className="w-full md:w-2/3">
+                  <h2 className="font-bodoni text-3xl md:text-4xl text-gray-900 mb-4">
+                    Notre Vision
+                  </h2>
+                  <div className="w-24 h-[2px] mb-6" style={{ backgroundColor: gold }}></div>
+                  <p className="text-gray-700 text-lg leading-relaxed">
+                    La Fondation Abderrahman Slaoui est dédiée à la préservation et à la promotion du patrimoine artistique marocain. 
+                    Depuis sa création, elle s'engage à faire découvrir au public la richesse culturelle du Maroc à travers des collections 
+                    permanentes, des expositions temporaires et des activités culturelles diverses.
+                  </p>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      {/* Quote Section */}
       <section className="py-24 bg-gray-900 relative overflow-hidden">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-5 bg-moroccan-pattern"></div>
         
-        <div className="max-w-[1440px] mx-auto px-6">
+        <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.7, delay: 0.3 }}
+              transition={{ duration: 0.7 }}
               className="relative"
             >
               <div className="absolute top-0 left-0 text-accent-gold opacity-30">
@@ -283,176 +285,261 @@ const FondationPage = () => {
         </div>
       </section>
       
-      {/* Three Pillars Section - White Background */}
+      {/* Explorer la Fondation Section */}
       <section className="py-24 bg-white">
-        <div className="max-w-[1440px] mx-auto px-6">
+        <div className="container mx-auto px-6">
           <div className="max-w-6xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7, delay: 0.4 }}
-              className="mb-20"
-            >
-              <div className="text-center mb-16">
-                <h2 className="font-bodoni text-4xl text-gray-900 mb-4">
-                  Les Piliers de Notre Mission
-                </h2>
-                <div className="w-24 h-[2px] mx-auto mb-6" style={{ backgroundColor: gold }}></div>
-              </div>
-              
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-                <div className="bg-white p-10 rounded-lg shadow-md hover:shadow-xl transition-all duration-500 group border-t-2 border-accent-gold">
-                  <div className="w-20 h-20 mb-8 bg-accent-gold rounded-full flex items-center justify-center text-white transform group-hover:scale-110 transition-transform duration-500">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                    </svg>
-                  </div>
-                  <h3 className="font-bodoni text-2xl text-gray-900 mb-4 group-hover:text-accent-gold transition-colors">
-                    Préserver
-                  </h3>
-                  <p className="text-gray-600 text-lg leading-relaxed">
-                    Conservation et restauration des œuvres d'art et objets du patrimoine culturel marocain pour les générations futures.
-                  </p>
-                </div>
-                
-                <div className="bg-white p-10 rounded-lg shadow-md hover:shadow-xl transition-all duration-500 group border-t-2 border-accent-gold">
-                  <div className="w-20 h-20 mb-8 bg-accent-gold rounded-full flex items-center justify-center text-white transform group-hover:scale-110 transition-transform duration-500">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122" />
-                    </svg>
-                  </div>
-                  <h3 className="font-bodoni text-2xl text-gray-900 mb-4 group-hover:text-accent-gold transition-colors">
-                    Exposer
-                  </h3>
-                  <p className="text-gray-600 text-lg leading-relaxed">
-                    Présentation des collections et organisation d'expositions temporaires mettant en valeur l'art marocain.
-                  </p>
-                </div>
-                
-                <div className="bg-white p-10 rounded-lg shadow-md hover:shadow-xl transition-all duration-500 group border-t-2 border-accent-gold">
-                  <div className="w-20 h-20 mb-8 bg-accent-gold rounded-full flex items-center justify-center text-white transform group-hover:scale-110 transition-transform duration-500">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                    </svg>
-                  </div>
-                  <h3 className="font-bodoni text-2xl text-gray-900 mb-4 group-hover:text-accent-gold transition-colors">
-                    Éduquer
-                  </h3>
-                  <p className="text-gray-600 text-lg leading-relaxed">
-                    Sensibilisation du public à l'art et au patrimoine culturel marocain à travers des programmes éducatifs.
-                  </p>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-          
-      {/* Explore More Sections - Gray Background */}
-      <section className="py-24 bg-gray-50">
-        <div className="max-w-[1440px] mx-auto px-6">
-          <div className="max-w-6xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7, delay: 0.5 }}
-              className="mb-20"
-            >
-              <div className="text-center mb-16">
-                <h2 className="font-bodoni text-4xl text-gray-900 mb-4">
+            <div className="text-center mb-16">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7 }}
+              >
+                <h2 className="font-bodoni text-3xl md:text-4xl text-gray-900 mb-4">
                   Explorer la Fondation
                 </h2>
                 <div className="w-24 h-[2px] mx-auto mb-6" style={{ backgroundColor: gold }}></div>
-              </div>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-                <Link href="/fondation/projet-musee" className="group">
-                  <div className="relative h-80 overflow-hidden rounded-lg shadow-lg">
-                    <Image
-                      src="/images/projet-musee/espace-museographique/pxjg8psj.png"
-                      alt="Le Projet de Musée"
-                      fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
-                    <div className="absolute bottom-0 left-0 right-0 p-8">
-                      <h3 className="font-bodoni text-3xl text-white mb-3">Le Projet de Musée</h3>
-                      <p className="text-gray-200 text-base mb-4">
-                        Découvrez l'histoire et la vision derrière le Musée Abderrahman Slaoui
-                      </p>
-                      <div className="flex items-center">
-                        <span className="text-accent-gold font-medium mr-2">En savoir plus</span>
-                        <span className="transform group-hover:translate-x-2 transition-transform duration-300 text-accent-gold">→</span>
-                      </div>
-                    </div>
-                  </div>
-                </Link>
+                <p className="text-gray-700 text-lg leading-relaxed max-w-3xl mx-auto mb-12">
+                  Découvrez l'histoire de la fondation, son créateur et les actualités liées à nos activités
+                </p>
+              </motion.div>
+            </div>
+            
+            <div className="space-y-24">
+              {/* Le Projet de Musée */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.15, duration: 0.8 }}
+                className="flex flex-col md:flex-row items-center gap-8 md:gap-12"
+              >
+                {/* Image Container */}
+                <div className="w-full md:w-1/2 h-[400px] relative group">
+                  <Link href="/fondation/projet-musee" className="block w-full h-full">
+                    <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 transition-opacity duration-500 z-10"></div>
+                    <motion.div 
+                      className="absolute inset-0 border-2 border-transparent group-hover:border-accent-gold z-20"
+                      initial={false}
+                      whileHover={{ 
+                        scale: 0.97,
+                        transition: { duration: 0.4 }
+                      }}
+                    >
+                      <Image
+                        src="/images/projet-musee/espace-museographique/pxjg8psj.png"
+                        alt="Le Projet de Musée"
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                      />
+                    </motion.div>
+                  </Link>
+                </div>
                 
-                <Link href="/fondation/presse" className="group">
-                  <div className="relative h-80 overflow-hidden rounded-lg shadow-lg">
-                    <Image
-                      src="/images/projet-musee/abderrahman-slaoui/abderrahman-slaoui_9MciH0M.jpg"
-                      alt="Ils Parlent de Nous"
-                      fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
-                    <div className="absolute bottom-0 left-0 right-0 p-8">
-                      <h3 className="font-bodoni text-3xl text-white mb-3">Ils Parlent de Nous</h3>
-                      <p className="text-gray-200 text-base mb-4">
-                        Retrouvez les articles et mentions du Musée dans la presse nationale et internationale
-                      </p>
-                      <div className="flex items-center">
-                        <span className="text-accent-gold font-medium mr-2">En savoir plus</span>
-                        <span className="transform group-hover:translate-x-2 transition-transform duration-300 text-accent-gold">→</span>
-                      </div>
+                {/* Content Container */}
+                <div className="w-full md:w-1/2 p-6">
+                  <motion.div
+                    initial={false}
+                    whileHover={{ x: 10, transition: { duration: 0.3 } }}
+                  >
+                    <div className="flex items-center mb-4">
+                      <FaBook className="text-gray-900 group-hover:text-accent-gold text-2xl mr-3 transition-colors duration-300" />
+                      <h2 className="font-bodoni text-3xl md:text-4xl font-medium text-gray-900">
+                        Le Projet de Musée
+                      </h2>
                     </div>
-                  </div>
-                </Link>
-              </div>
-            </motion.div>
+                    
+                    <p className="text-gray-700 text-lg mb-6">
+                      Découvrez l'histoire et la vision derrière le Musée Abderrahman Slaoui, 
+                      un espace dédié à la préservation et à la promotion du patrimoine artistique marocain.
+                    </p>
+                    
+                    <div className="bg-gray-50 p-6 mb-6 border border-gray-100">
+                      <h3 className="font-medium text-gray-900 mb-3">À découvrir :</h3>
+                      <ul className="text-gray-700 space-y-2">
+                        <li className="flex items-start">
+                          <span className="text-accent-gold mr-2">•</span>
+                          <span>Abderrahman Slaoui, humaniste éclairé (1919-2001)</span>
+                        </li>
+                        <li className="flex items-start">
+                          <span className="text-accent-gold mr-2">•</span>
+                          <span>L'espace muséographique</span>
+                        </li>
+                        <li className="flex items-start">
+                          <span className="text-accent-gold mr-2">•</span>
+                          <span>La mission de la fondation</span>
+                        </li>
+                      </ul>
+                    </div>
+                    
+                    <Link href="/fondation/projet-musee" className="inline-flex items-center text-gray-900 font-medium group">
+                      <span className="mr-2">Explorer le Projet</span>
+                      <span className="transform group-hover:translate-x-2 transition-transform duration-300 text-accent-gold">→</span>
+                    </Link>
+                  </motion.div>
+                </div>
+              </motion.div>
+              
+              {/* Ils Parlent de Nous */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3, duration: 0.8 }}
+                className="flex flex-col md:flex-row-reverse items-center gap-8 md:gap-12 group"
+              >
+                {/* Image Container */}
+                <div className="w-full md:w-1/2 h-[400px] relative group">
+                  <Link href="/fondation/presse" className="block w-full h-full">
+                    <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 transition-opacity duration-500 z-10"></div>
+                    <motion.div 
+                      className="absolute inset-0 border-2 border-transparent group-hover:border-accent-gold z-20"
+                      initial={false}
+                      whileHover={{ 
+                        scale: 0.97,
+                        transition: { duration: 0.4 }
+                      }}
+                    >
+                      <Image
+                        src="/images/projet-musee/abderrahman-slaoui/abderrahman-slaoui_9MciH0M.jpg"
+                        alt="Ils Parlent de Nous"
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                      />
+                    </motion.div>
+                  </Link>
+                </div>
+                
+                {/* Content Container */}
+                <div className="w-full md:w-1/2 p-6">
+                  <motion.div
+                    initial={false}
+                    whileHover={{ x: -10, transition: { duration: 0.3 } }}
+                  >
+                    <div className="flex items-center mb-4">
+                      <FaNewspaper className="text-gray-900 group-hover:text-accent-gold text-2xl mr-3 transition-colors duration-300" />
+                      <h2 className="font-bodoni text-3xl md:text-4xl font-medium text-gray-900">
+                        Ils Parlent de Nous
+                      </h2>
+                    </div>
+                    
+                    <p className="text-gray-700 text-lg mb-6">
+                      Retrouvez les articles et mentions du Musée dans la presse nationale et internationale.
+                      Découvrez comment notre fondation rayonne à travers les médias.
+                    </p>
+                    
+                    <div className="bg-gray-50 p-6 mb-6 border border-gray-100">
+                      <h3 className="font-medium text-gray-900 mb-3">Articles récents :</h3>
+                      <ul className="text-gray-700 space-y-2">
+                        <li className="flex items-start">
+                          <span className="text-accent-gold mr-2">•</span>
+                          <span>H24 info avec Le Figaro</span>
+                        </li>
+                        <li className="flex items-start">
+                          <span className="text-accent-gold mr-2">•</span>
+                          <span>Madame Lifeguide Maroc</span>
+                        </li>
+                        <li className="flex items-start">
+                          <span className="text-accent-gold mr-2">•</span>
+                          <span>Les Eco Maroc</span>
+                        </li>
+                      </ul>
+                    </div>
+                    
+                    <Link href="/fondation/presse" className="inline-flex items-center text-gray-900 font-medium group">
+                      <span className="mr-2">Voir les Articles</span>
+                      <span className="transform group-hover:translate-x-2 transition-transform duration-300 text-accent-gold">→</span>
+                    </Link>
+                  </motion.div>
+                </div>
+              </motion.div>
+            </div>
           </div>
         </div>
       </section>
-          
-      {/* Contact Section - White Background */}
-      <section className="py-24 bg-white">
-        <div className="max-w-[1440px] mx-auto px-6">
+      
+      {/* Contact Section */}
+      <section className="py-24 bg-gray-50">
+        <div className="container mx-auto px-6">
           <div className="max-w-5xl mx-auto">
+            <div className="text-center mb-12">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7 }}
+              >
+                <h2 className="font-bodoni text-3xl md:text-4xl text-gray-900 mb-4">
+                  Contactez la Fondation
+                </h2>
+                <div className="w-24 h-[2px] mx-auto mb-6" style={{ backgroundColor: gold }}></div>
+                <p className="text-gray-700 text-lg leading-relaxed max-w-3xl mx-auto">
+                  Pour toute question concernant la Fondation Abderrahman Slaoui, nos collections ou nos événements,
+                  n'hésitez pas à nous contacter.
+                </p>
+              </motion.div>
+            </div>
+            
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.7, delay: 0.6 }}
-              className="p-16 rounded-lg text-center relative overflow-hidden bg-gray-50 shadow-md border border-gray-100"
+              transition={{ duration: 0.7 }}
+              className="bg-white shadow-md border border-gray-100 overflow-hidden"
             >
-              {/* Gold accent elements */}
-              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-accent-gold to-transparent"></div>
-              <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-accent-gold to-transparent"></div>
-              
-              {/* Content */}
-              <div className="relative z-10">
-                <h2 className="font-bodoni text-4xl text-gray-900 mb-6">
-                  Contactez la Fondation
-                </h2>
-                <p className="text-gray-700 text-lg mb-10 max-w-2xl mx-auto">
-                  Pour toute question concernant la Fondation Abderrahman Slaoui, nos collections ou nos événements, n'hésitez pas à nous contacter.
-                </p>
-                <div className="flex flex-col sm:flex-row justify-center gap-6">
-                  <Link 
-                    href="/infos-pratiques/contact" 
-                    className="bg-accent-gold text-white hover:bg-accent-gold/90 transition-colors px-10 py-4 rounded-sm font-bodoni tracking-wider text-lg shadow-md hover:shadow-lg"
-                  >
-                    Nous contacter
-                  </Link>
-                  <Link 
-                    href="/infos-pratiques/horaires-tarifs-acces" 
-                    className="bg-transparent border-2 border-accent-gold text-accent-gold hover:bg-accent-gold/5 transition-colors px-10 py-4 rounded-sm font-bodoni tracking-wider text-lg"
-                  >
-                    Informations pratiques
-                  </Link>
+              <div className="grid md:grid-cols-2">
+                <div className="relative h-64 md:h-auto">
+                  <Image 
+                    src="/images/fondation/entree_musee.jpg"
+                    alt="Entrée du Musée Abderrahman Slaoui"
+                    fill
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-black bg-opacity-30"></div>
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="text-center px-6">
+                      <h3 className="font-bodoni text-3xl text-white mb-2">Venez nous rencontrer</h3>
+                      <div className="w-16 h-[1px] mx-auto mb-4 bg-white"></div>
+                      <p className="text-white text-lg">12 rue du Parc, Casablanca</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="p-10 flex flex-col justify-center">
+                  <h3 className="font-bodoni text-2xl text-gray-900 mb-6">Comment nous joindre</h3>
+                  
+                  <div className="space-y-6">
+                    <Link 
+                      href="/infos-pratiques/contact" 
+                      className="flex items-center group"
+                    >
+                      <div className="w-12 h-12 rounded-full bg-gray-50 flex items-center justify-center mr-4 group-hover:bg-accent-gold transition-colors duration-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-700 group-hover:text-white transition-colors duration-300" viewBox="0 0 20 20" fill="currentColor">
+                          <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                          <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+                        </svg>
+                      </div>
+                      <div>
+                        <span className="block text-lg font-medium text-gray-900 group-hover:text-accent-gold transition-colors duration-300">Contact</span>
+                        <span className="text-gray-600">Envoyez-nous un message</span>
+                      </div>
+                    </Link>
+                    
+                    <Link 
+                      href="/infos-pratiques/horaires-tarifs-acces" 
+                      className="flex items-center group"
+                    >
+                      <div className="w-12 h-12 rounded-full bg-gray-50 flex items-center justify-center mr-4 group-hover:bg-accent-gold transition-colors duration-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-700 group-hover:text-white transition-colors duration-300" viewBox="0 0 20 20" fill="currentColor">
+                          <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
+                        </svg>
+                      </div>
+                      <div>
+                        <span className="block text-lg font-medium text-gray-900 group-hover:text-accent-gold transition-colors duration-300">Informations pratiques</span>
+                        <span className="text-gray-600">Horaires, tarifs et accès</span>
+                      </div>
+                    </Link>
+                  </div>
                 </div>
               </div>
             </motion.div>
