@@ -363,7 +363,7 @@ const Header = () => {
         className={`fixed top-0 left-0 right-0 w-full z-50 bg-[#000000] text-premium-white shadow-md transition-transform duration-300 ease-in-out ${!isVisible ? '-translate-y-full' : 'translate-y-0'}`}
       >
         {/* Top Layer */}
-        <div className="container mx-auto px-6 py-4 flex justify-between items-center border-b border-graphite/30 bg-[#000000]">
+        <div className="max-w-[1440px] mx-auto px-6 py-4 flex justify-between items-center border-b border-graphite/30 bg-[#000000]">
           {/* Left side - Menu button for mobile */}
           <div className="w-24 flex justify-start">
             <motion.button 
@@ -412,7 +412,7 @@ const Header = () => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.3 }}
-                className="container mx-auto px-6 py-4 bg-[#000000]"
+                className="max-w-[1440px] mx-auto px-6 py-4 bg-[#000000]"
               >
                 <div className="relative">
                   <input 
@@ -438,7 +438,7 @@ const Header = () => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.3 }}
-                className="container mx-auto hidden md:block bg-[#000000] overflow-x-auto"
+                className="max-w-[1440px] mx-auto hidden md:block bg-[#000000] overflow-x-auto"
               >
                 <div className="flex justify-center py-4 min-w-max">
                   <ul className="flex justify-center space-x-6 lg:space-x-8">
@@ -524,7 +524,7 @@ const Header = () => {
               transition={{ duration: 0.3, ease: "easeInOut" }}
               className="absolute left-0 right-0 w-full bg-[#0A0A0A] border-t border-graphite/30 shadow-xl overflow-hidden z-20 hidden md:block"
             >
-              <div className="container mx-auto px-6 py-8">
+              <div className="max-w-[1440px] mx-auto px-6 py-8">
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
                   {/* Left side - Links */}
                   <div className="md:col-span-2 lg:col-span-3">
@@ -613,7 +613,7 @@ const Header = () => {
               transition={{ duration: 0.3, ease: "easeInOut" }}
               className="md:hidden bg-[#000000] border-t border-graphite/30 overflow-hidden mobile-menu"
             >
-              <div className="container mx-auto px-6 py-4">
+              <div className="max-w-[1440px] mx-auto px-6 py-4">
                 <nav>
                   {Object.entries(navSections).map(([key, section]) => (
                     <MobileMenuSection 
