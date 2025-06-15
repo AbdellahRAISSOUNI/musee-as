@@ -364,11 +364,11 @@ const Header = () => {
       >
         {/* Top Layer */}
         <div className="max-w-[1440px] mx-auto px-6 py-4 flex justify-between items-center border-b border-graphite/30 bg-[#000000]">
-          {/* Left side - Logo and Menu button for mobile */}
+          {/* Left side - Menu button for mobile and Logo for desktop */}
           <div className="flex items-center">
-            {/* Logo - visible on both mobile and desktop */}
-            <Link href="/" className="mr-4 flex-shrink-0">
-              <div className="relative w-10 h-10 md:w-12 md:h-12">
+            {/* Logo - visible only on medium and large screens */}
+            <Link href="/" className="mr-4 hidden md:block flex-shrink-0">
+              <div className="relative w-12 h-12">
                 <Image
                   src="/images/projet-musee/pxjg8psj.png"
                   alt="Logo Musée Abderrahman Slaoui"
