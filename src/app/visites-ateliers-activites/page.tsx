@@ -6,185 +6,222 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { FaRegCalendarAlt, FaPaintBrush, FaUsers, FaRoute, FaBuilding } from 'react-icons/fa';
 
+const gold = '#bfa76a';
+
 const VisitesAteliersActivitesPage = () => {
   const sections = [
     {
       id: 'actualites',
       title: 'Actualités',
       description: 'Découvrez les dernières nouvelles et événements du Musée Abderrahman Slaoui.',
-      icon: <FaRegCalendarAlt className="text-accent-gold text-4xl mb-4" />,
+      icon: <FaRegCalendarAlt className="text-accent-gold text-3xl mb-4" />,
       link: '/visites-ateliers-activites/actualites',
-      featured: true
+      featured: true,
+      image: '/images/visites-ateliers-activites/rencontres/nostalgie/WhatsApp_Image_2023-07-25_at_15.50.21_1.jpeg'
     },
     {
       id: 'ateliers-artistiques',
       title: 'Ateliers Artistiques',
       description: 'Participez à nos ateliers de création artistique pour tous les âges et tous les niveaux.',
-      icon: <FaPaintBrush className="text-accent-gold text-4xl mb-4" />,
-      link: '/visites-ateliers-activites/ateliers-artistiques'
+      icon: <FaPaintBrush className="text-accent-gold text-3xl mb-4" />,
+      link: '/visites-ateliers-activites/ateliers-artistiques',
+      image: '/images/visites-ateliers-activites/ateliers-artistiques/creation/Tour_de_monde_M_Azeroual_1.jpg'
     },
     {
       id: 'rencontres',
       title: 'Rencontres',
       description: 'Assistez à nos conférences, discussions et rencontres avec des artistes et experts.',
-      icon: <FaUsers className="text-accent-gold text-4xl mb-4" />,
-      link: '/visites-ateliers-activites/rencontres'
+      icon: <FaUsers className="text-accent-gold text-3xl mb-4" />,
+      link: '/visites-ateliers-activites/rencontres',
+      image: '/images/visites-ateliers-activites/rencontres/nostalgie/WhatsApp_Image_2023-07-25_at_15.50.21_1.jpeg'
     },
     {
       id: 'visites-guidees',
       title: 'Visites Guidées',
       description: 'Explorez le musée avec nos guides experts qui vous feront découvrir l\'histoire et les secrets de nos collections.',
-      icon: <FaRoute className="text-accent-gold text-4xl mb-4" />,
+      icon: <FaRoute className="text-accent-gold text-3xl mb-4" />,
       link: '/visites-ateliers-activites/visites-guidees',
-      featured: true
+      featured: true,
+      image: '/images/entree_musee.jpg'
     },
     {
       id: 'privatisation',
       title: 'Privatisation',
       description: 'Louez nos espaces pour vos événements privés, réceptions et réunions professionnelles.',
-      icon: <FaBuilding className="text-accent-gold text-4xl mb-4" />,
-      link: '/visites-ateliers-activites/privatisation'
+      icon: <FaBuilding className="text-accent-gold text-3xl mb-4" />,
+      link: '/visites-ateliers-activites/privatisation',
+      image: '/images/hero-background.jpg'
     }
   ];
 
-  // Featured event for the hero section
-  const featuredEvent = {
-    title: "Exposition Temporaire: Art Contemporain Marocain",
-    date: "15 Juin - 30 Septembre 2023",
-    image: "/images/hero-background.jpg",
-    description: "Notre nouvelle exposition temporaire présente les œuvres de jeunes artistes marocains contemporains, explorant les thèmes de l'identité, de la tradition et de la modernité.",
-    link: "/visites-ateliers-activites/actualites/exposition-art-contemporain"
-  };
-
   return (
-    <main className="min-h-screen bg-black text-premium-white pt-12">
-      {/* Hero Section with Featured Event */}
-      <section className="relative">
-        <div className="h-[50vh] relative overflow-hidden">
-          <div className="absolute inset-0">
-            <Image
-              src={featuredEvent.image}
-              alt={featuredEvent.title}
-              fill
-              className="object-cover"
-            />
-            <div className="absolute inset-0 bg-black/60"></div>
-          </div>
-          
-          <div className="absolute inset-0 flex items-center">
-            <div className="container mx-auto px-6">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-                className="max-w-3xl"
-              >
-                <span className="text-accent-gold uppercase tracking-widest font-bodoni-regular text-sm md:text-base mb-2 inline-block">
-                  Événement à la une
-                </span>
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bodoni-regular text-premium-white mb-4">
-                  {featuredEvent.title}
-                </h2>
-                <p className="text-soft-white mb-6 text-lg">
-                  {featuredEvent.date}
-                </p>
-                <p className="text-soft-white mb-8 text-lg max-w-2xl">
-                  {featuredEvent.description}
-                </p>
-                <Link 
-                  href={featuredEvent.link} 
-                  className="inline-block bg-transparent border border-accent-gold text-accent-gold hover:bg-accent-gold/10 transition-colors px-6 py-3 font-bodoni-regular"
-                >
-                  En savoir plus
-                </Link>
-              </motion.div>
-            </div>
-          </div>
+    <main className="min-h-screen bg-white text-gray-800">
+      {/* Hero Section */}
+      <section className="relative h-[50vh] flex items-center justify-center bg-black">
+        {/* Background Image with overlay */}
+        <div className="absolute inset-0">
+          <Image
+            src="/images/visites-ateliers-activites/rencontres/nostalgie/TCHAT-PHOTO-Nostalgie-du-futur.png"
+            alt="Visites, Ateliers & Activités"
+            fill
+            className="object-cover opacity-60"
+            priority
+          />
+          <div className="absolute inset-0 bg-black/70" />
+        </div>
+        <div className="relative z-10 w-full">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: [0.4, 0, 0.2, 1] }}
+            className="max-w-3xl mx-auto text-center px-4"
+          >
+            <h1 className="font-bodoni text-4xl md:text-5xl lg:text-6xl uppercase tracking-tight text-white mb-4">
+              Visites, Ateliers & Activités
+            </h1>
+            <div className="w-24 h-[2px] mx-auto mb-6" style={{ backgroundColor: gold }} />
+          </motion.div>
         </div>
       </section>
       
       {/* Main Content */}
-      <motion.section 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8, delay: 0.2 }}
-        className="container mx-auto px-6 py-16"
-      >
-        <h1 className="font-bodoni-regular text-4xl md:text-5xl lg:text-6xl mb-8 text-center">
-          Visites, Ateliers & Activités
-        </h1>
-        
-        <p className="text-soft-white text-lg mb-16 leading-relaxed text-center max-w-4xl mx-auto">
-          Découvrez les nombreuses façons d'explorer et de vivre le Musée Abderrahman Slaoui. 
-          De nos visites guidées à nos ateliers créatifs, en passant par nos conférences et 
-          événements spéciaux, nous vous offrons une expérience culturelle riche et immersive.
-        </p>
-        
-        {/* Featured Sections Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-          {sections.filter(section => section.featured).map((section) => (
-            <motion.div
-              key={section.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
-              className="group"
-            >
-              <Link href={section.link}>
-                <div className="overflow-hidden rounded-lg aspect-[16/9] relative bg-graphite mb-6">
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-full h-full relative">
-                      <Image
-                        src="/images/hero-background.jpg"
-                        alt={section.title}
-                        fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-500"
-                      />
-                      <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors"></div>
-                    </div>
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-6">
+          <div className="max-w-6xl mx-auto">
+            {/* Introduction Text */}
+            <div className="mb-16">
+              <p className="text-gray-800 text-lg leading-relaxed max-w-3xl mx-auto text-center">
+                Découvrez les nombreuses façons d'explorer et de vivre le Musée Abderrahman Slaoui. 
+                De nos visites guidées à nos ateliers créatifs, en passant par nos conférences et 
+                événements spéciaux, nous vous offrons une expérience culturelle riche et immersive.
+              </p>
+            </div>
+            
+            {/* Featured Sections */}
+            <div className="space-y-24 mb-24">
+              {sections.filter(section => section.featured).map((section, index) => (
+                <motion.div
+                  key={section.id}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.15 * (index + 1), duration: 0.8 }}
+                  className={`flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} items-center gap-8 md:gap-12`}
+                >
+                  {/* Image Container */}
+                  <div className="w-full md:w-1/2 h-[400px] relative group">
+                    <Link href={section.link} className="block w-full h-full">
+                      <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 transition-opacity duration-500 z-10"></div>
+                      <motion.div 
+                        className="absolute inset-0 border-2 border-transparent group-hover:border-accent-gold z-20"
+                        initial={false}
+                        whileHover={{ 
+                          scale: 0.97,
+                          transition: { duration: 0.4 }
+                        }}
+                      >
+                        <Image
+                          src={section.image}
+                          alt={section.title}
+                          fill
+                          className="object-cover"
+                          sizes="(max-width: 768px) 100vw, 50vw"
+                        />
+                      </motion.div>
+                    </Link>
                   </div>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    {section.icon}
+                  
+                  {/* Content Container */}
+                  <div className="w-full md:w-1/2 p-6">
+                    <motion.div
+                      initial={false}
+                      whileHover={{ x: index % 2 === 0 ? 10 : -10, transition: { duration: 0.3 } }}
+                    >
+                      <div className="flex items-center mb-4">
+                        <div className="text-accent-gold mr-3">
+                          {section.icon}
+                        </div>
+                        <h2 className="font-bodoni text-3xl md:text-4xl font-medium text-gray-900">
+                          {section.title}
+                        </h2>
+                      </div>
+                      
+                      <p className="text-gray-700 text-lg mb-6">
+                        {section.description}
+                      </p>
+                      
+                      <Link href={section.link} className="inline-flex items-center text-accent-gold group">
+                        <span className="mr-2 font-medium">En savoir plus</span>
+                        <span className="transform group-hover:translate-x-2 transition-transform duration-300">→</span>
+                      </Link>
+                    </motion.div>
                   </div>
-                  <div className="absolute bottom-0 left-0 right-0 p-6">
-                    <h2 className="font-bodoni-regular text-3xl text-premium-white group-hover:text-accent-gold transition-colors">
-                      {section.title}
-                    </h2>
+                </motion.div>
+              ))}
+            </div>
+            
+            {/* Other Sections Grid - Enhanced Sophisticated Design */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+              {sections.filter(section => !section.featured).map((section, index) => (
+                <motion.div
+                  key={section.id}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3 + (index * 0.1), duration: 0.8 }}
+                  className="group"
+                >
+                  <div className="relative overflow-hidden">
+                    {/* Elegant frame effect */}
+                    <div className="absolute inset-0 border border-accent-gold/30 z-20 pointer-events-none group-hover:border-accent-gold/70 transition-colors duration-500"></div>
+                    
+                    {/* Top decorative element */}
+                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-16 h-1 bg-accent-gold transform -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all duration-500 z-30"></div>
+                    
+                    <Link href={section.link} className="block">
+                      <div className="h-72 relative overflow-hidden">
+                        <Image
+                          src={section.image}
+                          alt={section.title}
+                          fill
+                          className="object-cover transition-transform duration-700 group-hover:scale-105"
+                          sizes="(max-width: 768px) 100vw, 33vw"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+                        
+                        {/* Clean, elegant overlay with icon */}
+                        <div className="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-black/50 to-transparent flex items-center justify-end px-6">
+                          <div className="text-accent-gold transform group-hover:scale-110 transition-transform duration-500 origin-right">
+                            {section.icon}
+                          </div>
+                        </div>
+                        
+                        {/* Title overlay at bottom */}
+                        <div className="absolute bottom-0 left-0 right-0 p-6 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
+                          <h3 className="font-bodoni text-2xl text-white mb-2 tracking-wide">
+                            {section.title}
+                          </h3>
+                          <div className="w-10 h-0.5 bg-accent-gold mb-3 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+                          <p className="text-white/80 text-sm line-clamp-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
+                            {section.description}
+                          </p>
+                        </div>
+                      </div>
+                      
+                      {/* Bottom decorative element */}
+                      <div className="flex justify-center mt-4">
+                        <span className="inline-flex items-center text-accent-gold text-sm font-bodoni tracking-wider">
+                          <span className="transform group-hover:translate-x-1 transition-all duration-300 opacity-0 group-hover:opacity-100">→</span>
+                          <span className="mx-2 transform group-hover:translate-x-1 transition-all duration-300">DÉCOUVRIR</span>
+                          <span className="transform group-hover:translate-x-1 transition-all duration-300 opacity-0 group-hover:opacity-100">→</span>
+                        </span>
+                      </div>
+                    </Link>
                   </div>
-                </div>
-                <p className="text-soft-white group-hover:text-premium-white transition-colors">
-                  {section.description}
-                </p>
-              </Link>
-            </motion.div>
-          ))}
+                </motion.div>
+              ))}
+            </div>
+          </div>
         </div>
-        
-        {/* Other Sections Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {sections.filter(section => !section.featured).map((section, index) => (
-            <motion.div
-              key={section.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 + (index * 0.1) }}
-              className="bg-charcoal p-6 rounded-lg group"
-            >
-              <Link href={section.link} className="block">
-                <div className="text-center mb-4">
-                  {section.icon}
-                </div>
-                <h2 className="font-bodoni-regular text-2xl text-premium-white text-center mb-4 group-hover:text-accent-gold transition-colors">
-                  {section.title}
-                </h2>
-                <p className="text-soft-white text-center">
-                  {section.description}
-                </p>
-              </Link>
-            </motion.div>
-          ))}
-        </div>
-      </motion.section>
+      </section>
     </main>
   );
 };
