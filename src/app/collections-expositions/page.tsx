@@ -30,10 +30,10 @@ const CollectionsExpositionsPage = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: [0.4, 0, 0.2, 1] }}
             className="max-w-3xl mx-auto text-center px-4"
-          >
+      >
             <h1 className="font-bodoni text-4xl md:text-5xl lg:text-6xl uppercase tracking-tight text-white mb-4">
-              Collections & Expositions
-            </h1>
+          Collections & Expositions
+        </h1>
             <div className="w-24 h-[2px] mx-auto mb-6" style={{ backgroundColor: gold }} />
           </motion.div>
         </div>
@@ -46,10 +46,10 @@ const CollectionsExpositionsPage = () => {
             {/* Introduction Text */}
             <div className="mb-16">
               <p className="text-gray-800 text-lg leading-relaxed max-w-3xl mx-auto text-center">
-                Explorez les trésors artistiques et culturels du Musée Abderrahman Slaoui, 
-                des collections permanentes aux expositions temporaires qui mettent en lumière 
-                la richesse et la diversité du patrimoine marocain.
-              </p>
+            Explorez les trésors artistiques et culturels du Musée Abderrahman Slaoui, 
+            des collections permanentes aux expositions temporaires qui mettent en lumière 
+            la richesse et la diversité du patrimoine marocain.
+          </p>
             </div>
             
             {/* Services */}
@@ -65,7 +65,7 @@ const CollectionsExpositionsPage = () => {
                 <div className="w-full md:w-1/2 h-[400px] relative group">
                   <Link href="/collections-expositions/collections-permanentes" className="block w-full h-full">
                     <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 transition-opacity duration-500 z-10"></div>
-                    <motion.div 
+            <motion.div 
                       className="absolute inset-0 border-2 border-transparent group-hover:border-accent-gold z-20"
                       initial={false}
                       whileHover={{ 
@@ -73,13 +73,13 @@ const CollectionsExpositionsPage = () => {
                         transition: { duration: 0.4 }
                       }}
                     >
-                      <Image
+                    <Image
                         src="/images/collections-permanentes/flacons-de-khol-et-tabatieres/khol_et_tabatiere.png"
-                        alt="Collections Permanentes"
-                        fill
+                      alt="Collections Permanentes"
+                      fill
                         className="object-cover"
                         sizes="(max-width: 768px) 100vw, 50vw"
-                      />
+                    />
                     </motion.div>
                   </Link>
                 </div>
@@ -93,16 +93,16 @@ const CollectionsExpositionsPage = () => {
                     <div className="flex items-center mb-4">
                       <FaBook className="text-accent-gold text-2xl mr-3" />
                       <h2 className="font-bodoni text-3xl md:text-4xl font-medium text-gray-900">
-                        Collections Permanentes
-                      </h2>
-                    </div>
-                    
+                    Collections Permanentes
+                  </h2>
+              </div>
+              
                     <p className="text-gray-700 text-lg mb-6">
-                      Découvrez notre collection permanente d'objets d'art marocain, comprenant 
-                      des pièces d'orfèvrerie, des peintures, des sculptures et des objets 
-                      historiques qui témoignent de la richesse culturelle du Maroc.
-                    </p>
-                    
+                Découvrez notre collection permanente d'objets d'art marocain, comprenant 
+                des pièces d'orfèvrerie, des peintures, des sculptures et des objets 
+                historiques qui témoignent de la richesse culturelle du Maroc.
+              </p>
+              
                     <div className="bg-gray-50 p-6 rounded-lg mb-6 border border-gray-100">
                       <h3 className="font-medium text-accent-gold mb-3">Nos collections comprennent :</h3>
                       <ul className="text-gray-700 space-y-2">
@@ -132,11 +132,11 @@ const CollectionsExpositionsPage = () => {
                     <Link href="/collections-expositions/collections-permanentes" className="inline-flex items-center text-accent-gold group">
                       <span className="mr-2 font-medium">Explorer les Collections</span>
                       <span className="transform group-hover:translate-x-2 transition-transform duration-300">→</span>
-                    </Link>
+              </Link>
                   </motion.div>
                 </div>
-              </motion.div>
-              
+            </motion.div>
+            
               {/* Expositions Temporaires */}
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
@@ -148,7 +148,7 @@ const CollectionsExpositionsPage = () => {
                 <div className="w-full md:w-1/2 h-[400px] relative group">
                   <Link href="/collections-expositions/expositions-temporaires" className="block w-full h-full">
                     <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 transition-opacity duration-500 z-10"></div>
-                    <motion.div 
+            <motion.div 
                       className="absolute inset-0 border-2 border-transparent group-hover:border-accent-gold z-20"
                       initial={false}
                       whileHover={{ 
@@ -156,13 +156,13 @@ const CollectionsExpositionsPage = () => {
                         transition: { duration: 0.4 }
                       }}
                     >
-                      <Image
+                    <Image
                         src="/images/expositions-temporaires/casa-drawing/Casa_Drawing_2_visuel_1.jpg"
-                        alt="Expositions Temporaires"
-                        fill
+                      alt="Expositions Temporaires"
+                      fill
                         className="object-cover"
                         sizes="(max-width: 768px) 100vw, 50vw"
-                      />
+                    />
                     </motion.div>
                   </Link>
                 </div>
@@ -176,16 +176,16 @@ const CollectionsExpositionsPage = () => {
                     <div className="flex items-center mb-4">
                       <FaCalendarAlt className="text-accent-gold text-2xl mr-3" />
                       <h2 className="font-bodoni text-3xl md:text-4xl font-medium text-gray-900">
-                        Expositions Temporaires
-                      </h2>
-                    </div>
-                    
+                    Expositions Temporaires
+                  </h2>
+              </div>
+              
                     <p className="text-gray-700 text-lg mb-6">
-                      Nos expositions temporaires mettent en lumière des thématiques variées 
-                      liées à l'art marocain et international. Découvrez les expositions 
+                Nos expositions temporaires mettent en lumière des thématiques variées 
+                liées à l'art marocain et international. Découvrez les expositions 
                       actuelles, passées et à venir qui enrichissent l'expérience du musée.
-                    </p>
-                    
+              </p>
+              
                     <div className="bg-gray-50 p-6 rounded-lg mb-6 border border-gray-100">
                       <h3 className="font-medium text-accent-gold mb-3">Expositions récentes :</h3>
                       <ul className="text-gray-700 space-y-2">
@@ -215,8 +215,8 @@ const CollectionsExpositionsPage = () => {
                     <Link href="/collections-expositions/expositions-temporaires" className="inline-flex items-center text-accent-gold group">
                       <span className="mr-2 font-medium">Voir les Expositions</span>
                       <span className="transform group-hover:translate-x-2 transition-transform duration-300">→</span>
-                    </Link>
-                  </motion.div>
+              </Link>
+            </motion.div>
                 </div>
               </motion.div>
             </div>

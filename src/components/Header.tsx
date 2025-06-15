@@ -574,25 +574,25 @@ const Header = () => {
                       className="bg-graphite/20 p-4 rounded"
                     >
                       <Link href={navSections[activeSection as keyof typeof navSections].featured.link} className="block">
-                        <h3 className="text-accent-gold font-bodoni text-xl mb-3">
-                          {navSections[activeSection as keyof typeof navSections].featured.title}
-                        </h3>
-                        <div className="aspect-video bg-graphite/30 mb-3 overflow-hidden">
-                          {/* Featured image */}
-                          <img 
-                            src={navSections[activeSection as keyof typeof navSections].featured.image}
-                            alt={navSections[activeSection as keyof typeof navSections].featured.title}
+                      <h3 className="text-accent-gold font-bodoni text-xl mb-3">
+                        {navSections[activeSection as keyof typeof navSections].featured.title}
+                      </h3>
+                      <div className="aspect-video bg-graphite/30 mb-3 overflow-hidden">
+                        {/* Featured image */}
+                        <img 
+                          src={navSections[activeSection as keyof typeof navSections].featured.image}
+                          alt={navSections[activeSection as keyof typeof navSections].featured.title}
                             className={`w-full h-full ${activeSection === 'fondation' || activeSection === 'collections' ? 'object-contain' : 'object-cover'}`}
-                          />
-                        </div>
-                        <p className="text-soft-white text-sm mb-3">
-                          {navSections[activeSection as keyof typeof navSections].featured.description}
-                        </p>
+                        />
+                      </div>
+                      <p className="text-soft-white text-sm mb-3">
+                        {navSections[activeSection as keyof typeof navSections].featured.description}
+                      </p>
                         <span 
-                          className="group relative inline-block text-accent-gold hover:text-premium-white text-sm font-bodoni cursor-pointer"
-                        >
-                          En savoir plus
-                          <span className="absolute -bottom-1 left-0 h-[1px] bg-accent-gold w-0 group-hover:w-full transition-all duration-300 ease-out" />
+                        className="group relative inline-block text-accent-gold hover:text-premium-white text-sm font-bodoni cursor-pointer"
+                      >
+                        En savoir plus
+                        <span className="absolute -bottom-1 left-0 h-[1px] bg-accent-gold w-0 group-hover:w-full transition-all duration-300 ease-out" />
                         </span>
                       </Link>
                     </motion.div>
