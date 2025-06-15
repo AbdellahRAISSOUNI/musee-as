@@ -2,16 +2,169 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiSearch, FiX } from 'react-icons/fi';
 import { RiMenu3Line } from 'react-icons/ri';
 import { IoIosArrowDown } from 'react-icons/io';
 import { usePathname } from 'next/navigation';
 
+// Separate component for mobile menu sections
+const MobileMenuSection = ({ 
+  section, 
+  sectionKey, 
+  isActive, 
+  isPathActive,
+  onToggle 
+}: { 
+  section: any; 
+  sectionKey: string; 
+  isActive: boolean;
+  isPathActive: boolean;
+  onToggle: (key: string) => void;
+}) => {
+  const pathname = usePathname();
+  
+  // Handle local toggle
+  const handleToggle = () => {
+    onToggle(sectionKey);
+  };
+
+  return (
+    <div className="mb-4">
+      {section.items.length > 0 ? (
+        <>
+          <button 
+            className="relative border-b border-graphite/10 pb-2 w-full text-left"
+            onClick={handleToggle}
+            type="button"
+          >
+            <div 
+              className={`font-bodoni text-base uppercase tracking-widest py-2 flex items-center justify-between w-full cursor-pointer
+                        ${isActive ? 'text-accent-gold' : 'text-soft-white'}`}
+            >
+              <span className={isPathActive ? "text-accent-gold" : ""}>
+                {section.title}
+              </span>
+              <motion.span
+                animate={{ rotate: isActive ? 180 : 0 }}
+                transition={{ duration: 0.3 }}
+              >
+                <IoIosArrowDown size={18} />
+              </motion.span>
+            </div>
+            
+            {/* Active underline */}
+            {isPathActive && (
+              <span className="absolute bottom-0 left-0 h-[2px] bg-accent-gold w-20" />
+            )}
+          </button>
+          
+          <AnimatePresence>
+            {isActive && (
+              <motion.div
+                key={`mobile-submenu-${sectionKey}`}
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: 'auto' }}
+                exit={{ opacity: 0, height: 0 }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+                className="pl-4 border-l border-graphite/50 ml-2 mt-2 overflow-hidden"
+              >
+                {/* Links section */}
+                <div className="mb-4">
+                  {section.items.map((item: any, index: number) => {
+                    const isItemActive = pathname === item.href;
+                    
+                    return (
+                      <motion.div
+                        key={index}
+                        initial={{ opacity: 0, x: -10 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ 
+                          duration: 0.2,
+                          delay: index * 0.05
+                        }}
+                      >
+                        <Link 
+                          href={item.href}
+                          className="group relative block py-3 text-soft-white hover:text-premium-white font-bodoni text-lg cursor-pointer transition-colors duration-200"
+                        >
+                          <span className={isItemActive ? "text-accent-gold" : ""}>
+                            {item.label}
+                          </span>
+                          
+                          {/* Active indicator */}
+                          {isItemActive && (
+                            <span className="absolute -left-4 top-1/2 h-2 w-2 bg-accent-gold rounded-full transform -translate-y-1/2" />
+                          )}
+                        </Link>
+                      </motion.div>
+                    );
+                  })}
+                </div>
+                
+                {/* Featured content for mobile */}
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3, delay: 0.2 }}
+                  className="mt-4 bg-graphite/10 p-4 rounded"
+                >
+                  <Link href={section.featured.link}>
+                    <div className="flex items-center space-x-4">
+                      {/* Image container with proper size constraints */}
+                      <div className="w-20 h-20 flex-shrink-0 bg-graphite/20 rounded overflow-hidden">
+                        <img 
+                          src={section.featured.image}
+                          alt={section.featured.title}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      
+                      <div className="flex-grow">
+                        <h3 className="text-accent-gold font-bodoni text-lg">
+                          {section.featured.title}
+                        </h3>
+                        <p className="text-soft-white text-xs line-clamp-2">
+                          {section.featured.description}
+                        </p>
+                        <span className="text-accent-gold text-xs font-bodoni mt-1 inline-block">
+                          En savoir plus
+                        </span>
+                      </div>
+                    </div>
+                  </Link>
+                </motion.div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </>
+      ) : (
+        <div className="relative">
+          <Link
+            href={section.featured.link}
+            className={`font-bodoni text-base uppercase tracking-widest py-2 block text-soft-white hover:text-premium-white cursor-pointer`}
+          >
+            <span className={isPathActive ? "text-accent-gold" : ""}>
+              {section.title}
+            </span>
+          </Link>
+          
+          {/* Active underline */}
+          {isPathActive && (
+            <span className="absolute bottom-0 left-0 h-[2px] bg-accent-gold w-20" />
+          )}
+        </div>
+      )}
+    </div>
+  );
+};
+
 const Header = () => {
   const [isSearchActive, setIsSearchActive] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<string | null>(null);
+  const [mobileSections, setMobileSections] = useState<string[]>([]); // Track open mobile sections
   const [isScrolled, setIsScrolled] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const searchInputRef = useRef<HTMLInputElement>(null);
@@ -59,15 +212,27 @@ const Header = () => {
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
-    setActiveSection(null);
+    // Only reset the active section when closing the menu
+    if (isMobileMenuOpen) {
+      setActiveSection(null);
+    }
   };
 
-  const toggleSection = (section: string) => {
-    if (activeSection === section) {
-      setActiveSection(null);
-    } else {
-      setActiveSection(section);
-    }
+  const toggleDesktopSection = (section: string) => {
+    setActiveSection(prev => prev === section ? null : section);
+  };
+  
+  // New toggle function for mobile sections
+  const toggleMobileSection = (section: string) => {
+    setMobileSections(prev => {
+      if (prev.includes(section)) {
+        // Remove section if already open
+        return prev.filter(s => s !== section);
+      } else {
+        // Add section if not open
+        return [...prev, section];
+      }
+    });
   };
 
   // Close dropdown when clicking outside
@@ -185,8 +350,6 @@ const Header = () => {
   // Determine active section from URL path
   useEffect(() => {
     if (pathname) {
-      // Only highlight the section in the navigation without opening the dropdown
-      // We're removing the code that sets activeSection based on URL
       setActiveSection(null); // Reset active section on navigation
     }
   }, [pathname]);
@@ -207,6 +370,8 @@ const Header = () => {
               className="md:hidden text-premium-white cursor-pointer mobile-menu-button"
               onClick={toggleMobileMenu}
               whileTap={{ scale: 0.95 }}
+              aria-label="Toggle menu"
+              type="button"
             >
               <RiMenu3Line size={24} />
             </motion.button>
@@ -229,6 +394,8 @@ const Header = () => {
               className="text-premium-white hover:text-accent-gold transition-colors cursor-pointer"
               onClick={toggleSearch}
               whileTap={{ scale: 0.95 }}
+              aria-label={isSearchActive ? "Close search" : "Open search"}
+              type="button"
             >
               {isSearchActive ? <FiX size={24} /> : <FiSearch size={24} />}
             </motion.button>
@@ -257,6 +424,8 @@ const Header = () => {
                   <motion.button 
                     className="absolute right-4 top-1/2 transform -translate-y-1/2 text-soft-white hover:text-accent-gold cursor-pointer"
                     whileTap={{ scale: 0.95 }}
+                    aria-label="Search"
+                    type="button"
                   >
                     <FiSearch size={20} />
                   </motion.button>
@@ -284,8 +453,9 @@ const Header = () => {
                               <motion.button 
                                 className={`font-bodoni text-xs lg:text-sm uppercase tracking-widest py-2 flex items-center whitespace-nowrap cursor-pointer relative
                                           ${isActive ? 'text-accent-gold' : 'text-soft-white hover:text-premium-white'}`}
-                                onClick={() => toggleSection(key)}
+                                onClick={() => toggleDesktopSection(key)}
                                 whileTap={{ scale: 0.97 }}
+                                type="button"
                               >
                                 {section.title}
                                 <motion.span
@@ -344,15 +514,15 @@ const Header = () => {
           </AnimatePresence>
         </div>
 
-        {/* Full-width Dropdown Menus */}
+        {/* Full-width Dropdown Menus for Desktop */}
         <AnimatePresence>
-          {activeSection && !isSearchActive && (
+          {activeSection && !isSearchActive && !isMobileMenuOpen && (
             <motion.div
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.3, ease: "easeInOut" }}
-              className="absolute left-0 right-0 w-full bg-[#0A0A0A] border-t border-graphite/30 shadow-xl overflow-hidden z-20"
+              className="absolute left-0 right-0 w-full bg-[#0A0A0A] border-t border-graphite/30 shadow-xl overflow-hidden z-20 hidden md:block"
             >
               <div className="container mx-auto px-6 py-8">
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
@@ -404,25 +574,25 @@ const Header = () => {
                       className="bg-graphite/20 p-4 rounded"
                     >
                       <Link href={navSections[activeSection as keyof typeof navSections].featured.link} className="block">
-                      <h3 className="text-accent-gold font-bodoni text-xl mb-3">
-                        {navSections[activeSection as keyof typeof navSections].featured.title}
-                      </h3>
-                      <div className="aspect-video bg-graphite/30 mb-3 overflow-hidden">
-                        {/* Featured image */}
-                        <img 
-                          src={navSections[activeSection as keyof typeof navSections].featured.image}
-                          alt={navSections[activeSection as keyof typeof navSections].featured.title}
+                        <h3 className="text-accent-gold font-bodoni text-xl mb-3">
+                          {navSections[activeSection as keyof typeof navSections].featured.title}
+                        </h3>
+                        <div className="aspect-video bg-graphite/30 mb-3 overflow-hidden">
+                          {/* Featured image */}
+                          <img 
+                            src={navSections[activeSection as keyof typeof navSections].featured.image}
+                            alt={navSections[activeSection as keyof typeof navSections].featured.title}
                             className={`w-full h-full ${activeSection === 'fondation' || activeSection === 'collections' ? 'object-contain' : 'object-cover'}`}
-                        />
-                      </div>
-                      <p className="text-soft-white text-sm mb-3">
-                        {navSections[activeSection as keyof typeof navSections].featured.description}
-                      </p>
+                          />
+                        </div>
+                        <p className="text-soft-white text-sm mb-3">
+                          {navSections[activeSection as keyof typeof navSections].featured.description}
+                        </p>
                         <span 
-                        className="group relative inline-block text-accent-gold hover:text-premium-white text-sm font-bodoni cursor-pointer"
-                      >
-                        En savoir plus
-                        <span className="absolute -bottom-1 left-0 h-[1px] bg-accent-gold w-0 group-hover:w-full transition-all duration-300 ease-out" />
+                          className="group relative inline-block text-accent-gold hover:text-premium-white text-sm font-bodoni cursor-pointer"
+                        >
+                          En savoir plus
+                          <span className="absolute -bottom-1 left-0 h-[1px] bg-accent-gold w-0 group-hover:w-full transition-all duration-300 ease-out" />
                         </span>
                       </Link>
                     </motion.div>
@@ -433,113 +603,28 @@ const Header = () => {
           )}
         </AnimatePresence>
         
-        {/* Mobile Menu */}
+        {/* Mobile Menu - Improved with better transitions */}
         <AnimatePresence>
           {isMobileMenuOpen && (
             <motion.div
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.3 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
               className="md:hidden bg-[#000000] border-t border-graphite/30 overflow-hidden mobile-menu"
             >
               <div className="container mx-auto px-6 py-4">
                 <nav>
-                  {Object.entries(navSections).map(([key, section]) => {
-                    const isMobileActive = isSectionActive(key);
-                    
-                    return (
-                      <div key={key} className="mb-4">
-                        {section.items.length > 0 ? (
-                          <>
-                            <div className="relative">
-                              <motion.button 
-                                className={`font-bodoni text-base uppercase tracking-widest py-2 flex items-center justify-between w-full cursor-pointer
-                                          ${activeSection === key ? 'text-accent-gold' : 'text-soft-white'}`}
-                                onClick={() => toggleSection(key)}
-                                whileTap={{ scale: 0.98 }}
-                              >
-                                <span className={isMobileActive ? "text-accent-gold" : ""}>
-                                  {section.title}
-                                </span>
-                                <motion.span
-                                  animate={{ rotate: activeSection === key ? 180 : 0 }}
-                                  transition={{ duration: 0.3 }}
-                                >
-                                  <IoIosArrowDown size={18} />
-                                </motion.span>
-                              </motion.button>
-                              
-                              {/* Active underline */}
-                              {isMobileActive && (
-                                <span className="absolute bottom-0 left-0 h-[2px] bg-accent-gold w-20" />
-                              )}
-                            </div>
-                            
-                            <AnimatePresence>
-                              {activeSection === key && (
-                                <motion.div
-                                  initial={{ opacity: 0, height: 0 }}
-                                  animate={{ opacity: 1, height: 'auto' }}
-                                  exit={{ opacity: 0, height: 0 }}
-                                  transition={{ duration: 0.2 }}
-                                  className="pl-4 border-l border-graphite/50 ml-2 mt-2 overflow-hidden"
-                                >
-                                  {section.items.map((item, index) => {
-                                    const isItemActive = pathname === item.href;
-                                    
-                                    return (
-                                      <motion.div
-                                        key={index}
-                                        initial={{ opacity: 0, x: -10 }}
-                                        animate={{ opacity: 1, x: 0 }}
-                                        transition={{ 
-                                          duration: 0.2,
-                                          delay: index * 0.05
-                                        }}
-                                      >
-                                        <Link 
-                                          href={item.href}
-                                          className="group relative block py-3 text-soft-white hover:text-premium-white font-bodoni text-lg cursor-pointer transition-colors duration-200"
-                                          onClick={() => setActiveSection(null)}
-                                        >
-                                          <span className={isItemActive ? "text-accent-gold" : ""}>
-                                            {item.label}
-                                          </span>
-                                          
-                                          {/* Active indicator */}
-                                          {isItemActive && (
-                                            <span className="absolute -left-4 top-1/2 h-2 w-2 bg-accent-gold rounded-full transform -translate-y-1/2" />
-                                          )}
-                                        </Link>
-                                      </motion.div>
-                                    );
-                                  })}
-                                </motion.div>
-                              )}
-                            </AnimatePresence>
-                          </>
-                        ) : (
-                          <div className="relative">
-                            <Link
-                              href={section.featured.link}
-                              className={`font-bodoni text-base uppercase tracking-widest py-2 block text-soft-white hover:text-premium-white cursor-pointer`}
-                              onClick={() => setIsMobileMenuOpen(false)}
-                            >
-                              <span className={isMobileActive ? "text-accent-gold" : ""}>
-                                {section.title}
-                              </span>
-                            </Link>
-                            
-                            {/* Active underline */}
-                            {isMobileActive && (
-                              <span className="absolute bottom-0 left-0 h-[2px] bg-accent-gold w-20" />
-                            )}
-                          </div>
-                        )}
-                      </div>
-                    );
-                  })}
+                  {Object.entries(navSections).map(([key, section]) => (
+                    <MobileMenuSection 
+                      key={key}
+                      section={section}
+                      sectionKey={key}
+                      isActive={mobileSections.includes(key)}
+                      isPathActive={isSectionActive(key)}
+                      onToggle={toggleMobileSection}
+                    />
+                  ))}
                 </nav>
                 
                 {/* Mobile Search */}
@@ -558,6 +643,8 @@ const Header = () => {
                     <motion.button 
                       className="absolute right-4 top-1/2 transform -translate-y-1/2 text-soft-white hover:text-accent-gold cursor-pointer"
                       whileTap={{ scale: 0.95 }}
+                      aria-label="Search"
+                      type="button"
                     >
                       <FiSearch size={20} />
                     </motion.button>
