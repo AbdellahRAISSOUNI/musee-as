@@ -364,8 +364,22 @@ const Header = () => {
       >
         {/* Top Layer */}
         <div className="max-w-[1440px] mx-auto px-6 py-4 flex justify-between items-center border-b border-graphite/30 bg-[#000000]">
-          {/* Left side - Menu button for mobile */}
-          <div className="w-24 flex justify-start">
+          {/* Left side - Logo and Menu button for mobile */}
+          <div className="flex items-center">
+            {/* Logo - visible on both mobile and desktop */}
+            <Link href="/" className="mr-4 flex-shrink-0">
+              <div className="relative w-10 h-10 md:w-12 md:h-12">
+                <Image
+                  src="/images/projet-musee/pxjg8psj.png"
+                  alt="Logo Musée Abderrahman Slaoui"
+                  fill
+                  className="object-contain"
+                  priority
+                />
+              </div>
+            </Link>
+            
+            {/* Mobile Menu Button */}
             <motion.button 
               className="md:hidden text-premium-white cursor-pointer mobile-menu-button"
               onClick={toggleMobileMenu}
@@ -380,7 +394,7 @@ const Header = () => {
           {/* Center - Museum Name */}
           <Link href="/" className="flex-grow text-center group">
             <motion.h1 
-              className="text-2xl md:text-3xl lg:text-4xl font-bodoni-italic text-premium-white tracking-wider relative inline-block cursor-pointer"
+              className="text-xl md:text-3xl lg:text-4xl font-bodoni-italic text-premium-white tracking-wider relative inline-block cursor-pointer"
               whileHover={{ color: '#D4AF37', transition: { duration: 0.3 } }}
             >
               Musée Abderrahman Slaoui
@@ -389,7 +403,7 @@ const Header = () => {
           </Link>
           
           {/* Right side - Search Icon */}
-          <div className="w-24 flex justify-end">
+          <div className="flex justify-end">
             <motion.button 
               className="text-premium-white hover:text-accent-gold transition-colors cursor-pointer"
               onClick={toggleSearch}
