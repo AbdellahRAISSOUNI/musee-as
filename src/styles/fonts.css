@@ -1,4 +1,5 @@
-/* Bodoni Font Variants */
+/* Bodoni Font Variants - Commented out until font files are available */
+/*
 @font-face {
   font-family: 'Bodoni Poster';
   src: url('/fonts/BodoniPoster.woff2') format('woff2'),
@@ -25,6 +26,7 @@
   font-style: normal;
   font-display: swap;
 }
+*/
 
 /* 
  * Font fallback stacks - Museum-quality typography
@@ -32,12 +34,12 @@
  * to maintain the elegant aesthetic even when web fonts fail to load
  */
 :root {
-  /* Primary font: Bodoni Poster (Regular) */
-  --font-bodoni: 'Bodoni Poster', 'Bodoni', 'Didot', 'Baskerville', 'Libre Bodoni', 'Times New Roman', serif;
+  /* Primary font: Bodoni Poster (Regular) - using fallbacks until font files are added */
+  --font-bodoni: 'Bodoni', 'Didot', 'Baskerville', 'Libre Bodoni', 'Times New Roman', serif;
   
   /* Italic variant: Bodoni Poster Italic */
-  --font-bodoni-italic: 'Bodoni Poster Italic', 'Bodoni Italic', 'Didot Italic', 'Baskerville Italic', 'Libre Bodoni Italic', 'Times New Roman', serif;
+  --font-bodoni-italic: 'Bodoni Italic', 'Didot Italic', 'Baskerville Italic', 'Libre Bodoni Italic', 'Times New Roman', serif;
   
   /* Bold variant: Bodoni Bold */
-  --font-bodoni-bold: 'Bodoni Bold', 'Bodoni', 'Didot Bold', 'Baskerville Bold', 'Libre Bodoni Bold', 'Times New Roman Bold', serif;
+  --font-bodoni-bold: 'Bodoni Bold', 'Didot Bold', 'Baskerville Bold', 'Libre Bodoni Bold', 'Times New Roman Bold', serif;
 } 
