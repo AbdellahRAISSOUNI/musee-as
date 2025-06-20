@@ -41,12 +41,15 @@ const ScrollToTopButton = () => {
           exit={{ opacity: 0, scale: 0.8, y: 20 }}
           transition={{ duration: 0.3, ease: "easeInOut" }}
           onClick={scrollToTop}
-          className="fixed bottom-8 right-8 z-50 bg-white hover:bg-accent-gold text-gray-900 hover:text-white p-3 rounded-full shadow-lg transition-all duration-200 cursor-pointer border border-gray-200"
-          whileHover={{ scale: 1.1 }}
+          className="fixed bottom-8 right-8 z-50 bg-white hover:bg-accent-gold text-gray-800 hover:text-white p-4 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer border border-gray-300 hover:border-accent-gold backdrop-blur-sm"
+          whileHover={{ 
+            scale: 1.1,
+            boxShadow: "0 20px 40px rgba(212, 175, 55, 0.3)"
+          }}
           whileTap={{ scale: 0.95 }}
           aria-label="Retour en haut de page"
         >
-          <FiArrowUp size={24} />
+          <FiArrowUp size={20} className="transition-colors duration-300" />
         </motion.button>
       )}
     </AnimatePresence>

@@ -7,6 +7,13 @@ module.exports = {
   ],
   darkMode: 'class',
   theme: {
+    screens: {
+      'sm': '640px',
+      'md': '768px',
+      'lg': '1050px', // Custom breakpoint for 1050px
+      'xl': '1280px',
+      '2xl': '1536px',
+    },
     extend: {
       fontFamily: {
         'bodoni': ['var(--font-bodoni)', 'Bodoni', 'Didot', 'Baskerville', 'Times New Roman', 'serif'],
