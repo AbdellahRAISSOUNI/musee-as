@@ -9,6 +9,7 @@ import HeroSection from '@/components/HeroSection';
 import TicketSection from '@/components/TicketSection';
 import CreativeGrid, { GridItem } from '@/components/CreativeGrid';
 import QuoteSection from '@/components/QuoteSection';
+import ExhibitionShowcase from '@/components/ExhibitionShowcase';
 import ImageCarousel from '@/components/ImageCarousel';
 import ParallaxSection from '@/components/ParallaxSection';
 
@@ -134,6 +135,9 @@ const HomePage = () => {
         quote="L'art est le témoin indélébile de l'histoire d'un peuple et le reflet de son âme."
         author="Abderrahman Slaoui"
       />
+      
+      {/* Exhibition Showcase */}
+      <ExhibitionShowcase />
       
       {/* Oriental Posters Carousel */}
       <ImageCarousel
