@@ -130,11 +130,7 @@ const HomePage = () => {
         />
               </motion.div>
       
-      {/* Quote Section */}
-      <QuoteSection 
-        quote="L'art est le témoin indélébile de l'histoire d'un peuple et le reflet de son âme."
-        author="Abderrahman Slaoui"
-      />
+
       
       {/* Exhibition Showcase */}
       <ExhibitionShowcase />
@@ -189,6 +185,12 @@ const HomePage = () => {
         buttonText="Découvrir la Collection"
       />
       
+      {/* Quote Section */}
+      <QuoteSection 
+        quote="L'art est le témoin indélébile de l'histoire d'un peuple et le reflet de son âme."
+        author="Abderrahman Slaoui"
+      />
+
       {/* Parallax Section with Museum Entrance */}
       <div className="mt-0">
         <ParallaxSection

@@ -101,16 +101,16 @@ const TicketSection: React.FC<TicketSectionProps> = ({
         />
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-8">
+      <div className="relative px-4 sm:px-6 lg:px-12 xl:px-16 2xl:px-24 w-full">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] }}
-          className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 items-start w-full justify-between"
         >
-          {/* Museum Info - 4 columns */}
-          <div className="lg:col-span-4">
+          {/* Museum Info */}
+          <div className="lg:ml-0 lg:pl-0">
             <h2 className="font-bodoni text-2xl lg:text-3xl font-bold tracking-[0.01em] leading-tight text-gray-900 mb-6">
               {museumName}
             </h2>
@@ -120,12 +120,12 @@ const TicketSection: React.FC<TicketSectionProps> = ({
             </p>
           </div>
 
-          {/* Opening Hours - 4 columns */}
-          <div className="lg:col-span-4">
+          {/* Opening Hours */}
+          <div className="lg:mx-auto lg:text-center">
             <h3 className="font-bodoni text-xl lg:text-2xl font-bold tracking-[0.01em] text-gray-900 mb-6 leading-tight">
               HORAIRES D'OUVERTURE
             </h3>
-            <div className="w-20 h-[1.5px] bg-gray-900 mb-6" />
+            <div className="w-20 h-[1.5px] bg-gray-900 mb-6 lg:mx-auto" />
             <div className="space-y-4">
               <p className="font-bodoni text-lg text-gray-900 font-medium">
                 {openingHours?.days}
@@ -141,15 +141,15 @@ const TicketSection: React.FC<TicketSectionProps> = ({
             </div>
           </div>
 
-          {/* Tickets - 4 columns */}
-          <div className="lg:col-span-4">
+          {/* Tickets */}
+          <div className="lg:mr-0 lg:pr-0 lg:ml-auto">
             <h3 className="font-bodoni text-xl lg:text-2xl font-bold tracking-[0.01em] text-gray-900 mb-6">
               BILLETS
             </h3>
             <div className="w-20 h-[1.5px] bg-gray-900 mb-6" />
             <div className="space-y-4">
               {tickets?.map((ticket, index) => (
-                <div key={index} className="flex justify-between items-baseline">
+                <div key={index} className="flex justify-between items-baseline gap-8">
                   <span className="font-bodoni text-lg text-gray-800 font-medium">
                     {ticket.type}
                   </span>
@@ -163,7 +163,7 @@ const TicketSection: React.FC<TicketSectionProps> = ({
         </motion.div>
         
         {/* CTA Button - Positioned at bottom of section, mobile responsive */}
-        <div className="mt-12 flex justify-end">
+        <div className="mt-12 flex justify-end w-full">
           <Link href={ticketLink || "/infos-pratiques/horaires-tarifs-acces"}>
             <motion.div
               whileHover={{ x: 8 }}
@@ -187,4 +187,4 @@ const TicketSection: React.FC<TicketSectionProps> = ({
   );
 };
 
-export default TicketSection; 
+export default TicketSection;
