@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination, Autoplay, EffectFade } from 'swiper/modules';
+import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import type { Swiper as SwiperType } from 'swiper';
 
 // Import Swiper styles
@@ -13,7 +13,6 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/autoplay';
-import 'swiper/css/effect-fade';
 
 interface ExhibitionImage {
   src: string;
@@ -44,7 +43,7 @@ const defaultExhibitions: Exhibition[] = [
     title: "NOSTALGIE DU FUTUR",
     subtitle: "TCHAT PHOTO",
     artist: "Hicham Gardaf & Marie Moignard",
-    dateRange: "Janvier 2016",
+    dateRange: "6.20.25 — 9.14.25",
     link: "/visites-ateliers-activites/rencontres/nostalgie-du-futur",
     images: [
       {
@@ -63,7 +62,7 @@ const defaultExhibitions: Exhibition[] = [
     title: "HICHAM BENOHOUD",
     subtitle: "25 ANS DE RÉFLEXION",
     artist: "Hicham Benohoud",
-    dateRange: "Avril 2016",
+    dateRange: "4.15.25 — 7.20.25",
     link: "/visites-ateliers-activites/rencontres/hicham-benohoud",
     images: [
       {
@@ -77,7 +76,7 @@ const defaultExhibitions: Exhibition[] = [
     title: "COURTS-CIRCUITS",
     subtitle: "CASABLANCA",
     artist: "Rencontre Culturelle",
-    dateRange: "2023",
+    dateRange: "2.10.25 — 5.30.25",
     link: "/visites-ateliers-activites/rencontres/casablanca-courts-circuits",
     images: [
       {
@@ -90,124 +89,103 @@ const defaultExhibitions: Exhibition[] = [
 
 const ExhibitionShowcase: React.FC<ExhibitionShowcaseProps> = ({
   exhibitions = defaultExhibitions,
-  autoPlayDelay = 4000,
+  autoPlayDelay = 5000,
   showNavigation = true,
   showPagination = true
 }) => {
   const [currentExhibition, setCurrentExhibition] = useState(0);
-  const [isHovered, setIsHovered] = useState(false);
   const swiperRef = useRef<SwiperType>();
 
   const currentExhibitionData = exhibitions[currentExhibition];
-  const allImages = exhibitions.flatMap((exhibition) => exhibition.images);
 
   return (
-    <section className="relative h-screen bg-gray-50 overflow-hidden flex items-center">
-      <div className="max-w-7xl mx-auto px-8 w-full">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
-          className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center h-full"
-        >
-          {/* Left Content - 60% */}
-          <div className="lg:col-span-7 space-y-8 flex flex-col justify-center h-full py-20">
-            {/* Header */}
+    <section className="bg-white py-3 md:py-4 lg:py-6">
+      <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-stretch">
+          
+          {/* Left Content */}
+          <div className="flex flex-col justify-center space-y-4 md:space-y-5 lg:pr-8">
+            
+            {/* ON SHOW Label */}
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.7, delay: 0.2 }}
+              transition={{ duration: 0.6 }}
             >
-              <h2 className="text-xl lg:text-2xl font-bold tracking-[0.15em] text-gray-900 mb-6" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
-                À L'AFFICHE
-              </h2>
-              <div className="w-24 h-[2px] bg-[#f85c54] mb-8" />
+              <div className="flex items-center mb-4">
+                <span className="text-[#B8860B] font-medium text-sm md:text-base tracking-[0.2em] uppercase">
+                  À L'AFFICHE
+                </span>
+                <div className="ml-4 flex-1 h-[1px] bg-[#B8860B]"></div>
+              </div>
             </motion.div>
 
-            {/* Exhibition Info */}
+            {/* Exhibition Title */}
             <motion.div
               key={currentExhibition}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
-              className="space-y-6 flex-1 flex flex-col justify-center"
+              transition={{ duration: 0.7, ease: "easeOut" }}
+              className="space-y-4 md:space-y-6"
             >
-              {/* Subtitle */}
-              {currentExhibitionData.subtitle && (
-                <p className="font-bodoni text-lg lg:text-xl text-[#f85c54] font-medium tracking-wide">
-                  {currentExhibitionData.subtitle}
-                </p>
-              )}
-
-              {/* Main Title */}
-              <h3 className="text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight text-gray-900 leading-tight" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
+              <h2 className="font-light text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-tight text-black tracking-tight">
                 {currentExhibitionData.title}
-              </h3>
-
-              {/* Artist */}
-              <p className="font-bodoni text-xl lg:text-2xl text-gray-600 font-light">
+              </h2>
+              
+              <p className="text-gray-600 text-lg md:text-xl lg:text-2xl font-light italic">
                 {currentExhibitionData.artist}
               </p>
+            </motion.div>
 
-              {/* Date Range */}
-              <p className="text-lg text-[#f85c54] font-medium" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
+            {/* Date Range */}
+            <motion.div
+              key={`date-${currentExhibition}`}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="space-y-4"
+            >
+              <div className="text-[#B8860B] text-2xl md:text-3xl lg:text-4xl font-light tracking-wide">
                 {currentExhibitionData.dateRange}
-              </p>
-
-              {/* CTA Link */}
-              <div className="pt-6">
-                <Link href={currentExhibitionData.link}>
-                  <motion.span
-                    whileHover={{ x: 8 }}
-                    transition={{ duration: 0.3 }}
-                    className="inline-flex items-center space-x-3 text-lg font-medium text-gray-900 border-b-2 border-gray-900 pb-1 hover:text-[#f85c54] hover:border-[#f85c54] transition-colors duration-300"
-                    style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}
-                  >
-                    <span>DÉCOUVRIR</span>
-                    <motion.span
-                      whileHover={{ x: 4 }}
-                      transition={{ duration: 0.3 }}
-                      className="text-xl"
-                    >
-                      →
-                    </motion.span>
-                  </motion.span>
-                </Link>
               </div>
+              
+              {/* Learn More Link */}
+              <Link 
+                href={currentExhibitionData.link}
+                className="inline-block group"
+              >
+                <div className="flex items-center space-x-2 text-black hover:text-[#B8860B] transition-colors duration-300">
+                  <span className="text-base md:text-lg font-medium">EN SAVOIR PLUS</span>
+                  <div className="w-8 h-[1px] bg-black group-hover:bg-[#B8860B] transition-colors duration-300"></div>
+                  <svg 
+                    className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300" 
+                    fill="currentColor" 
+                    viewBox="0 0 20 20"
+                  >
+                    <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                  </svg>
+                </div>
+              </Link>
             </motion.div>
           </div>
 
-          {/* Right Carousel - 40% */}
-          <div className="lg:col-span-5 h-full flex items-center">
+          {/* Right Images Carousel */}
+          <div className="relative h-[300px] md:h-[350px] lg:h-[400px] group">
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="relative aspect-[4/5] w-full max-h-[80vh] group"
-              onMouseEnter={() => setIsHovered(true)}
-              onMouseLeave={() => setIsHovered(false)}
+              className="w-full h-full"
             >
               <Swiper
                 modules={[Navigation, Pagination, Autoplay]}
-                spaceBetween={30}
+                spaceBetween={0}
                 slidesPerView={1}
                 centeredSlides={true}
                 grabCursor={true}
                 allowTouchMove={true}
-                touchRatio={1}
-                touchAngle={45}
-                threshold={5}
-                longSwipes={true}
-                longSwipesRatio={0.5}
-                longSwipesMs={300}
-                followFinger={true}
-                simulateTouch={true}
-                touchMoveStopPropagation={false}
-                resistance={true}
-                resistanceRatio={0.85}
                 speed={800}
                 autoplay={{
                   delay: autoPlayDelay,
@@ -216,117 +194,110 @@ const ExhibitionShowcase: React.FC<ExhibitionShowcaseProps> = ({
                 }}
                 pagination={{
                   clickable: true,
-                  dynamicBullets: true,
-                  bulletActiveClass: 'swiper-pagination-bullet-active-custom',
-                  bulletClass: 'swiper-pagination-bullet-custom'
+                  bulletClass: 'swiper-pagination-bullet-custom',
+                  bulletActiveClass: 'swiper-pagination-bullet-active-custom'
                 }}
                 navigation={{
-                  nextEl: '.swiper-button-next-custom',
-                  prevEl: '.swiper-button-prev-custom'
+                  nextEl: '.swiper-button-next-exhibition',
+                  prevEl: '.swiper-button-prev-exhibition'
                 }}
                 onSwiper={(swiper) => {
                   swiperRef.current = swiper;
                 }}
                 onSlideChange={(swiper) => {
-                  // Find which exhibition this image belongs to
-                  let imageIndex = swiper.activeIndex;
-                  let exhibitionIndex = 0;
-                  let currentCount = 0;
-                  
-                  for (let i = 0; i < exhibitions.length; i++) {
-                    currentCount += exhibitions[i].images.length;
-                    if (imageIndex < currentCount) {
-                      exhibitionIndex = i;
-                      break;
-                    }
-                  }
-                  
-                  setCurrentExhibition(exhibitionIndex);
+                  setCurrentExhibition(swiper.activeIndex);
                 }}
-                className="w-full h-full"
+                className="w-full h-full rounded-lg overflow-hidden shadow-2xl"
               >
-                {allImages.map((image, index) => {
-                  // Find which exhibition this image belongs to
-                  let currentIndex = 0;
-                  let exhibitionIndex = 0;
-                  for (let i = 0; i < exhibitions.length; i++) {
-                    if (index < currentIndex + exhibitions[i].images.length) {
-                      exhibitionIndex = i;
-                      break;
-                    }
-                    currentIndex += exhibitions[i].images.length;
-                  }
-                  
-                  return (
-                    <SwiperSlide key={index}>
-                      <Link href={exhibitions[exhibitionIndex]?.link || '#'}>
-                        <div className="relative w-full h-full group cursor-grab active:cursor-grabbing">
-                          <Image
-                            src={image.src}
-                            alt={image.alt}
-                            fill
-                            className="object-cover transition-transform duration-700 group-hover:scale-105"
-                            sizes="(max-width: 768px) 100vw, 40vw"
-                            loading="lazy"
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                          <div className="absolute inset-0 border-2 border-transparent group-hover:border-[#f85c54]/30 transition-colors duration-300" />
+                {exhibitions.map((exhibition, index) => (
+                  <SwiperSlide key={exhibition.id} className="w-full h-full">
+                    <div className="relative w-full h-full bg-gray-100">
+                      <Image
+                        src={exhibition.images[0]?.src || '/images/placeholder.jpg'}
+                        alt={exhibition.images[0]?.alt || exhibition.title}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                        priority={index === 0}
+                        loading={index === 0 ? "eager" : "lazy"}
+                      />
+                      
+                      {/* Gradient Overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
+                      
+                      {/* Optional subtitle overlay */}
+                      {exhibition.subtitle && (
+                        <div className="absolute bottom-6 left-6 right-6">
+                          <div className="bg-black/70 backdrop-blur-sm text-white px-4 py-2 rounded">
+                            <p className="text-sm md:text-base font-medium">
+                              {exhibition.subtitle}
+                            </p>
+                          </div>
                         </div>
-                      </Link>
-                    </SwiperSlide>
-                  );
-                })}
+                      )}
+                    </div>
+                  </SwiperSlide>
+                ))}
               </Swiper>
 
-              {/* Custom Navigation */}
+              {/* Custom Navigation Buttons */}
               {showNavigation && (
                 <>
-                  <button
-                    className="swiper-button-prev-custom absolute left-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-white/90 hover:bg-white hover:shadow-lg flex items-center justify-center transition-all duration-300 opacity-0 group-hover:opacity-100"
-                    style={{ backdropFilter: 'blur(8px)' }}
-                  >
-                    <span className="text-gray-900 text-xl font-bold">‹</span>
+                  <button className="swiper-button-prev-exhibition absolute left-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-white/90 hover:bg-white backdrop-blur-sm rounded-full shadow-lg hover:shadow-xl flex items-center justify-center transition-all duration-300 opacity-0 group-hover:opacity-100">
+                    <svg className="w-6 h-6 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                    </svg>
                   </button>
-                  <button
-                    className="swiper-button-next-custom absolute right-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-white/90 hover:bg-white hover:shadow-lg flex items-center justify-center transition-all duration-300 opacity-0 group-hover:opacity-100"
-                    style={{ backdropFilter: 'blur(8px)' }}
-                  >
-                    <span className="text-gray-900 text-xl font-bold">›</span>
+                  <button className="swiper-button-next-exhibition absolute right-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-white/90 hover:bg-white backdrop-blur-sm rounded-full shadow-lg hover:shadow-xl flex items-center justify-center transition-all duration-300 opacity-0 group-hover:opacity-100">
+                    <svg className="w-6 h-6 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
                   </button>
                 </>
               )}
+
+              {/* Pagination Dots */}
+              {showPagination && exhibitions.length > 1 && (
+                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10">
+                  <div className="flex space-x-2">
+                    {exhibitions.map((_, index) => (
+                      <button
+                        key={index}
+                        onClick={() => swiperRef.current?.slideTo(index)}
+                        className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                          currentExhibition === index 
+                            ? 'bg-[#B8860B] scale-125' 
+                            : 'bg-white/60 hover:bg-white/80'
+                        }`}
+                      />
+                    ))}
+                  </div>
+                </div>
+              )}
             </motion.div>
           </div>
-        </motion.div>
+        </div>
       </div>
-
-      {/* Custom Pagination Styles */}
+      
+      {/* Custom Styles */}
       <style jsx global>{`
         .swiper-pagination-bullet-custom {
-          width: 12px;
-          height: 12px;
-          background: rgba(248, 92, 84, 0.3);
+          width: 8px;
+          height: 8px;
+          background: rgba(255, 255, 255, 0.6);
           border-radius: 50%;
           opacity: 1;
-          margin: 0 6px !important;
+          margin: 0 4px !important;
           transition: all 0.3s ease;
         }
         
         .swiper-pagination-bullet-active-custom {
-          background: #f85c54;
-          transform: scale(1.2);
+          background: #B8860B;
+          transform: scale(1.25);
         }
         
         .swiper-pagination {
-          bottom: 20px !important;
-        }
-
-        .swiper-slide {
-          user-select: none;
-        }
-
-        .swiper {
-          touch-action: pan-y;
+          bottom: 16px !important;
         }
       `}</style>
     </section>

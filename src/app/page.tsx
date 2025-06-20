@@ -139,6 +139,47 @@ const HomePage = () => {
       {/* Exhibition Showcase */}
       <ExhibitionShowcase />
       
+      {/* Elegant Section Separator */}
+      <section className="relative py-16 bg-gradient-to-b from-gray-800 to-gray-900 overflow-hidden">
+        <div className="absolute inset-0">
+          {/* Geometric pattern overlay */}
+          <div 
+            className="absolute inset-0 opacity-10"
+            style={{
+              backgroundImage: `
+                radial-gradient(circle at 25% 25%, #bfa76a 2px, transparent 2px),
+                radial-gradient(circle at 75% 75%, #bfa76a 1px, transparent 1px)
+              `,
+              backgroundSize: '60px 60px, 40px 40px',
+              backgroundPosition: '0 0, 30px 30px'
+            }}
+          />
+        </div>
+        
+        <div className="relative max-w-4xl mx-auto px-8 text-center">
+          {/* Ornamental separator */}
+          <div className="flex items-center justify-center space-x-8 mb-8">
+            <div className="w-24 h-[1px] bg-gradient-to-r from-transparent to-gray-400"></div>
+            <div className="w-3 h-3 rotate-45 border border-[#bfa76a]"></div>
+            <div className="w-6 h-[2px] bg-[#bfa76a]"></div>
+            <div className="w-3 h-3 rotate-45 border border-[#bfa76a]"></div>
+            <div className="w-24 h-[1px] bg-gradient-to-l from-transparent to-gray-400"></div>
+          </div>
+          
+          {/* Decorative text */}
+          <p className="font-bodoni text-lg text-gray-300 italic tracking-wide">
+            Une collection d'exception vous attend
+          </p>
+          
+          {/* Bottom ornamental separator */}
+          <div className="flex items-center justify-center space-x-6 mt-8">
+            <div className="w-16 h-[1px] bg-gradient-to-r from-transparent to-[#bfa76a]"></div>
+            <div className="w-2 h-2 bg-[#bfa76a] rounded-full"></div>
+            <div className="w-16 h-[1px] bg-gradient-to-l from-transparent to-[#bfa76a]"></div>
+          </div>
+        </div>
+      </section>
+      
       {/* Oriental Posters Carousel */}
       <ImageCarousel
         title="Affiches Orientalistes"

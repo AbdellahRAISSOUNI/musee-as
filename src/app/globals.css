@@ -1,6 +1,13 @@
 @import "tailwindcss";
 @import "../styles/fonts.css";
 
+/* Import Swiper CSS for carousels */
+@import 'swiper/css';
+@import 'swiper/css/navigation';
+@import 'swiper/css/pagination';
+@import 'swiper/css/autoplay';
+@import 'swiper/css/free-mode';
+
 :root {
   --background: #0A0A0A;
   --foreground: #F5F5F5;

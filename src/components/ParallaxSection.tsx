@@ -39,38 +39,45 @@ const ParallaxSection: React.FC<ParallaxSectionProps> = ({
   
   const { scrollY } = useScroll();
   
-  // Calculate the parallax effect with dynamic strength
+  // Calculate the parallax effect with enhanced strength
   const y = useTransform(
     scrollY,
     [elementTop - clientHeight, elementTop + clientHeight],
-    reverse ? [`${parallaxStrength}%`, '0%'] : ['0%', `-${parallaxStrength}%`]
+    reverse ? [`${parallaxStrength * 1.5}%`, '0%'] : ['0%', `-${parallaxStrength * 1.5}%`]
   );
   
-  // Add subtle scale effect
+  // Enhanced scale effect for more dramatic parallax
   const scale = useTransform(
     scrollY,
     [elementTop - clientHeight, elementTop, elementTop + clientHeight],
-    [1.05, 1, 1.05]
+    [1.15, 1, 1.15]
   );
   
-  // Add subtle blur effect
-  const blur = useTransform(
+  // Dynamic overlay opacity based on scroll
+  const overlayBlendOpacity = useTransform(
     scrollY,
     [elementTop - clientHeight, elementTop, elementTop + clientHeight],
-    ['1px', '0px', '1px']
+    [0.4, 0.6, 0.4]
   );
   
-  // Add subtle text animations based on scroll
+  // Sophisticated text animations
   const textY = useTransform(
     scrollY,
     [elementTop - clientHeight, elementTop, elementTop + clientHeight],
-    ['-5%', '0%', '5%']
+    ['-10%', '0%', '10%']
   );
   
   const textOpacity = useTransform(
     scrollY,
     [elementTop - clientHeight/2, elementTop, elementTop + clientHeight/2],
-    [0.8, 1, 0.8]
+    [0.7, 1, 0.7]
+  );
+
+  // Floating elements animation
+  const floatY = useTransform(
+    scrollY,
+    [elementTop - clientHeight, elementTop + clientHeight],
+    ['20px', '-20px']
   );
   
   useEffect(() => {
@@ -96,9 +103,9 @@ const ParallaxSection: React.FC<ParallaxSectionProps> = ({
   // Determine section height based on prop
   const getHeightClass = () => {
     switch(height) {
-      case 'small': return 'h-[300px] md:h-[350px]';
-      case 'large': return 'h-[500px] md:h-[550px]';
-      default: return 'h-[400px] md:h-[450px]';
+      case 'small': return 'h-[400px] md:h-[500px]';
+      case 'large': return 'h-[700px] md:h-[800px]';
+      default: return 'h-[600px] md:h-[700px]';
     }
   };
 
@@ -107,13 +114,13 @@ const ParallaxSection: React.FC<ParallaxSectionProps> = ({
       ref={sectionRef}
       className={`relative overflow-hidden bg-black ${getHeightClass()}`}
     >
-      {/* Parallax Image */}
+      {/* Enhanced Parallax Image with Multiple Layers */}
       <motion.div 
         className="absolute inset-0 w-full h-full z-0"
         style={{ y, scale }}
         transition={{ type: "spring", stiffness: 300, damping: 30 }}
       >
-        <motion.div className="w-full h-full" style={{ filter: `blur(${blur})` }}>
+        <div className="w-full h-full relative">
           <Image
             src={imagePath}
             alt={imageAlt}
@@ -122,92 +129,152 @@ const ParallaxSection: React.FC<ParallaxSectionProps> = ({
             sizes="100vw"
             priority
           />
-        </motion.div>
-        
-        {/* Custom gradient overlay from bottom to top - about 1/3 of the image height */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black to-transparent" style={{ 
-          background: 'linear-gradient(to top, black 0%, black 10%, rgba(0,0,0,0.8) 20%, rgba(0,0,0,0.4) 30%, transparent 40%)' 
-        }}></div>
-        
-        {/* Additional overlay for better text visibility */}
-        <div className={`absolute inset-0 bg-black/${overlayOpacity}`}></div>
+          
+          {/* Multi-layered sophisticated overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent opacity-80"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/50"></div>
+          <motion.div 
+            className="absolute inset-0 bg-black/20 mix-blend-multiply"
+            style={{ opacity: overlayBlendOpacity }}
+          ></motion.div>
+          
+          {/* Geometric overlay pattern */}
+          <div 
+            className="absolute inset-0 opacity-10"
+            style={{
+              backgroundImage: `
+                linear-gradient(30deg, #bfa76a 12%, transparent 12.5%, transparent 87%, #bfa76a 87.5%, #bfa76a),
+                linear-gradient(150deg, #bfa76a 12%, transparent 12.5%, transparent 87%, #bfa76a 87.5%, #bfa76a),
+                linear-gradient(30deg, #bfa76a 12%, transparent 12.5%, transparent 87%, #bfa76a 87.5%, #bfa76a),
+                linear-gradient(150deg, #bfa76a 12%, transparent 12.5%, transparent 87%, #bfa76a 87.5%, #bfa76a)
+              `,
+              backgroundSize: '80px 140px',
+              backgroundPosition: '0 0, 0 0, 40px 70px, 40px 70px',
+            }}
+          ></div>
+        </div>
       </motion.div>
       
-      {/* Content */}
+      {/* Floating decorative elements */}
+      <motion.div 
+        className="absolute top-1/4 left-1/4 w-2 h-2 bg-[#bfa76a] rounded-full opacity-60"
+        style={{ y: floatY }}
+      ></motion.div>
+      <motion.div 
+        className="absolute top-3/4 right-1/4 w-1 h-1 bg-[#bfa76a] rounded-full opacity-40"
+        style={{ y: useTransform(scrollY, [elementTop - clientHeight, elementTop + clientHeight], ['-30px', '30px']) }}
+      ></motion.div>
+      
+      {/* Enhanced Content with Modern Layout */}
       <div className="absolute inset-0 flex items-center justify-center">
         <motion.div 
           ref={contentRef}
-          className="container relative z-10 mx-auto px-4 md:px-6"
+          className="container relative z-10 mx-auto px-4 md:px-8 lg:px-12"
           style={{ y: textY, opacity: textOpacity }}
         >
-          <div className="max-w-3xl mx-auto text-center text-white">
-            {subtitle && (
-              <motion.p 
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                viewport={{ once: true, margin: "-100px" }}
-                className="mb-3 font-bodoni-italic text-lg md:text-xl text-white/90 text-shadow-sm"
-              >
-                {subtitle}
-              </motion.p>
-            )}
-            
-            {title && (
-              <motion.h2 
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-                viewport={{ once: true, margin: "-100px" }}
-                className="font-bodoni-regular text-3xl md:text-4xl lg:text-5xl mb-6 text-white text-shadow-lg"
-              >
-                {title}
-              </motion.h2>
-            )}
-            
-            {description && (
-              <motion.p 
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                viewport={{ once: true, margin: "-100px" }}
-                className="text-lg leading-relaxed text-white mb-8 max-w-2xl mx-auto font-medium text-shadow-sm"
-              >
-                {description}
-              </motion.p>
-            )}
-            
-            {buttonText && buttonLink && (
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                viewport={{ once: true, margin: "-100px" }}
-                className="relative z-10"
-              >
-                <Link 
-                  href={buttonLink}
-                  className="group relative inline-flex items-center justify-center px-10 py-4 overflow-hidden font-medium text-white bg-transparent border-2 border-accent-gold transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-accent-gold/20"
+          <div className="max-w-5xl mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+              {/* Left Content Column */}
+              <div className="lg:col-span-8 text-white space-y-8">
+                {subtitle && (
+                  <motion.div
+                    initial={{ opacity: 0, x: -50 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.8, ease: "easeOut" }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    className="flex items-center space-x-4"
+                  >
+                    <div className="w-12 h-[1px] bg-gradient-to-r from-[#bfa76a] to-transparent"></div>
+                    <p className="font-bodoni text-sm md:text-base text-[#bfa76a] uppercase tracking-[0.2em] font-medium">
+                      {subtitle}
+                    </p>
+                  </motion.div>
+                )}
+                
+                {title && (
+                  <motion.h2 
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    className="font-bodoni text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-[0.9] text-white font-light"
+                  >
+                    <span className="block">{title.split(' ')[0]}</span>
+                    <span className="block text-[#bfa76a] font-normal">
+                      {title.split(' ').slice(1).join(' ')}
+                    </span>
+                  </motion.h2>
+                )}
+                
+                {description && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    className="space-y-4"
+                  >
+                    <div className="w-20 h-[2px] bg-[#bfa76a]"></div>
+                    <p className="text-lg md:text-xl leading-relaxed text-white/90 max-w-2xl font-light">
+                      {description}
+                    </p>
+                  </motion.div>
+                )}
+              </div>
+              
+              {/* Right Side - Decorative Elements & Button */}
+              <div className="lg:col-span-4 flex flex-col items-center lg:items-end space-y-8">
+                {/* Decorative geometric element */}
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 1, delay: 0.6 }}
+                  viewport={{ once: true }}
+                  className="relative"
                 >
-                  <span className="absolute inset-0 w-full h-0 transition-all duration-500 ease-out bg-black group-hover:h-full"></span>
-                  <span className="relative text-white group-hover:text-accent-gold transition-colors duration-300 font-semibold tracking-wide">
-                    {buttonText}
-                  </span>
-                </Link>
-              </motion.div>
-            )}
+                  <div className="w-32 h-32 border border-[#bfa76a]/30 rotate-45 relative">
+                    <div className="absolute inset-4 border border-[#bfa76a]/60 rotate-45"></div>
+                    <div className="absolute inset-8 bg-[#bfa76a]/20 rotate-45"></div>
+                  </div>
+                </motion.div>
+                
+                {buttonText && buttonLink && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.8 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    className="relative z-10"
+                  >
+                    <Link 
+                      href={buttonLink}
+                      className="group relative inline-flex items-center justify-center px-12 py-5 overflow-hidden font-medium text-white bg-transparent border border-[#bfa76a] transition-all duration-500 hover:border-white"
+                    >
+                      <span className="absolute inset-0 w-0 h-full transition-all duration-500 ease-out bg-[#bfa76a] group-hover:w-full"></span>
+                      <span className="absolute right-0 pr-4 duration-200 ease-out group-hover:translate-x-12">
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
+                      </span>
+                      <span className="absolute left-0 pl-2.5 -translate-x-12 group-hover:translate-x-0 ease-out duration-200">
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
+                      </span>
+                      <span className="relative w-full text-left transition-colors duration-200 ease-in-out group-hover:text-black font-medium tracking-wide">
+                        {buttonText}
+                      </span>
+                    </Link>
+                  </motion.div>
+                )}
+              </div>
+            </div>
           </div>
         </motion.div>
       </div>
       
-      {/* Decorative elements */}
-      <motion.div 
-        className="absolute bottom-0 left-0 w-full h-1 bg-accent-gold/50"
-        initial={{ scaleX: 0 }}
-        whileInView={{ scaleX: 1 }}
-        transition={{ duration: 1.2, ease: "easeOut" }}
-        viewport={{ once: true }}
-      ></motion.div>
+      {/* Bottom accent line */}
+      <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#bfa76a] to-transparent"></div>
     </section>
   );
 };
