@@ -61,6 +61,57 @@ const HeroSection: React.FC = () => {
         {/* Additional dark overlay specifically for text areas */}
         <div className="absolute inset-0 bg-gradient-to-t from-transparent via-transparent to-black/30"></div>
       </motion.div>
+
+      {/* Mobile-only content - Centered logo and tagline */}
+      {isMobile && (
+        <div className="absolute inset-0 flex flex-col items-center justify-center px-8 text-center z-10">
+          {/* Mobile Logo */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, delay: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+            className="mb-8"
+          >
+            <div className="relative w-28 h-28 mb-6">
+              <Image
+                src="/images/projet-musee/pxjg8psj.png"
+                alt="Logo Musée Abderrahman Slaoui"
+                fill
+                className="object-contain"
+                priority
+              />
+            </div>
+          </motion.div>
+
+          {/* Museum Name */}
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+            className="text-white font-bodoni text-2xl tracking-[0.15em] mb-4 leading-tight"
+          >
+            MUSÉE ABDERRAHMAN SLAOUI
+          </motion.h1>
+
+          {/* Elegant Divider */}
+          <motion.div
+            initial={{ opacity: 0, scaleX: 0 }}
+            animate={{ opacity: 1, scaleX: 1 }}
+            transition={{ duration: 0.8, delay: 0.9 }}
+            className="w-16 h-px bg-white/60 mb-6"
+          />
+
+          {/* Tagline */}
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 1.1, ease: [0.25, 0.46, 0.45, 0.94] }}
+            className="text-white/90 font-bodoni text-base leading-relaxed max-w-xs tracking-wide"
+          >
+            Un patrimoine artistique et culturel marocain d'exception
+          </motion.p>
+        </div>
+      )}
     </section>
   );
 };

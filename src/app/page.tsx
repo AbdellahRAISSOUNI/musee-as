@@ -6,6 +6,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { FaChevronDown } from 'react-icons/fa';
 import HeroSection from '@/components/HeroSection';
+import TicketSection from '@/components/TicketSection';
 import CreativeGrid, { GridItem } from '@/components/CreativeGrid';
 import QuoteSection from '@/components/QuoteSection';
 import ImageCarousel from '@/components/ImageCarousel';
@@ -111,6 +112,9 @@ const HomePage = () => {
     <main className="min-h-screen bg-black text-premium-white">
       {/* Hero Section */}
       <HeroSection />
+      
+      {/* Ticket Section */}
+      <TicketSection />
       
       {/* À LA UNE - Creative Grid Section */}
               <motion.div

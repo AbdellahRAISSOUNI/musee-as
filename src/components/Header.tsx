@@ -10,88 +10,88 @@ import { IoIosArrowDown } from 'react-icons/io';
 import { usePathname } from 'next/navigation';
 
 // Navigation sections definition
-const navSections = {
-  fondation: {
-    title: "FONDATION",
-    items: [
-      { label: "Fondation Abderrahman Slaoui", href: "/fondation" },
-      { label: "Le Projet de Musée", href: "/fondation/projet-musee" },
-      { label: "Ils Parlent de Nous", href: "/fondation/presse" }
-    ],
-    featured: {
-      title: "Fondation Abderrahman Slaoui",
-      image: "/images/projet-musee/pxjg8psj.png",
-      description: "Découvrez l'histoire et la mission de la Fondation Abderrahman Slaoui.",
-      link: "/fondation"
+  const navSections = {
+    fondation: {
+      title: "FONDATION",
+      items: [
+        { label: "Fondation Abderrahman Slaoui", href: "/fondation" },
+        { label: "Le Projet de Musée", href: "/fondation/projet-musee" },
+        { label: "Ils Parlent de Nous", href: "/fondation/presse" }
+      ],
+      featured: {
+        title: "Fondation Abderrahman Slaoui",
+        image: "/images/projet-musee/pxjg8psj.png",
+        description: "Découvrez l'histoire et la mission de la Fondation Abderrahman Slaoui.",
+        link: "/fondation"
+      }
+    },
+    collections: {
+      title: "COLLECTIONS & EXPOSITIONS",
+      items: [
+        { label: "Collections Permanentes", href: "/collections-expositions/collections-permanentes" },
+        { label: "Expositions Temporaires", href: "/collections-expositions/expositions-temporaires" }
+      ],
+      featured: {
+        title: "Collections Actuelles",
+        image: "/images/collections-permanentes/flacons-de-khol-et-tabatieres/khol_et_tabatiere.png",
+        description: "Explorez nos collections d'art marocain et nos expositions temporaires.",
+        link: "/collections-expositions"
+      }
+    },
+    visites: {
+      title: "VISITES & ATELIERS",
+      items: [
+        { label: "Actualités", href: "/visites-ateliers-activites/actualites" },
+        { label: "Ateliers Artistiques", href: "/visites-ateliers-activites/ateliers-artistiques" },
+        { label: "Rencontres", href: "/visites-ateliers-activites/rencontres" },
+        { label: "Visites Guidées", href: "/visites-ateliers-activites/visites-guidees" },
+        { label: "Privatisation", href: "/visites-ateliers-activites/privatisation" }
+      ],
+      featured: {
+        title: "Découvrez Nos Activités",
+        image: "/images/hero-background.jpg",
+        description: "Participez à nos ateliers, visites guidées et événements culturels.",
+        link: "/visites-ateliers-activites"
+      }
+    },
+    jeune: {
+      title: "JEUNE PUBLIC",
+      items: [
+        { label: "Visites Scolaires Guidées", href: "/jeune-public/visites-scolaires" },
+        { label: "Ateliers Pédagogiques", href: "/jeune-public/ateliers-pedagogiques" }
+      ],
+      featured: {
+        title: "Espace Jeune Public",
+        image: "/images/jeune-public/visites-scolaires/visites-scolaires-guidees2.png",
+        description: "Des programmes éducatifs et créatifs pour les enfants et les groupes scolaires.",
+        link: "/jeune-public"
+      }
+    },
+    infos: {
+      title: "INFOS PRATIQUES",
+      items: [
+        { label: "Horaires, Tarifs et Accès", href: "/infos-pratiques/horaires-tarifs-acces" },
+        { label: "Le Café du Musée", href: "/infos-pratiques/cafe-musee" },
+        { label: "Le Comptoir de Vente", href: "/infos-pratiques/comptoir-vente" },
+        { label: "Contact", href: "/infos-pratiques/contact" }
+      ],
+      featured: {
+        title: "Planifiez Votre Visite",
+        image: "/images/infos-pratiques/cafe-musee/cafe-terasse1.jpg",
+        description: "Tout ce que vous devez savoir pour préparer votre visite au musée.",
+        link: "/infos-pratiques/horaires-tarifs-acces"
+      }
+    },
+    tempus: {
+      title: "TEMPUS FUGIT",
+      items: [],
+      featured: {
+        title: "Tempus Fugit",
+        image: "/images/hero-background.jpg",
+        description: "Une exploration artistique du temps et de la mémoire.",
+        link: "/tempus-fugit"
+      }
     }
-  },
-  collections: {
-    title: "COLLECTIONS & EXPOSITIONS",
-    items: [
-      { label: "Collections Permanentes", href: "/collections-expositions/collections-permanentes" },
-      { label: "Expositions Temporaires", href: "/collections-expositions/expositions-temporaires" }
-    ],
-    featured: {
-      title: "Collections Actuelles",
-      image: "/images/collections-permanentes/flacons-de-khol-et-tabatieres/khol_et_tabatiere.png",
-      description: "Explorez nos collections d'art marocain et nos expositions temporaires.",
-      link: "/collections-expositions"
-    }
-  },
-  visites: {
-    title: "VISITES & ATELIERS",
-    items: [
-      { label: "Actualités", href: "/visites-ateliers-activites/actualites" },
-      { label: "Ateliers Artistiques", href: "/visites-ateliers-activites/ateliers-artistiques" },
-      { label: "Rencontres", href: "/visites-ateliers-activites/rencontres" },
-      { label: "Visites Guidées", href: "/visites-ateliers-activites/visites-guidees" },
-      { label: "Privatisation", href: "/visites-ateliers-activites/privatisation" }
-    ],
-    featured: {
-      title: "Découvrez Nos Activités",
-      image: "/images/hero-background.jpg",
-      description: "Participez à nos ateliers, visites guidées et événements culturels.",
-      link: "/visites-ateliers-activites"
-    }
-  },
-  jeune: {
-    title: "JEUNE PUBLIC",
-    items: [
-      { label: "Visites Scolaires Guidées", href: "/jeune-public/visites-scolaires" },
-      { label: "Ateliers Pédagogiques", href: "/jeune-public/ateliers-pedagogiques" }
-    ],
-    featured: {
-      title: "Espace Jeune Public",
-      image: "/images/jeune-public/visites-scolaires/visites-scolaires-guidees2.png",
-      description: "Des programmes éducatifs et créatifs pour les enfants et les groupes scolaires.",
-      link: "/jeune-public"
-    }
-  },
-  infos: {
-    title: "INFOS PRATIQUES",
-    items: [
-      { label: "Horaires, Tarifs et Accès", href: "/infos-pratiques/horaires-tarifs-acces" },
-      { label: "Le Café du Musée", href: "/infos-pratiques/cafe-musee" },
-      { label: "Le Comptoir de Vente", href: "/infos-pratiques/comptoir-vente" },
-      { label: "Contact", href: "/infos-pratiques/contact" }
-    ],
-    featured: {
-      title: "Planifiez Votre Visite",
-      image: "/images/infos-pratiques/cafe-musee/cafe-terasse1.jpg",
-      description: "Tout ce que vous devez savoir pour préparer votre visite au musée.",
-      link: "/infos-pratiques/horaires-tarifs-acces"
-    }
-  },
-  tempus: {
-    title: "TEMPUS FUGIT",
-    items: [],
-    featured: {
-      title: "Tempus Fugit",
-      image: "/images/hero-background.jpg",
-      description: "Une exploration artistique du temps et de la mémoire.",
-      link: "/tempus-fugit"
-    }
-  }
 };
 
 const Header = () => {
@@ -293,7 +293,7 @@ const Header = () => {
                 x: isHomePage ? navRightX : 0,
               }}
               transition={{ duration: 0.6, ease: "easeInOut" }}
-            >
+      >
               {rightNavItems.map((key) => {
                 const section = navSections[key as keyof typeof navSections];
                 const isActive = isSectionActive(key);
@@ -363,15 +363,15 @@ const Header = () => {
               {logoClickable ? (
                 <Link href="/" className="block">
                   <div className="relative w-24 h-24 mb-3">
-                    <Image
-                      src="/images/projet-musee/pxjg8psj.png"
-                      alt="Logo Musée Abderrahman Slaoui"
-                      fill
-                      className="object-contain"
-                      priority
-                    />
-                  </div>
-                </Link>
+                <Image
+                  src="/images/projet-musee/pxjg8psj.png"
+                  alt="Logo Musée Abderrahman Slaoui"
+                  fill
+                  className="object-contain"
+                  priority
+                />
+              </div>
+            </Link>
               ) : (
                 <div className="relative w-24 h-24 mb-3">
                   <Image
@@ -410,15 +410,15 @@ const Header = () => {
 
         {/* Mobile Header */}
         <div className="md:hidden flex items-center justify-between px-6 py-4">
-          {/* Mobile Menu Button */}
-          <motion.button 
+            {/* Mobile Menu Button */}
+            <motion.button 
             className="text-current cursor-pointer"
-            onClick={toggleMobileMenu}
-            whileTap={{ scale: 0.95 }}
+              onClick={toggleMobileMenu}
+              whileTap={{ scale: 0.95 }}
             style={{ color: isHomePage ? textColor : "rgb(0, 0, 0)" }}
-          >
-            <RiMenu3Line size={24} />
-          </motion.button>
+            >
+              <RiMenu3Line size={24} />
+            </motion.button>
 
           {/* Mobile Logo - Always clickable */}
           <Link href="/" className="flex-shrink-0">
@@ -430,33 +430,33 @@ const Header = () => {
                 className="object-contain"
                 priority
               />
-            </div>
+          </div>
           </Link>
-
+          
           {/* Mobile Search */}
-          <motion.button 
+            <motion.button 
             className="text-current cursor-pointer"
-            onClick={toggleSearch}
-            whileTap={{ scale: 0.95 }}
+              onClick={toggleSearch}
+              whileTap={{ scale: 0.95 }}
             style={{ color: isHomePage ? textColor : "rgb(0, 0, 0)" }}
-          >
+            >
             {isSearchActive ? <FiX size={20} /> : <FiSearch size={20} />}
-          </motion.button>
+            </motion.button>
         </div>
-
+        
         {/* Search Bar */}
         <AnimatePresence>
           {isSearchActive && (
-            <motion.div
+              <motion.div
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.3 }}
+                transition={{ duration: 0.3 }}
               className="border-t border-gray-200"
               style={{ 
                 backgroundColor: isHomePage && !isScrolled ? "rgba(255, 255, 255, 0.95)" : "white"
               }}
-            >
+              >
               <div className="max-w-7xl mx-auto px-6 py-4">
                 <div className="relative">
                   <input 
@@ -472,10 +472,10 @@ const Header = () => {
                     <FiSearch size={20} />
                   </motion.button>
                 </div>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
 
         {/* Desktop Dropdown Menus */}
         <AnimatePresence>
@@ -499,22 +499,22 @@ const Header = () => {
                   <div className="md:col-span-3">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                       {navSections[hoveredSection as keyof typeof navSections].items.map((item, index) => (
-                        <motion.div
-                          key={index}
-                          initial={{ opacity: 0, y: 10 }}
-                          animate={{ opacity: 1, y: 0 }}
+                          <motion.div
+                            key={index}
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
                           transition={{ duration: 0.2, delay: index * 0.05 }}
-                        >
-                          <Link 
-                            href={item.href}
+                          >
+                            <Link 
+                              href={item.href}
                             className="block hover:text-accent-gold transition-colors duration-200 font-bodoni text-lg py-2"
                             style={{
                               color: isHomePage && !isScrolled ? "white" : "#111827" // White in transparent mode, dark gray otherwise
                             }}
                           >
-                            {item.label}
-                          </Link>
-                        </motion.div>
+                                {item.label}
+                            </Link>
+                          </motion.div>
                       ))}
                     </div>
                   </div>
@@ -531,22 +531,22 @@ const Header = () => {
                       }}
                     >
                       <Link href={navSections[hoveredSection as keyof typeof navSections].featured.link}>
-                        <h3 className="text-accent-gold font-bodoni text-xl mb-3">
+                      <h3 className="text-accent-gold font-bodoni text-xl mb-3">
                           {navSections[hoveredSection as keyof typeof navSections].featured.title}
-                        </h3>
+                      </h3>
                         <div className="aspect-video bg-gray-200 mb-3 overflow-hidden rounded">
-                          <img 
+                        <img 
                             src={navSections[hoveredSection as keyof typeof navSections].featured.image}
                             alt={navSections[hoveredSection as keyof typeof navSections].featured.title}
                             className="w-full h-full object-cover"
-                          />
-                        </div>
+                        />
+                      </div>
                         <p className="text-sm line-clamp-3"
                            style={{
                              color: isHomePage && !isScrolled ? "rgba(255, 255, 255, 0.9)" : "#6b7280" // White text in transparent mode
                            }}>
                           {navSections[hoveredSection as keyof typeof navSections].featured.description}
-                        </p>
+                      </p>
                       </Link>
                     </motion.div>
                   </div>
@@ -555,7 +555,7 @@ const Header = () => {
             </motion.div>
           )}
         </AnimatePresence>
-
+        
         {/* Mobile Menu */}
         <AnimatePresence>
           {isMobileMenuOpen && (
@@ -567,7 +567,7 @@ const Header = () => {
               className="md:hidden bg-white border-t border-gray-200"
             >
               <div className="px-6 py-4">
-                {Object.entries(navSections).map(([key, section]) => (
+                  {Object.entries(navSections).map(([key, section]) => (
                   <div key={key} className="mb-4">
                     {section.items.length > 0 ? (
                       <div>
@@ -587,7 +587,7 @@ const Header = () => {
                         </button>
                         <AnimatePresence>
                           {activeSection === key && (
-                            <motion.div
+                <motion.div 
                               initial={{ opacity: 0, height: 0 }}
                               animate={{ opacity: 1, height: 'auto' }}
                               exit={{ opacity: 0, height: 0 }}
