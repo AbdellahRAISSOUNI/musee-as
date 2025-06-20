@@ -12,6 +12,7 @@ import QuoteSection from '@/components/QuoteSection';
 import ExhibitionShowcase from '@/components/ExhibitionShowcase';
 import ImageCarousel from '@/components/ImageCarousel';
 import ParallaxSection from '@/components/ParallaxSection';
+import ScrollToTopButton from '@/components/ScrollToTopButton';
 
 const HomePage = () => {
   // Featured exhibitions and events for the creative grid
@@ -206,6 +207,9 @@ const HomePage = () => {
           parallaxStrength={30}
         />
     </div>
+    
+      {/* Scroll to Top Button - Only appears on scroll */}
+      <ScrollToTopButton />
     </main>
   );
 };

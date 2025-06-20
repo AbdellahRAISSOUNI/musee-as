@@ -132,7 +132,7 @@ const Header = () => {
   const logoY = useTransform(
     scrollY,
     [0, heroHeight * 0.5, heroHeight],
-    [heroHeight * 0.4, heroHeight * 0.1, 10] // Start in hero center, move to header top
+    [heroHeight * 0.4, heroHeight * 0.1, 20] // Start in hero center, move to header top with more space
   );
 
   const titleOpacity = useTransform(
@@ -141,17 +141,17 @@ const Header = () => {
     [1, 0.5, 0]
   );
 
-  // Navigation positioning - Smaller movement to keep items visible
+  // Navigation positioning - Minimal movement to keep sections close
   const navLeftX = useTransform(
     scrollY,
     [0, heroHeight * 0.5, heroHeight],
-    [0, -15, -25] // Reduced movement to keep items visible
+    [0, -5, -10] // Much smaller movement to keep sections closer
   );
 
   const navRightX = useTransform(
     scrollY,
     [0, heroHeight * 0.5, heroHeight],
-    [0, 15, 25] // Reduced movement to keep items visible
+    [0, 5, 10] // Much smaller movement to keep sections closer
   );
 
   // Header height adjustment
@@ -231,13 +231,13 @@ const Header = () => {
           height: isHomePage ? headerHeight : 70
         }}
       >
-        {/* Desktop Header */}
-        <div className="hidden md:block relative h-full">
-          {/* Navigation Row - Always centered vertically - Higher z-index */}
-          <div className="flex items-center justify-between h-full px-12 relative z-20">
+        {/* Desktop Header - Only show on screens 1280px and wider */}
+        <div className="hidden xl:block relative h-full">
+          {/* Navigation Layout - Three columns: Left, Center (Logo), Right */}
+          <div className="grid grid-cols-3 items-center h-full px-12 relative z-30">
             {/* Left Navigation */}
             <motion.nav 
-              className="flex items-center space-x-6"
+              className="flex items-center justify-start space-x-6"
               style={{
                 x: isHomePage ? navLeftX : 0,
               }}
@@ -286,14 +286,19 @@ const Header = () => {
               })}
             </motion.nav>
 
+            {/* Center Logo Space - Reserved but logo is positioned absolutely */}
+            <div className="flex justify-center">
+              {/* This space is reserved for the logo */}
+            </div>
+
             {/* Right Navigation */}
             <motion.nav 
-              className="flex items-center space-x-6"
+              className="flex items-center justify-end space-x-6"
               style={{
                 x: isHomePage ? navRightX : 0,
               }}
               transition={{ duration: 0.6, ease: "easeInOut" }}
-      >
+            >
               {rightNavItems.map((key) => {
                 const section = navSections[key as keyof typeof navSections];
                 const isActive = isSectionActive(key);
@@ -349,20 +354,19 @@ const Header = () => {
             </motion.nav>
           </div>
 
-          {/* Center Logo Section - Lower z-index, conditionally clickable */}
-          <div className="absolute inset-0 flex items-center justify-center z-10">
+          {/* Center Logo Section - Absolutely positioned and centered */}
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
             <motion.div 
               className="flex flex-col items-center text-center"
               style={{
                 scale: isHomePage ? logoScale : 0.7,
-                y: isHomePage ? logoY : 0, // Center vertically when scrolled
+                y: isHomePage ? logoY : 0,
+                paddingTop: !isHomePage ? 12 : (isScrolled ? 12 : 0),
               }}
               transition={{ duration: 0.8, ease: "easeInOut" }}
             >
-              {/* Logo Image - Only this part is clickable */}
-              {logoClickable ? (
-                <Link href="/" className="block">
-                  <div className="relative w-24 h-24 mb-3">
+              {/* Logo Image - No click functionality here */}
+              <div className="relative w-24 h-24 mb-3">
                 <Image
                   src="/images/projet-musee/pxjg8psj.png"
                   alt="Logo Musée Abderrahman Slaoui"
@@ -371,20 +375,8 @@ const Header = () => {
                   priority
                 />
               </div>
-            </Link>
-              ) : (
-                <div className="relative w-24 h-24 mb-3">
-                  <Image
-                    src="/images/projet-musee/pxjg8psj.png"
-                    alt="Logo Musée Abderrahman Slaoui"
-                    fill
-                    className="object-contain"
-                    priority
-                  />
-                </div>
-              )}
               
-              {/* Museum Title - Only show on home page - NOT clickable */}
+              {/* Museum Title - Only show on home page */}
               {isHomePage && (
                 <motion.div 
                   className="text-center max-w-md"
@@ -406,10 +398,25 @@ const Header = () => {
               )}
             </motion.div>
           </div>
+
+          {/* Invisible Clickable Button Over Logo Area - HIGHEST Z-INDEX */}
+          {logoClickable && (
+            <Link 
+              href="/" 
+              className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 cursor-pointer z-[100]"
+              style={{
+                width: isHomePage ? '120px' : '84px', // Adjust size based on logo scale
+                height: isHomePage ? '120px' : '84px',
+                paddingTop: !isHomePage ? '8px' : (isScrolled ? '8px' : '0'),
+              }}
+            >
+              <span className="sr-only">Retour à l'accueil</span>
+            </Link>
+          )}
         </div>
 
-        {/* Mobile Header */}
-        <div className="md:hidden flex items-center justify-between px-6 py-4">
+        {/* Mobile Header - Show on screens smaller than 1280px */}
+        <div className="xl:hidden flex items-center justify-between px-6 py-4">
             {/* Mobile Menu Button */}
             <motion.button 
             className="text-current cursor-pointer"
@@ -485,7 +492,7 @@ const Header = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.3 }}
-              className="absolute left-0 right-0 w-full border-t border-gray-200 shadow-lg z-40"
+              className="absolute left-0 right-0 w-full border-t border-gray-200 shadow-lg z-50"
               style={{ 
                 backgroundColor: isHomePage ? headerBackground : "rgba(255, 255, 255, 1)",
                 backdropFilter: isHomePage && !isScrolled ? "blur(8px)" : "none"
@@ -564,7 +571,7 @@ const Header = () => {
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.3 }}
-              className="md:hidden bg-white border-t border-gray-200"
+              className="xl:hidden bg-white border-t border-gray-200"
             >
               <div className="px-6 py-4">
                   {Object.entries(navSections).map(([key, section]) => (
