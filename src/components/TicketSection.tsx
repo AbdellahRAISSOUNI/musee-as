@@ -29,8 +29,10 @@ const defaultProps: TicketSectionProps = {
     note: "y compris les jours fériés (à l'exception des fêtes de l'Aïd Al Fitr, l'Aïd Al Adha et l'Aïd Al Mawlid)"
   },
   tickets: [
-    { type: "Réduit", price: "10 dh" },
-    { type: "Plein", price: "60 dh" }
+    { type: "Tarif public", price: "60 dh" },
+    { type: "Résidents Maroc", price: "40 dh" },
+    { type: "Tarif réduit", price: "10 dh" },
+    { type: "Enfants -12 ans", price: "Gratuit" }
   ],
   ticketLink: "/infos-pratiques/horaires-tarifs-acces"
 };
@@ -43,7 +45,7 @@ const TicketSection: React.FC<TicketSectionProps> = ({
   ticketLink = defaultProps.ticketLink
 }) => {
   return (
-    <section className="relative py-20 overflow-hidden pb-24" style={{ backgroundColor: '#f6f3ee' }}>
+    <section className="relative py-16 overflow-hidden" style={{ backgroundColor: '#f6f3ee' }}>
       {/* Complex sophisticated background */}
       <div className="absolute inset-0">
         {/* Base layer with subtle noise */}
@@ -140,12 +142,12 @@ const TicketSection: React.FC<TicketSectionProps> = ({
           </div>
 
           {/* Tickets - 4 columns */}
-          <div className="lg:col-span-4 relative">
+          <div className="lg:col-span-4">
             <h3 className="font-bodoni text-xl lg:text-2xl font-bold tracking-[0.01em] text-gray-900 mb-6">
               BILLETS
             </h3>
             <div className="w-20 h-[1.5px] bg-gray-900 mb-6" />
-            <div className="space-y-4 mb-8">
+            <div className="space-y-4">
               {tickets?.map((ticket, index) => (
                 <div key={index} className="flex justify-between items-baseline">
                   <span className="font-bodoni text-lg text-gray-800 font-medium">
@@ -159,44 +161,23 @@ const TicketSection: React.FC<TicketSectionProps> = ({
             </div>
           </div>
         </motion.div>
-        {/* Absolutely positioned CTA button at bottom right of section */}
-        <div className="hidden lg:block">
-          <div className="absolute right-8 bottom-8 z-10">
-            <Link href={ticketLink || "/infos-pratiques/horaires-tarifs-acces"}>
-              <motion.div
-                whileHover={{ x: 8 }}
-                transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
-                className="group flex items-center space-x-3 cursor-pointer"
-              >
-                <span className="font-bodoni text-lg lg:text-xl font-bold tracking-[0.02em] text-gray-900 border-b-2 border-gray-900 pb-1">
-                  PLUS DE DÉTAILS
-                </span>
-                <motion.div
-                  whileHover={{ x: 4 }}
-                  transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
-                >
-                  <FiArrowRight className="text-xl lg:text-2xl text-gray-900" />
-                </motion.div>
-              </motion.div>
-            </Link>
-          </div>
-        </div>
-        {/* For mobile, keep button inline at end of grid */}
-        <div className="block lg:hidden mt-8 text-right">
+        
+        {/* CTA Button - Positioned at bottom of section, mobile responsive */}
+        <div className="mt-12 flex justify-end">
           <Link href={ticketLink || "/infos-pratiques/horaires-tarifs-acces"}>
             <motion.div
               whileHover={{ x: 8 }}
               transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
-              className="group flex items-center justify-end space-x-3 cursor-pointer"
+              className="group flex items-center space-x-3 cursor-pointer"
             >
-              <span className="font-bodoni text-lg font-bold tracking-[0.02em] text-gray-900 border-b-2 border-gray-900 pb-1">
+              <span className="font-bodoni text-lg lg:text-xl font-bold tracking-[0.02em] text-gray-900 border-b-2 border-gray-900 pb-1">
                 PLUS DE DÉTAILS
               </span>
               <motion.div
                 whileHover={{ x: 4 }}
                 transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
               >
-                <FiArrowRight className="text-xl text-gray-900" />
+                <FiArrowRight className="text-xl lg:text-2xl text-gray-900" />
               </motion.div>
             </motion.div>
           </Link>
