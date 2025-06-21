@@ -188,7 +188,7 @@ const SearchContent = () => {
                 >
                   <div className="w-full h-[1px] mb-8" style={{ backgroundColor: '#f85c54' }} />
                   <p className="text-gray-700 font-bodoni text-lg mb-6 uppercase tracking-wide">Recherches populaires</p>
-                  <div className="flex flex-wrap justify-center gap-4">
+                  <div className="flex flex-wrap justify-center gap-2 md:gap-4">
                     {['Affiches orientalistes', 'Bijoux marocains', 'Casa Drawing', 'Céramique Fès', 'Tempus Fugit', 'AJAMMAR', 'Collections permanentes'].map((suggestion) => (
                       <button
                         key={suggestion}
@@ -197,7 +197,7 @@ const SearchContent = () => {
                           handleSearch(suggestion);
                           window.history.replaceState({}, '', `/search?q=${encodeURIComponent(suggestion)}`);
                         }}
-                        className="px-6 py-3 bg-gray-100 text-gray-700 hover:bg-gray-900 hover:text-white transition-colors font-bodoni border-b-2 border-transparent hover:border-accent-gold"
+                        className="px-3 md:px-6 py-2 md:py-3 bg-gray-100 text-gray-700 hover:bg-gray-900 hover:text-white transition-colors font-bodoni border-b-2 border-transparent hover:border-accent-gold text-sm md:text-base"
                       >
                         {suggestion}
                       </button>
@@ -230,11 +230,11 @@ const SearchContent = () => {
                     {/* Results Header */}
                     <div className="mb-12">
                       <div className="w-full h-[1px] mb-6" style={{ backgroundColor: '#f85c54' }} />
-                      <div className="flex items-center justify-between mb-6">
-                        <h2 className="font-bodoni text-3xl text-gray-900 uppercase tracking-wide">
+                      <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6 space-y-2 md:space-y-0">
+                        <h2 className="font-bodoni text-2xl md:text-3xl text-gray-900 uppercase tracking-wide break-words">
                           {searchResults.length} résultat{searchResults.length > 1 ? 's' : ''} pour "{searchQuery}"
                         </h2>
-                        <div className="text-sm text-gray-500 font-bodoni uppercase tracking-wide">
+                        <div className="text-xs md:text-sm text-gray-500 font-bodoni uppercase tracking-wide">
                           {searchQuery.split(' ').length > 1 ? 'Recherche avec tous les mots' : ''}
                         </div>
                       </div>
@@ -251,10 +251,10 @@ const SearchContent = () => {
                           transition={{ delay: index * 0.1, duration: 0.6 }}
                           className="group"
                         >
-                          <div className="flex items-start space-x-8 py-8 border-b border-gray-100 hover:bg-gray-50 transition-colors">
+                          <div className="flex flex-col md:flex-row md:items-start space-y-4 md:space-y-0 md:space-x-6 lg:space-x-8 py-6 md:py-8 border-b border-gray-100 hover:bg-gray-50 transition-colors">
                             {/* Image */}
                             {result.image && (
-                              <div className="flex-shrink-0 w-40 h-32 bg-gray-200 overflow-hidden">
+                              <div className="flex-shrink-0 w-full md:w-32 lg:w-40 h-48 md:h-24 lg:h-32 bg-gray-200 overflow-hidden">
                                 <Image
                                   src={result.image}
                                   alt={result.title}
@@ -266,34 +266,34 @@ const SearchContent = () => {
                             )}
 
                             {/* Content */}
-                            <div className="flex-grow">
-                              <div className="flex items-start justify-between mb-4">
-                                <div className="flex items-center space-x-4">
-                                  <span className="px-4 py-1 bg-gray-900 text-white text-sm font-medium font-bodoni uppercase tracking-wide">
+                            <div className="flex-grow min-w-0">
+                              <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-4 space-y-2 sm:space-y-0">
+                                <div className="flex flex-wrap items-center gap-2 sm:gap-4">
+                                  <span className="px-3 py-1 bg-gray-900 text-white text-xs sm:text-sm font-medium font-bodoni uppercase tracking-wide whitespace-nowrap">
                                     {result.type === 'actualite' ? 'Actualité' :
                                      result.type === 'collection' ? 'Collection' :
                                      result.type === 'exposition' ? 'Exposition' :
                                      result.type === 'activity' ? 'Activité' : 'Page'}
                                   </span>
                                   {result.date && (
-                                    <span className="text-sm text-gray-500 font-bodoni uppercase tracking-wide">{result.date}</span>
+                                    <span className="text-xs sm:text-sm text-gray-500 font-bodoni uppercase tracking-wide">{result.date}</span>
                                   )}
                                 </div>
                               </div>
 
-                              <h3 className="font-bodoni text-2xl text-gray-900 group-hover:text-accent-gold transition-colors mb-4 uppercase tracking-wide">
+                              <h3 className="font-bodoni text-xl md:text-2xl text-gray-900 group-hover:text-accent-gold transition-colors mb-3 md:mb-4 uppercase tracking-wide break-words">
                                 <Link href={result.url}>
                                   {result.title}
                                 </Link>
                               </h3>
 
-                              <p className="text-gray-600 mb-6 line-clamp-3 leading-relaxed">
+                              <p className="text-gray-600 mb-4 md:mb-6 line-clamp-3 leading-relaxed text-sm md:text-base">
                                 {result.excerpt}
                               </p>
 
                               <Link
                                 href={result.url}
-                                className="inline-flex items-center text-accent-gold group-hover:text-gray-900 transition-colors font-bodoni font-medium uppercase tracking-wide border-b border-accent-gold hover:border-gray-900"
+                                className="inline-flex items-center text-accent-gold group-hover:text-gray-900 transition-colors font-bodoni font-medium uppercase tracking-wide border-b border-accent-gold hover:border-gray-900 text-sm md:text-base"
                               >
                                 <span className="mr-2">En savoir plus</span>
                                 <span className="transform group-hover:translate-x-2 transition-transform duration-300">→</span>

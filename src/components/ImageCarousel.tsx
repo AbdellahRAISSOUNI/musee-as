@@ -36,7 +36,7 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({
   buttonText
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const swiperRef = useRef<SwiperType>();
+  const swiperRef = useRef<SwiperType | null>(null);
 
   return (
     <section className="py-12 relative" style={{ backgroundColor: '#faf9f7' }}>
@@ -82,6 +82,8 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({
               slidesPerView="auto"
               centeredSlides={false}
               grabCursor={true}
+              loop={true}
+              loopAdditionalSlides={2}
               freeMode={{
                 enabled: true,
                 sticky: false,
@@ -120,7 +122,7 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({
                 swiperRef.current = swiper;
               }}
               onSlideChange={(swiper) => {
-                setCurrentIndex(swiper.activeIndex);
+                setCurrentIndex(swiper.realIndex || swiper.activeIndex);
               }}
               breakpoints={{
                 320: {

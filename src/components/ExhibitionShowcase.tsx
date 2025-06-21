@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+import { Navigation, Pagination, Autoplay, EffectFade } from 'swiper/modules';
 import type { Swiper as SwiperType } from 'swiper';
 
 // Import Swiper styles
@@ -84,6 +84,20 @@ const defaultExhibitions: Exhibition[] = [
         alt: "Casablanca Courts-Circuits"
       }
     ]
+  },
+  {
+    id: "spiritualite-islam",
+    title: "SPIRITUALITÉ EN ISLAM",
+    subtitle: "CONFÉRENCE",
+    artist: "Éric Geoffroy",
+    dateRange: "1.15.25 — 4.10.25",
+    link: "/visites-ateliers-activites/rencontres/spiritualite-en-islam",
+    images: [
+      {
+        src: "/images/visites-ateliers-activites/rencontres/islam/visuel_conf_FB_1.jpg",
+        alt: "Spiritualité en Islam - Éric Geoffroy"
+      }
+    ]
   }
 ];
 
@@ -94,7 +108,7 @@ const ExhibitionShowcase: React.FC<ExhibitionShowcaseProps> = ({
   showPagination = true
 }) => {
   const [currentExhibition, setCurrentExhibition] = useState(0);
-  const swiperRef = useRef<SwiperType>();
+  const swiperRef = useRef<SwiperType | null>(null);
 
   const currentExhibitionData = exhibitions[currentExhibition];
 
@@ -187,6 +201,7 @@ const ExhibitionShowcase: React.FC<ExhibitionShowcaseProps> = ({
                 grabCursor={true}
                 allowTouchMove={true}
                 speed={800}
+                loop={true}
                 autoplay={{
                   delay: autoPlayDelay,
                   disableOnInteraction: false,
@@ -205,7 +220,7 @@ const ExhibitionShowcase: React.FC<ExhibitionShowcaseProps> = ({
                   swiperRef.current = swiper;
                 }}
                 onSlideChange={(swiper) => {
-                  setCurrentExhibition(swiper.activeIndex);
+                  setCurrentExhibition(swiper.realIndex);
                 }}
                 className="w-full h-full rounded-lg overflow-hidden shadow-2xl"
               >
