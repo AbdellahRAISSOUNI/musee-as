@@ -5,7 +5,7 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import Image from 'next/image';
 
 const HeroSection: React.FC = () => {
-  const [isMobile, setIsMobile] = useState(false);
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
   const heroRef = useRef<HTMLDivElement>(null);
   
   const { scrollYProgress } = useScroll({
@@ -18,10 +18,10 @@ const HeroSection: React.FC = () => {
   const scale = useTransform(scrollYProgress, [0, 1], [1, 1.15]);
   const imageOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0.6]);
   
-  // Check if device is mobile
+  // Check if device is mobile/tablet (should match header breakpoint)
   useEffect(() => {
     const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
+      setIsSmallScreen(window.innerWidth < 1050); // Match header breakpoint
     };
     
     checkMobile();
@@ -38,7 +38,7 @@ const HeroSection: React.FC = () => {
       <motion.div 
         className="absolute inset-0 w-full h-full"
         style={{ 
-          y: isMobile ? 0 : y,
+          y: isSmallScreen ? 0 : y,
           scale,
           opacity: imageOpacity
         }}
@@ -62,8 +62,8 @@ const HeroSection: React.FC = () => {
         <div className="absolute inset-0 bg-gradient-to-t from-transparent via-transparent to-black/30"></div>
       </motion.div>
 
-      {/* Mobile-only content - Centered logo and tagline */}
-      {isMobile && (
+      {/* Mobile/Tablet content - Centered logo and tagline (for screens < 1050px) */}
+      {isSmallScreen && (
         <div className="absolute inset-0 flex flex-col items-center justify-center px-8 text-center z-10">
           {/* Mobile Logo */}
           <motion.div
@@ -72,7 +72,7 @@ const HeroSection: React.FC = () => {
             transition={{ duration: 1, delay: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
             className="mb-8"
           >
-            <div className="relative w-28 h-28 mb-6">
+            <div className="relative w-28 h-28 md:w-32 md:h-32 mb-6">
               <Image
                 src="/images/projet-musee/pxjg8psj.png"
                 alt="Logo Musée Abderrahman Slaoui"
@@ -88,7 +88,7 @@ const HeroSection: React.FC = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="text-white font-bodoni text-2xl tracking-[0.15em] mb-4 leading-tight"
+            className="text-white font-bodoni text-2xl md:text-3xl tracking-[0.15em] mb-4 leading-tight"
           >
             MUSÉE ABDERRAHMAN SLAOUI
           </motion.h1>
@@ -106,7 +106,7 @@ const HeroSection: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 1.1, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="text-white/90 font-bodoni text-base leading-relaxed max-w-xs tracking-wide"
+            className="text-white/90 font-bodoni text-base md:text-lg leading-relaxed max-w-xs md:max-w-sm tracking-wide"
           >
             Un patrimoine artistique et culturel marocain d'exception
           </motion.p>

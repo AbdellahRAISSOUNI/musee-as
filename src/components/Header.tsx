@@ -164,7 +164,6 @@ const Header = () => {
   // Determine if header is in scrolled state and logo should be clickable
   const [isScrolled, setIsScrolled] = useState(false);
   const [logoClickable, setLogoClickable] = useState(!isHomePage); // Start as true for non-home pages
-  const [isMobileMode, setIsMobileMode] = useState(false); // Track if we're in mobile header mode
   
   useEffect(() => {
     const unsubscribe = scrollY.on("change", (latest) => {
@@ -188,17 +187,6 @@ const Header = () => {
       setLogoClickable(true);
     }
   }, [isHomePage]);
-
-  // Track mobile mode based on screen size
-  useEffect(() => {
-    const checkMobileMode = () => {
-      setIsMobileMode(window.innerWidth < 1050); // lg breakpoint is 1050px
-    };
-    
-    checkMobileMode();
-    window.addEventListener('resize', checkMobileMode);
-    return () => window.removeEventListener('resize', checkMobileMode);
-  }, []);
 
   // Toggle functions
   const toggleSearch = () => {
@@ -465,39 +453,7 @@ const Header = () => {
             </motion.button>
           </div>
 
-          {/* Mobile Home Page Logo and Title - Show when on home page and in mobile mode */}
-          {isHomePage && isMobileMode && (
-            <motion.div 
-              className="flex flex-col items-center text-center px-6 py-8"
-              style={{ 
-                color: textColor,
-                opacity: titleOpacity
-              }}
-            >
-              {/* Large Logo for Mobile Home */}
-              <motion.div
-                className="relative w-20 h-20 mb-4"
-                style={{ scale: logoScale }}
-                transition={{ duration: 0.8, ease: "easeInOut" }}
-              >
-                <Image
-                  src="/images/projet-musee/pxjg8psj.png"
-                  alt="Logo Musée Abderrahman Slaoui"
-                  fill
-                  className="object-contain"
-                  priority
-                />
-              </motion.div>
-              
-              {/* Mobile Title */}
-              <h1 className="font-bodoni text-xl tracking-wide mb-2 leading-tight text-center">
-                MUSÉE ABDERRAHMAN SLAOUI
-              </h1>
-              <p className="font-bodoni-italic text-sm tracking-wider leading-relaxed text-center max-w-sm">
-                Un patrimoine artistique et culturel marocain d'exception
-              </p>
-            </motion.div>
-          )}
+
         </div>
         
         {/* Search Bar */}
@@ -587,22 +543,27 @@ const Header = () => {
                       }}
                     >
                       <Link href={navSections[hoveredSection as keyof typeof navSections].featured.link}>
-                      <h3 className="text-accent-gold font-bodoni text-xl mb-3">
+                        <h3 
+                          className="font-bodoni text-xl mb-3"
+                          style={{
+                            color: isHomePage && !isScrolled ? "#D4AF37" : "#D4AF37" // Always gold
+                          }}
+                        >
                           {navSections[hoveredSection as keyof typeof navSections].featured.title}
-                      </h3>
+                        </h3>
                         <div className="aspect-video bg-gray-200 mb-3 overflow-hidden rounded">
-                        <img 
+                          <img 
                             src={navSections[hoveredSection as keyof typeof navSections].featured.image}
                             alt={navSections[hoveredSection as keyof typeof navSections].featured.title}
                             className="w-full h-full object-cover"
-                        />
-                      </div>
+                          />
+                        </div>
                         <p className="text-sm line-clamp-3"
                            style={{
-                             color: isHomePage && !isScrolled ? "rgba(255, 255, 255, 0.9)" : "#6b7280" // White text in transparent mode
+                             color: isHomePage && !isScrolled ? "rgba(255, 255, 255, 0.9)" : "#374151" // White text in transparent mode, darker text when header is white
                            }}>
                           {navSections[hoveredSection as keyof typeof navSections].featured.description}
-                      </p>
+                        </p>
                       </Link>
                     </motion.div>
                   </div>

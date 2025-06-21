@@ -14,6 +14,7 @@ import ImageCarousel from '@/components/ImageCarousel';
 import ParallaxSection from '@/components/ParallaxSection';
 import ScrollToTopButton from '@/components/ScrollToTopButton';
 
+
 const HomePage = () => {
   // Featured exhibitions and events for the creative grid
   const featuredItems: GridItem[] = [
@@ -118,21 +119,6 @@ const HomePage = () => {
       {/* Ticket Section */}
       <TicketSection />
       
-      {/* À LA UNE - Creative Grid Section */}
-              <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1.2 }}
-      >
-        <CreativeGrid 
-          title="À LA UNE" 
-          items={featuredItems}
-          artistic={true}
-        />
-              </motion.div>
-      
-
-      
       {/* Exhibition Showcase */}
       <ExhibitionShowcase />
       
@@ -185,6 +171,19 @@ const HomePage = () => {
         buttonLink="/collections-expositions/collections-permanentes/affiches-orientalistes"
         buttonText="Découvrir la Collection"
       />
+
+      {/* À LA UNE - Creative Grid Section */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1.2 }}
+      >
+        <CreativeGrid 
+          title="À LA UNE" 
+          items={featuredItems}
+          artistic={true}
+        />
+      </motion.div>
       
       {/* Quote Section */}
       <QuoteSection 
@@ -210,6 +209,7 @@ const HomePage = () => {
     
       {/* Scroll to Top Button - Only appears on scroll */}
       <ScrollToTopButton />
+
     </main>
   );
 };

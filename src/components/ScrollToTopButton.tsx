@@ -7,24 +7,19 @@ import { FiArrowUp } from 'react-icons/fi';
 const ScrollToTopButton = () => {
   const [isVisible, setIsVisible] = useState(false);
 
-  // Show button when page is scrolled up to given distance
-  const toggleVisibility = () => {
-    if (window.scrollY > 300) {
-      setIsVisible(true);
-    } else {
-      setIsVisible(false);
-    }
-  };
-
-  // Set the scroll event listener
   useEffect(() => {
-    window.addEventListener('scroll', toggleVisibility);
-    return () => {
-      window.removeEventListener('scroll', toggleVisibility);
+    const toggleVisibility = () => {
+      if (window.scrollY > 400) {
+        setIsVisible(true);
+      } else {
+        setIsVisible(false);
+      }
     };
+
+    window.addEventListener('scroll', toggleVisibility);
+    return () => window.removeEventListener('scroll', toggleVisibility);
   }, []);
 
-  // Smooth scroll to top
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -36,24 +31,27 @@ const ScrollToTopButton = () => {
     <AnimatePresence>
       {isVisible && (
         <motion.button
-          initial={{ opacity: 0, scale: 0.8, y: 20 }}
+          initial={{ opacity: 0, scale: 0, y: 100 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.8, y: 20 }}
-          transition={{ duration: 0.3, ease: "easeInOut" }}
-          onClick={scrollToTop}
-          className="fixed bottom-8 right-8 z-50 bg-white hover:bg-accent-gold text-gray-800 hover:text-white p-4 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer border border-gray-300 hover:border-accent-gold backdrop-blur-sm"
-          whileHover={{ 
-            scale: 1.1,
-            boxShadow: "0 20px 40px rgba(212, 175, 55, 0.3)"
+          exit={{ opacity: 0, scale: 0, y: 100 }}
+          transition={{ 
+            duration: 0.4, 
+            ease: [0.25, 0.46, 0.45, 0.94] 
           }}
+          onClick={scrollToTop}
+          className="fixed bottom-8 right-8 z-50 w-14 h-14 bg-white rounded-full shadow-lg border border-gray-200 hover:border-accent-gold hover:shadow-xl transition-all duration-300 flex items-center justify-center group"
+          whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
           aria-label="Retour en haut de page"
         >
-          <FiArrowUp size={20} className="transition-colors duration-300" />
+          <FiArrowUp 
+            size={20} 
+            className="text-accent-gold transition-transform duration-300 group-hover:-translate-y-0.5" 
+          />
         </motion.button>
       )}
     </AnimatePresence>
   );
 };
 
-export default ScrollToTopButton; 
+export default ScrollToTopButton;
