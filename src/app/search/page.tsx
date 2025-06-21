@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
@@ -10,7 +10,45 @@ import { searchContent, SearchItem } from '@/data/searchData';
 
 const gold = '#bfa76a';
 
-const SearchPage = () => {
+// Loading component for Suspense fallback
+const SearchLoading = () => (
+  <main className="min-h-screen bg-white text-gray-900">
+    <section className="relative h-[60vh] flex items-center justify-center bg-black mt-16 md:mt-20">
+      <div className="absolute inset-0">
+        <Image
+          src="/images/visites-ateliers-activites/rencontres/nostalgie/WhatsApp_Image_2023-07-25_at_15.50.21_1.jpeg"
+          alt="Recherche dans le musée"
+          fill
+          className="object-cover opacity-50"
+          priority
+        />
+        <div className="absolute inset-0 bg-black/60" />
+      </div>
+      <div className="relative z-10 w-full">
+        <div className="max-w-4xl mx-auto text-center px-6">
+          <h1 className="font-bodoni text-4xl md:text-5xl lg:text-6xl uppercase tracking-tight text-white mb-6">
+            Recherche
+          </h1>
+          <div className="w-24 h-[2px] mx-auto mb-8" style={{ backgroundColor: gold }} />
+          <p className="text-xl md:text-2xl text-white/90 font-light font-bodoni italic">
+            Explorez nos collections, expositions et actualités
+          </p>
+        </div>
+      </div>
+    </section>
+    <section className="py-16 bg-white">
+      <div className="container mx-auto px-6">
+        <div className="max-w-5xl mx-auto text-center">
+          <div className="inline-block animate-spin h-8 w-8 border-b-2 border-accent-gold"></div>
+          <p className="mt-6 text-gray-600 font-bodoni text-lg uppercase tracking-wide">Chargement...</p>
+        </div>
+      </div>
+    </section>
+  </main>
+);
+
+// Search content component that uses useSearchParams
+const SearchContent = () => {
   const searchParams = useSearchParams();
   const initialQuery = searchParams.get('q') || '';
   
@@ -311,6 +349,15 @@ const SearchPage = () => {
         </div>
       </section>
     </main>
+  );
+};
+
+// Main search page component with Suspense boundary
+const SearchPage = () => {
+  return (
+    <Suspense fallback={<SearchLoading />}>
+      <SearchContent />
+    </Suspense>
   );
 };
 
