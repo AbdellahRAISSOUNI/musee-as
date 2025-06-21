@@ -40,7 +40,7 @@ const LesCabinetsDeCuriositePage = () => {
   const collectionImages = [
     {
       id: 1,
-      src: '/images/collections-permanentes/les-cabinets-de-curiosite/Jacob_Petit2.jpg',
+      src: '/images/collections-permanentes/les-cabinets-de-curiosite/Jacob_Petit2jpg.jpg',
       alt: 'Enfant à la tête d\'éléphant',
       title: 'Enfant à la tête d\'éléphant, au glaive et aux épis de blés',
       description: 'Jacob Petit est un porcelainier français du 19ème siècle qui va rompre avec le style néo-classique par une production extravagante et refuse l\'industrialisation pour la fabrication de sa porcelaine. La manufacture Jacob Petit est l\'une des plus reconnues de 1830 à 1860. Son regard succès va relancer le commerce de la porcelaine d\'ornement.\n\nLe travail de Jacob Petit est immédiatement identifiable par plusieurs critères : le mélange de plusieurs styles - néo-classique et orientaliste sur cette pièce - des couleurs vives rehaussées d\'or et une exubérance dans les formes.',
@@ -73,7 +73,7 @@ const LesCabinetsDeCuriositePage = () => {
   return (
     <main className="min-h-screen bg-white text-gray-800">
       {/* Hero Section with Parallax Effect */}
-      <section className="relative h-[50vh] md:h-[60vh] overflow-hidden bg-black">
+      <section className="relative h-[50vh] md:h-[60vh] overflow-hidden bg-black mt-16 lg:mt-0">
         <div className="absolute inset-0 bg-gradient-to-b from-black/70 to-black/30 z-10"></div>
         <motion.div
           initial={{ scale: 1.1 }}
@@ -82,7 +82,7 @@ const LesCabinetsDeCuriositePage = () => {
           className="absolute inset-0 z-0"
         >
           <Image
-            src="/images/collections-permanentes/les-cabinets-de-curiosite/Jacob_Petit2.jpg"
+            src="/images/collections-permanentes/les-cabinets-de-curiosite/Cabinet_de_curiostes_1.jpg"
             alt="Les cabinets de curiosité"
             fill
             className="object-cover opacity-40"

@@ -40,14 +40,12 @@ const NoiseOnPaperPage = () => {
     <main className="min-h-screen bg-white text-gray-900">
       {/* Hero Section */}
       <section className="relative h-[60vh] flex items-center justify-center bg-black">
-        {/* Background Poster with overlay */}
         <div className="absolute inset-0">
           <Image
             src="/images/expositions-temporaires/noise-on-paper/photo_rognee.jpg"
-            alt="Noise on Paper Poster"
+            alt="Noise on Paper Exhibition"
             fill
-            className="object-cover opacity-60"
-            style={{ objectPosition: 'center 30%' }}
+            className="object-cover object-center opacity-60"
             priority
           />
           <div className="absolute inset-0 bg-black/70" />
@@ -64,7 +62,7 @@ const NoiseOnPaperPage = () => {
             </h1>
             <div className="w-20 h-[2px] mx-auto mb-6" style={{ backgroundColor: gold }} />
             <p className="text-lg md:text-2xl text-white/90 font-light font-bodoni">
-              Expositions temporaires – 9 mai 2017
+              Art contemporain et expression graphique
             </p>
           </motion.div>
         </div>
@@ -83,15 +81,15 @@ const NoiseOnPaperPage = () => {
               className="text-center mb-12"
             >
               <h2 className="font-bodoni text-2xl md:text-3xl uppercase tracking-wide mb-2" style={{ color: gold }}>
-                Exposition
+                Exposition temporaire
               </h2>
               <div className="w-12 h-[2px] mx-auto mb-4" style={{ backgroundColor: gold }} />
               <h3 className="font-bodoni text-3xl md:text-4xl text-gray-900 mb-4">
-                Noise on Paper & Drunken Masters
+                Noise on Paper
               </h3>
             </motion.div>
 
-            {/* Poster again, centered, not too large */}
+            {/* Exhibition Image */}
             <motion.div
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -102,10 +100,9 @@ const NoiseOnPaperPage = () => {
               <div className="relative w-full max-w-xl h-[340px] md:h-[420px]">
                 <Image
                   src="/images/expositions-temporaires/noise-on-paper/photo_rognee.jpg"
-                  alt="Noise on Paper Poster"
+                  alt="Noise on Paper Exhibition"
                   fill
                   className="object-contain"
-                  style={{ objectPosition: 'center 30%' }}
                   priority
                 />
               </div>
@@ -120,9 +117,15 @@ const NoiseOnPaperPage = () => {
               className="prose prose-lg max-w-none mx-auto text-gray-800 font-light mb-10"
               style={{ fontFamily: 'var(--font-sans, Inter, Arial, sans-serif)' }}
             >
-              {mainContent.map((para, idx) => (
-                <p key={idx}>{boldifyQuotes(para)}</p>
-              ))}
+              <p>
+                "Noise on Paper" explore les frontières entre le silence et le bruit, entre l'ordre et le chaos, à travers l'art graphique contemporain. Cette exposition présente des œuvres qui questionnent notre rapport au son, au silence et à la communication visuelle.
+              </p>
+              <p>
+                Les artistes présentés dans cette exposition utilisent le papier comme support d'expression pour traduire des sensations sonores, des rythmes visuels et des harmonies graphiques. Leurs créations révèlent comment l'art peut donner forme au invisible et rendre tangible l'éphémère.
+              </p>
+              <p>
+                Cette manifestation artistique invite le visiteur à une expérience synesthésique où les sens se mélangent et où la contemplation visuelle évoque des paysages sonores inattendus.
+              </p>
             </motion.div>
 
             {/* Vernissage and event info */}

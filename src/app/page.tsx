@@ -12,7 +12,7 @@ import QuoteSection from '@/components/QuoteSection';
 import ExhibitionShowcase from '@/components/ExhibitionShowcase';
 import ImageCarousel from '@/components/ImageCarousel';
 import ParallaxSection from '@/components/ParallaxSection';
-import ScrollToTopButton from '@/components/ScrollToTopButton';
+
 
 
 const HomePage = () => {
@@ -207,8 +207,7 @@ const HomePage = () => {
         />
     </div>
     
-      {/* Scroll to Top Button - Only appears on scroll */}
-      <ScrollToTopButton />
+
 
     </main>
   );

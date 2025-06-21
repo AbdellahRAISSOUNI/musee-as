@@ -33,7 +33,7 @@ const collectionItems = [
   {
     id: 'les-cabinets-de-curiosite',
     title: 'Les cabinets de curiosité',
-    image: '/images/collections-permanentes/les-cabinets-de-curiosite/cover.jpg',
+    image: '/images/collections-permanentes/les-cabinets-de-curiosite/ex_voto2_1.jpg',
     description: 'Collections éclectiques d\'objets rares et précieux rassemblés par des collectionneurs passionnés.',
     href: '/collections-expositions/collections-permanentes/les-cabinets-de-curiosite'
   },
@@ -57,7 +57,7 @@ const CollectionsPermanentesPage = () => {
   return (
     <main className="min-h-screen bg-white text-gray-800">
       {/* Hero Section */}
-      <section className="relative h-[50vh] flex items-center justify-center bg-black">
+      <section className="relative h-[60vh] flex items-center justify-center bg-black mt-16 lg:mt-0">
         {/* Background Image with overlay */}
         <div className="absolute inset-0">
           <Image

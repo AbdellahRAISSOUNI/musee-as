@@ -72,29 +72,18 @@ const EspaceMuseographiquePage = () => {
               
               <div className="prose prose-lg max-w-none">
                 <div className="my-8">
-                  <h3 className="font-bodoni text-2xl text-accent-gold mb-4">1er étage</h3>
+                  <h3 className="font-bodoni text-2xl text-accent-gold mb-4">Plan du musée</h3>
                   <div className="relative h-[500px] overflow-hidden rounded-lg mb-6">
                     <Image
                       src="/images/projet-musee/espace-museographique/plan_etage_1.jpg"
-                      alt="Plan du 1er étage"
+                      alt="Plan du musée"
                       fill
                       className="object-contain"
                     />
                   </div>
-                </div>
-                
-                <div className="my-8">
-                  <h3 className="font-bodoni text-2xl text-accent-gold mb-4">2ème étage</h3>
-                  <div className="relative h-[400px] overflow-hidden rounded-lg mb-6 bg-gray-100 flex items-center justify-center">
-                    <p className="text-gray-500 italic">Plan du 2ème étage</p>
-                  </div>
-                </div>
-                
-                <div className="my-8">
-                  <h3 className="font-bodoni text-2xl text-accent-gold mb-4">3ème étage</h3>
-                  <div className="relative h-[400px] overflow-hidden rounded-lg mb-6 bg-gray-100 flex items-center justify-center">
-                    <p className="text-gray-500 italic">Plan du 3ème étage</p>
-                  </div>
+                  <p className="text-gray-700 text-center italic">
+                    Plan architectural du Musée de la Fondation Abderrahman Slaoui
+                  </p>
                 </div>
               </div>
             </motion.div>

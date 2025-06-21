@@ -8,19 +8,35 @@ import ReturnButton from '@/components/ReturnButton';
 
 const ProjetMuseePage = () => {
   return (
-    <main className="min-h-screen bg-white text-gray-800 pt-12">
+    <main className="min-h-screen bg-white text-gray-800">
       {/* Hero Section */}
-      <section className="bg-black text-white py-16">
-        <div className="container mx-auto px-6">
+      <section className="relative h-[60vh] flex items-center justify-center bg-black mt-16 lg:mt-0">
+        {/* Background Image with overlay */}
+        <div className="absolute inset-0">
+          <Image
+            src="/images/fondation/entree_musee.jpg"
+            alt="Musée Abderrahman Slaoui"
+            fill
+            className="object-cover opacity-50"
+            priority
+          />
+          <div className="absolute inset-0 bg-black/60" />
+        </div>
+        
+        <div className="relative z-10 w-full">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="max-w-4xl mx-auto text-center"
+            transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
+            className="max-w-4xl mx-auto text-center px-6"
           >
-            <h1 className="font-bodoni text-4xl md:text-5xl lg:text-6xl mb-6">
+            <h1 className="font-bodoni text-4xl md:text-5xl lg:text-6xl uppercase tracking-tight text-white mb-4">
               Le Projet de Musée
             </h1>
+            <div className="w-24 h-[2px] mx-auto mb-6 bg-accent-gold" />
+            <p className="text-gray-200 text-lg md:text-xl max-w-3xl mx-auto font-light">
+              L'histoire et la vision d'un patrimoine culturel exceptionnel
+            </p>
           </motion.div>
         </div>
       </section>

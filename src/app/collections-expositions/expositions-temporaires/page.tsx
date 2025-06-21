@@ -5,77 +5,175 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
 
-// Exhibition items based on the screenshots
+// Exhibition items based on the provided content
 const exhibitionItems = [
   {
     id: 'of-voice-and-stone',
     title: 'Of voice and stone',
     image: '/images/expositions-temporaires/of-voice-and-stone/Exhibit_poster_600.jpeg',
-    description: "L'exposition \"Of voice and stone\", qui célèbre le 200e anniversaire de la légation américaine à Tanger et plus de deux siècles d'amitié entre les peuples marocain et américain, a fait escale au musée de la Fondation Abderrahman Slaoui à Casablanca, après avoir été présentée du 10 juin au 15 septembre à la Bibliothèque...",
-    href: '/collections-expositions/expositions-temporaires/of-voice-and-stone'
+    description: "L'exposition \"Of voice and stone\", qui célèbre le 200e anniversaire de la légation américaine à Tanger et plus de deux siècles d'amitié entre les peuples marocain et américain...",
+    href: '/collections-expositions/expositions-temporaires/of-voice-and-stone',
+    size: 'large'
   },
   {
     id: 'orient-fantasme',
     title: 'Exposition Orient Fantasmé',
     image: '/images/expositions-temporaires/orient-fantasme/Exposition-Orient-Fantasme.jpg',
-    description: "Orient Fantasmé met en regard affiches orientalistes de la collection du Musée de la Fondation Slaoui et œuvres des artistes contemporaines Héla Ammar, Meriem Bouderbala, Yasmina Bouziane et Lalla Essaydi. En imaginant un dialogue entre affiches d'époque coloniale et création contemporaine, l'exposition dessine une analyse des codes de représentation utilisés dans la construction par l'image d'un certain Orient.",
-    href: '/collections-expositions/expositions-temporaires/orient-fantasme'
+    description: "Orient Fantasmé met en regard affiches orientalistes de la collection du Musée de la Fondation Slaoui et œuvres des artistes contemporaines...",
+    href: '/collections-expositions/expositions-temporaires/orient-fantasme',
+    size: 'medium'
   },
   {
     id: 'casa-drawing',
-    title: 'Casa Drawing #2 - Du 11 octobre au 31 décembre 2017',
+    title: 'Casa Drawing #2',
     image: '/images/expositions-temporaires/casa-drawing/Casa_Drawing_2_visuel_1.jpg',
-    description: "Le dessin comme prétexte La place accordée au dessin dans le champ de l'art contemporain international et sa popularité grandissante sur le marché de l'art, notamment grâce à la multiplication de salons et de foires dédiés à cette discipline, nous pousse à croire que le dessin mérite toute sa place dans le paysage culturel marocain. Forts de cette convicti...",
-    href: '/collections-expositions/expositions-temporaires/casa-drawing'
+    description: "Le dessin comme prétexte. La place accordée au dessin dans le champ de l'art contemporain international et sa popularité grandissante...",
+    href: '/collections-expositions/expositions-temporaires/casa-drawing',
+    size: 'small'
   },
   {
     id: 'noise-on-paper',
-    title: 'Expositions NOISE ON PAPER et DRUNKEN MASTERS - Du 9 mai 2017',
+    title: 'Noise on Paper',
     image: '/images/expositions-temporaires/noise-on-paper/photo_rognee.jpg',
-    description: "Les deux expositions Noise on paper et Drunken Masters réunissent au Musée de la Fondation Abderrahman Slaoui deux artistes emblématiques de la scène expérimentale et contemporaine de Beyrouth : Hatem Imam et Mazen Kerbaj. Tenant pour l'une de l'exposition d'archives, pour l'autre du cabinet de curiosités, elles ont été pensées p...",
-    href: '/collections-expositions/expositions-temporaires/noise-on-paper'
+    description: "Les deux expositions Noise on paper et Drunken Masters réunissent au Musée deux artistes emblématiques de la scène expérimentale...",
+    href: '/collections-expositions/expositions-temporaires/noise-on-paper',
+    size: 'medium'
   },
   {
     id: 'nilwood-melody',
-    title: 'Exposition NILWOOD MELODY - Qu\'avons-nous fait de nos rêves...',
-    image: '/images/expositions-temporaires/nilwood-melody/cover.jpg',
-    description: "Le Musée de la Fondation Abderrahman Slaoui vous invite à explorer la mémoire d'un temps fort du 7èmeart que fut l'« âge d'or » du cinéma égyptien, à travers les travaux de six artistes contemporains : Mariam Abouzid Souali (Maroc), Zoulikha Bouabdellah (Algérie-France), Nabil Boutros (Egypte), Mouna Jemal Siala (Tunisie), Khalil Nemmao...",
-    href: '/collections-expositions/expositions-temporaires/nilwood-melody'
+    title: 'NILWOOD MELODY',
+    image: '/images/expositions-temporaires/nilwood-melody/visuel_site_internet_2_1.jpg',
+    description: "Le Musée vous invite à explorer la mémoire d'un temps fort du 7ème art que fut l'« âge d'or » du cinéma égyptien...",
+    href: '/collections-expositions/expositions-temporaires/nilwood-melody',
+    size: 'large'
   },
   {
     id: 'hicham-benohoud',
-    title: 'Exposition HICHAM BENOHOUD: 25 ANS DE PHOTOGRAPHIE',
-    image: '/images/expositions-temporaires/hicham-benohoud/cover.jpg',
-    description: "Les photographies d'Hicham Benohoud ne cessent d'interroger sur l'identité. La sienne bien sûr, mais dans un processus de création plus large que la seule expérience du récit autobiographique, son travail questionne aussi l'identité de ceux qui l'entourent.La prédestination sociale comme source d'enfermement, mise en scène dans des situatio...",
-    href: '/collections-expositions/expositions-temporaires/hicham-benohoud'
+    title: 'HICHAM BENOHOUD: 25 ANS DE PHOTOGRAPHIE',
+    image: '/images/expositions-temporaires/hicham-benohoud/Exposition-HICHAM-BENOHOUD-25-ANS-DE-PHOTOGRAPHIE.png',
+    description: "Les photographies d'Hicham Benohoud ne cessent d'interroger sur l'identité. La sienne bien sûr, mais dans un processus de création...",
+    href: '/collections-expositions/expositions-temporaires/hicham-benohoud',
+    size: 'small'
   },
   {
-    id: 'affiches-orientalistes',
-    title: 'Exposition d\'affiches orientalistes - VOYAGES ET DECOUVERTES',
-    image: '/images/expositions-temporaires/affiches-orientalistes/cover.jpg',
-    description: "A l'occasion des Journées du Patrimoine, le Musée de la Fondation Abderrahman Slaoui présente l'exposition d'affiches anciennes et orientalistes sur le thème: Voyages et découvertes \"Les premières affiches orientalistes sont touristiques et datent du début des années 1890, quand le réseau P.L.M (Paris, Lyon, Méditerranée), prolongé par l...",
-    href: '/collections-expositions/expositions-temporaires/affiches-orientalistes'
-  },
-  {
-    id: 'hicham-gardaf',
-    title: 'EXCURSION - exposition photographique de HICHAM GARDAF',
-    image: '/images/expositions-temporaires/hicham-gardaf/cover.jpg',
-    description: "En partenariat avec l'Institut français de Casablanca, le Musée de la Fondation Abderrahman Slaoui présente la première exposition monographique d'Hicham Gardaf au Maroc. Après avoir été montrée à l'Institut français de Rabat, puis à la Galerie 127 à Marrakech, les œuvres du photographe arrive enfin à Casablanca. \"Hicham Garda...",
-    href: '/collections-expositions/expositions-temporaires/hicham-gardaf'
+    id: 'voyages-decouvertes',
+    title: 'VOYAGES ET DÉCOUVERTES',
+    image: '/images/expositions-temporaires/voyages_decouertes/Exposition-daffiches-orientalistes.png',
+    description: "A l'occasion des Journées du Patrimoine, exposition d'affiches anciennes et orientalistes sur le thème: Voyages et découvertes...",
+    href: '/collections-expositions/expositions-temporaires/voyages-decouvertes',
+    size: 'medium'
   },
   {
     id: 'mil-caras',
     title: 'Mil Caras',
-    image: '/images/expositions-temporaires/mil-caras/cover.jpg',
-    description: "Le Musée de la Fondation Abderrahman Slaoui accueille du 29 mai au 29 juillet 2014, une nouvelle exposition : Mil Caras Avec la participation de : Amina Benbouchta, Zoulikha Bouabdellah, Clara Carvajal, Safaa Erruas, María Gimeno et Marina Vargas. Mil Caras est un projet promu par l'Agence espagnole de coopération internationale pour le développement (AECID), en collaboration avec l'Ambassade d&rsquo...",
-    href: '/collections-expositions/expositions-temporaires/mil-caras'
+    image: '/images/expositions-temporaires/mil_caras/Mil-Caras.png',
+    description: "Le Musée accueille une nouvelle exposition avec la participation d'artistes marocaines et espagnoles, créant une passerelle entre deux cultures...",
+    href: '/collections-expositions/expositions-temporaires/mil-caras',
+    size: 'small'
   },
   {
-    id: 'poesie',
-    title: 'Quand la poésie sort des murs des lycées pour s\'écrire sur ...',
-    image: '/images/expositions-temporaires/poesie/cover.jpg',
-    description: "12e Journée des Francophonies A l'occasion des Francophonies, le musée de la Fondation Slaoui accueillera les oeuvres des étudiants ayant été sélectionnés lors du Concours. Le thème est lancé, il s'agira cette année de célébrer les mots voyageurs et à travers eux les rapports étroits qu'entretiennent la langue franç...",
-    href: '/collections-expositions/expositions-temporaires/poesie'
+    id: 'anes-situ',
+    title: 'Ânes situ',
+    image: '/images/expositions-temporaires/anes_situ/Expositionanes-situ.png',
+    description: "Pour Hicham Benohoud, tous les moyens sont bons pour parler du statut de l'individu au Maroc. Cette série transcende le modèle...",
+    href: '/collections-expositions/expositions-temporaires/anes-situ',
+    size: 'medium'
+  },
+  {
+    id: 'carnets-voyages',
+    title: 'Carnets de voyages et croquis',
+    image: '/images/expositions-temporaires/carnets_de_voyages/Exposition-Carnets-de-voyages-et-croquis.png',
+    description: "Onze lunes au Maroc - Titouan LAMAZOU. En 1982, Titouan Lamazou sillonne à dos de mulet les vallées heureuses de Berbérie...",
+    href: '/collections-expositions/expositions-temporaires/carnets-voyages',
+    size: 'large'
+  },
+  {
+    id: 'intimite-maroc',
+    title: 'Dans l\'intimité du Maroc',
+    image: '/images/expositions-temporaires/limite_maroc/Dans-lintimite-du-Maroc.png',
+    description: "Photographies de Gabriel Veyre 1901-1936. Gabriel Veyre photographie sans relâche l'intimité du palais et des scènes de la vie quotidienne...",
+    href: '/collections-expositions/expositions-temporaires/intimite-maroc',
+    size: 'small'
+  },
+  {
+    id: 'casa-drawing-pencil',
+    title: 'CASA DRAWING',
+    image: '/images/expositions-temporaires/casa_drawing_pencil/Said_afifi_dessin.jpg',
+    description: "Si le dessin existe depuis la préhistoire, il deviendra un art autonome à la fin du XIXème siècle grâce à l'apparition de nouvelles techniques...",
+    href: '/collections-expositions/expositions-temporaires/casa-drawing-pencil',
+    size: 'medium'
+  },
+  {
+    id: 'cinemaroc',
+    title: 'CinéMaroc',
+    image: '/images/expositions-temporaires/zaubitzer/CineMaroc-de-Stephan-Zaubitzer.png',
+    description: "CinéMaroc de Stephan Zaubitzer. Depuis 2003, Stephan Zaubitzer photographie les salles de cinéma dans le monde entier...",
+    href: '/collections-expositions/expositions-temporaires/cinemaroc',
+    size: 'large'
+  },
+  {
+    id: 'ben-ali-rbati',
+    title: 'Mohamed Ben Ali R\'bati',
+    image: '/images/expositions-temporaires/ben_ali/Exposition-Mohamed-Ben-Ali-Rbati_QS8fl8G.png',
+    description: "R'Bati Fils de Tanger 1869-1939. Mohammed ben Ali R'bati, premier peintre de la longue histoire marocaine, ne manque pas ce rendez-vous...",
+    href: '/collections-expositions/expositions-temporaires/ben-ali-rbati',
+    size: 'small'
+  },
+  {
+    id: 'bernard-plossu',
+    title: 'Maroc et autres sites',
+    image: '/images/expositions-temporaires/bernard_plossu/Maroc-et-autres-sites.png',
+    description: "Exposition de photographies de Bernard Plossu. Cette exposition présente une sélection d'une série d'images réalisées au Maroc en 1975...",
+    href: '/collections-expositions/expositions-temporaires/bernard-plossu',
+    size: 'medium'
+  },
+  {
+    id: 'portraits-croises',
+    title: 'Portraits Croisés',
+    image: '/images/expositions-temporaires/portraits_croises/Exposition-Portraits-Croises.png',
+    description: "Du 26 juin au 10 juillet, exposition photographique au profit de l'association Enfance Maghreb Avenir...",
+    href: '/collections-expositions/expositions-temporaires/portraits-croises',
+    size: 'small'
+  },
+  {
+    id: 'voyages-et-decouvertes',
+    title: 'Voyages et Découvertes',
+    image: '/images/expositions-temporaires/voyages_decouvertes/Voyages-et-Decouvertes.png',
+    description: "À partir du mardi 25 mars, exposition d'affiches anciennes sur le thème Voyages et Découvertes...",
+    href: '/collections-expositions/expositions-temporaires/voyages-decouvertes',
+    size: 'large'
+  },
+  {
+    id: 'un-orient-consommation',
+    title: 'Un Orient de consommation',
+    image: '/images/expositions-temporaires/un orient de consommation/Un-Orient-de-consommation.png',
+    description: "Du mercredi 03 octobre au vendredi 30 novembre, exposition d'affiches orientalistes sur le thème de la réclame...",
+    href: '/collections-expositions/expositions-temporaires/un-orient-consommation',
+    size: 'medium'
+  },
+  {
+    id: 'journees-patrimoine',
+    title: 'Journées du Patrimoine',
+    image: '/images/expositions-temporaires/journes-de-patrimoins/Journees-du-Patrimoine-les-6-et-7-avril.png',
+    description: "Les 6 et 7 avril, exposition d'affiches orientalistes dans le cadre des Journées du Patrimoine...",
+    href: '/collections-expositions/expositions-temporaires/journees-patrimoine',
+    size: 'small'
+  },
+  {
+    id: 'routes-transahariennes',
+    title: 'Routes transahariennes',
+    image: '/images/expositions-temporaires/routes-transahariennes/311589066_10159797637038153_2106760676544239899_n_1.jpg',
+    description: "En partenariat avec African Arty, exposition captivante qui plonge le spectateur au cœur de l'Afrique...",
+    href: '/collections-expositions/expositions-temporaires/routes-transahariennes',
+    size: 'large'
+  },
+  {
+    id: 'anaelle-myriam-chaaib',
+    title: 'Anaëlle Myriam Chaaib',
+    image: '/images/expositions-temporaires/mryiam_chaaib/AfficheSlaoui_10_1.jpg',
+    description: "Première exposition de l'artiste franco-marocaine présentant une collection de toiles inspirées de références culturelles...",
+    href: '/collections-expositions/expositions-temporaires/anaelle-myriam-chaaib',
+    size: 'medium'
   }
 ];
 
@@ -83,8 +181,13 @@ const ExpositionsTemporairesPage = () => {
   return (
     <main className="min-h-screen bg-white text-gray-800">
       {/* Hero Section */}
-      <section className="relative bg-black text-white py-24">
-        <div className="absolute inset-0 bg-gradient-to-b from-black/80 to-black/40"></div>
+      <section className="relative bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white py-20">
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-black/80"></div>
+          <div className="absolute inset-0 opacity-10">
+            <div className="w-full h-full bg-[url('/images/hero-background.jpg')] bg-cover bg-center"></div>
+          </div>
+        </div>
         <div className="container mx-auto px-6 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -92,87 +195,92 @@ const ExpositionsTemporairesPage = () => {
             transition={{ duration: 0.8 }}
             className="max-w-4xl mx-auto text-center"
           >
-            <h1 className="font-bodoni text-5xl md:text-6xl lg:text-7xl mb-8 tracking-tight uppercase">
-              Expositions temporaires
+            <h1 className="font-bodoni text-4xl md:text-5xl lg:text-6xl mb-6 tracking-tight">
+              Expositions Temporaires
             </h1>
-            <div className="w-24 h-[2px] bg-[#bfa76a] mx-auto mb-8"></div>
-            <p className="text-xl md:text-2xl text-white/80">
-              Une fenêtre sur l'art et l'histoire
+            <div className="w-24 h-[2px] bg-accent-gold mx-auto mb-6"></div>
+            <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto">
+              Découvrez notre riche programmation d'expositions temporaires qui dialogue avec notre collection permanente
             </p>
           </motion.div>
         </div>
       </section>
 
       {/* Main Content */}
-      <section className="py-24 bg-white">
+      <section className="py-16 bg-white">
         <div className="container mx-auto px-6">
           <div className="max-w-7xl mx-auto">
-            {/* Introduction Text */}
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              className="mb-20"
-            >
-              <p className="text-gray-800 text-xl leading-relaxed max-w-3xl mx-auto text-center font-light">
-                Découvrez les expositions temporaires passées et actuelles du Musée de la Fondation Abderrahman Slaoui. Notre programme d'expositions met en valeur des artistes contemporains et des thématiques variées en dialogue avec notre collection permanente.
-              </p>
-            </motion.div>
-
-            {/* Exhibitions Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-20 gap-y-24">
+            {/* Masonry Grid */}
+            <div className="columns-1 md:columns-2 lg:columns-3 xl:columns-4 gap-6 space-y-6">
               {exhibitionItems.map((item, index) => (
                 <motion.div
                   key={item.id}
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1, duration: 0.8 }}
-                  className="flex flex-col h-full"
+                  transition={{ delay: index * 0.05, duration: 0.6 }}
+                  className={`break-inside-avoid mb-6 group ${
+                    item.size === 'large' ? 'md:col-span-2' : 
+                    item.size === 'medium' ? '' : 
+                    'aspect-square'
+                  }`}
                 >
-                  <div className="group flex flex-col h-full">
-                    {/* Title on top */}
-                    <Link href={item.href} className="block text-center">
-                      <h2 className="font-bodoni text-2xl md:text-3xl lg:text-4xl text-gray-900 group-hover:text-[#bfa76a] transition-colors duration-300 tracking-wide uppercase mb-2">
-                        {item.title}
-                      </h2>
-                    </Link>
-                    <div className="w-16 h-[2px] bg-[#bfa76a] mx-auto mb-6"></div>
-                    {/* Image */}
-                    <Link href={item.href} className="block overflow-hidden">
-                      <motion.div
-                        className="relative aspect-[4/3] overflow-hidden bg-gray-100 mb-8 shadow-lg"
-                        whileHover={{ scale: 1.03, boxShadow: "0 12px 32px 0 rgba(191,167,106,0.15)" }}
-                        transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
-                      >
+                  <Link href={item.href} className="block">
+                    <div className="bg-white rounded-lg shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 group-hover:border-accent-gold/30">
+                      {/* Image */}
+                      <div className={`relative overflow-hidden ${
+                        item.size === 'large' ? 'aspect-[4/3]' : 
+                        item.size === 'medium' ? 'aspect-[3/2]' : 
+                        'aspect-square'
+                      }`}>
                         <Image
                           src={item.image}
                           alt={item.title}
                           fill
-                          className="object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out"
-                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                          className="object-contain group-hover:scale-105 transition-transform duration-500 ease-out"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                         />
-                        <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-60 transition-opacity duration-500 z-10"></div>
-                      </motion.div>
-                    </Link>
-                    {/* Description and link */}
-                    <div className="space-y-4 flex-1 flex flex-col justify-between">
-                      <p className="text-gray-600 leading-relaxed text-base md:text-lg text-center mb-4">
-                        {item.description}
-                      </p>
-                      <div className="flex justify-center">
-                        <Link 
-                          href={item.href} 
-                          className="inline-flex items-center text-[#bfa76a] border-b-2 border-transparent hover:border-[#bfa76a] transition-all duration-300 pb-1 font-semibold tracking-wide group"
-                        >
-                          <span className="mr-2">Lire la suite</span>
-                          <span className="transform group-hover:translate-x-2 transition-transform duration-300">→</span>
-                        </Link>
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                      </div>
+                      
+                      {/* Content */}
+                      <div className="p-4">
+                        <h3 className="font-bodoni text-lg md:text-xl text-gray-900 group-hover:text-accent-gold transition-colors duration-300 mb-2 line-clamp-2">
+                          {item.title}
+                        </h3>
+                        <p className="text-gray-600 text-sm leading-relaxed line-clamp-3 mb-3">
+                          {item.description}
+                        </p>
+                        <div className="flex items-center text-accent-gold text-sm font-medium">
+                          <span className="mr-1">Découvrir</span>
+                          <span className="transform group-hover:translate-x-1 transition-transform duration-300">→</span>
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  </Link>
                 </motion.div>
               ))}
             </div>
+
+            {/* Call to Action */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.8, duration: 0.6 }}
+              className="text-center mt-16 p-8 bg-gradient-to-r from-gray-50 to-gray-100 rounded-lg"
+            >
+              <h2 className="font-bodoni text-2xl md:text-3xl text-gray-900 mb-4">
+                Restez informé de nos prochaines expositions
+              </h2>
+              <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
+                Suivez notre programmation culturelle et ne manquez aucune de nos expositions temporaires qui enrichissent le dialogue entre tradition et modernité.
+              </p>
+              <Link 
+                href="/infos-pratiques/contact"
+                className="inline-flex items-center px-8 py-3 bg-accent-gold text-white rounded-md hover:bg-accent-gold/90 transition-colors duration-300 font-medium"
+              >
+                Nous contacter
+              </Link>
+            </motion.div>
           </div>
         </div>
       </section>
