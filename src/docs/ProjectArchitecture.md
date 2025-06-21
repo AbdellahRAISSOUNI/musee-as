@@ -118,6 +118,33 @@ import ReturnButton from '@/components/ReturnButton';
 - Transition de couleur au survol pour l'interactivité
 - Typographie cohérente avec le design system (utilise la police Bodoni)
 
+#### 3.4.2 ScrollToTopButton
+
+Le composant `ScrollToTopButton` offre une navigation fluide vers le haut de page, visible globalement sur toutes les pages:
+
+```tsx
+// src/components/ScrollToTopButton.tsx
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { FaChevronUp } from 'react-icons/fa';
+
+const ScrollToTopButton: React.FC = () => {
+  // Implémentation avec useEffect pour le tracking de scroll
+  // et motion.button pour les animations Framer Motion
+};
+```
+
+**Caractéristiques**:
+- Apparition automatique après 400px de défilement
+- Position fixe en bas à droite (bottom-8 right-8)
+- Couleur accent-gold pour correspondre au design system
+- Animations fluides d'entrée/sortie et d'interaction (hover, tap)
+- Défilement fluide vers le haut avec `behavior: 'smooth'`
+- Animation subtile de pulsation de l'icône pour attirer l'attention
+- Effet de bordure doré au survol pour plus d'élégance
+- Z-index 50 pour rester visible au-dessus du contenu
+- Intégré automatiquement dans le layout racine pour toutes les pages
+
 ## 4. Styles et Design System
 
 ### 4.1 Approche CSS

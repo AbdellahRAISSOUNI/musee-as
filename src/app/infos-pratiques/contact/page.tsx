@@ -37,8 +37,22 @@ const ContactPage = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you would typically send the form data to your server
-    console.log('Form submitted:', formData);
+    
+    // Create mailto link with form data
+    const emailBody = `
+Nom: ${formData.name}
+Email: ${formData.email}
+Sujet: ${formData.subject}
+
+Message:
+${formData.message}
+    `.trim();
+    
+    const mailtoLink = `mailto:fas.musee@gmail.com?subject=${encodeURIComponent(`Contact - ${formData.subject}`)}&body=${encodeURIComponent(emailBody)}`;
+    
+    // Open email client
+    window.location.href = mailtoLink;
+    
     setFormSubmitted(true);
     
     // Reset form after submission
@@ -56,7 +70,7 @@ const ContactPage = () => {
   return (
     <main className="min-h-screen bg-white text-gray-900">
       {/* Hero Section */}
-      <section className="relative h-[45vh] flex items-center justify-center bg-black">
+      <section className="relative h-[45vh] flex items-center justify-center bg-black mt-16 md:mt-20">
         {/* Background Image with overlay */}
         <div className="absolute inset-0">
           <Image

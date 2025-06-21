@@ -12,7 +12,7 @@ const HorairesTarifsAccesPage = () => {
   return (
     <main className="min-h-screen bg-white text-gray-900">
       {/* Hero Section */}
-      <section className="relative h-[45vh] flex items-center justify-center bg-black">
+      <section className="relative h-[45vh] flex items-center justify-center bg-black mt-16 md:mt-20">
         {/* Background Image with overlay */}
         <div className="absolute inset-0">
           <Image
@@ -175,6 +175,30 @@ const HorairesTarifsAccesPage = () => {
           </motion.div>
         </div>
       </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Button Section */}
+      <section className="py-12 bg-gray-50">
+        <div className="container mx-auto px-6">
+          <div className="max-w-2xl mx-auto text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, ease: [0.4, 0, 0.2, 1] }}
+            >
+              <p className="font-bodoni text-lg text-gray-700 mb-8">
+                Contactez-nous si vous avez des questions
+              </p>
+              <Link
+                href="/infos-pratiques/contact"
+                className="inline-block bg-accent-gold hover:bg-accent-gold/80 text-white px-8 py-3 font-bodoni text-lg transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
+              >
+                Nous Contacter
+              </Link>
+            </motion.div>
           </div>
         </div>
       </section>

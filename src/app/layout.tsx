@@ -5,6 +5,7 @@ import HydrationErrorSuppressor from "@/components/HydrationErrorSuppressor";
 import ClientErrorBoundary from "@/components/ClientErrorBoundary";
 import Footer from '@/components/Footer';
 import ThemeProvider from "@/components/ThemeProvider";
+import ScrollToTopButton from "@/components/ScrollToTopButton";
 
 // Add a timestamp to force cache refresh
 const faviconVersion = Date.now();
@@ -36,6 +37,7 @@ export default function RootLayout({
           <Header />
           {children}
           <Footer />
+          <ScrollToTopButton />
         </ThemeProvider>
         </ClientErrorBoundary>
       </body>
