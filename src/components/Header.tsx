@@ -8,6 +8,7 @@ import { FiSearch, FiX } from 'react-icons/fi';
 import { RiMenu3Line } from 'react-icons/ri';
 import { IoIosArrowDown } from 'react-icons/io';
 import { usePathname } from 'next/navigation';
+import { searchContent, SearchItem } from '@/data/searchData';
 
 // Navigation sections definition
   const navSections = {
@@ -99,6 +100,8 @@ const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<string | null>(null);
   const [hoveredSection, setHoveredSection] = useState<string | null>(null);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [searchResults, setSearchResults] = useState<SearchItem[]>([]);
   const searchInputRef = useRef<HTMLInputElement>(null);
   const pathname = usePathname();
   const isHomePage = pathname === '/';
@@ -193,8 +196,61 @@ const Header = () => {
     setIsSearchActive(!isSearchActive);
     if (!isSearchActive) {
       setTimeout(() => searchInputRef.current?.focus(), 100);
+    } else {
+      // Reset search when closing
+      setSearchQuery('');
+      setSearchResults([]);
     }
   };
+
+  // Handle search
+  const handleSearch = (query: string) => {
+    setSearchQuery(query);
+    if (query.trim()) {
+      const results = searchContent(query);
+      setSearchResults(results);
+    } else {
+      setSearchResults([]);
+    }
+  };
+
+  // Clear search
+  const clearSearch = () => {
+    setSearchQuery('');
+    setSearchResults([]);
+    searchInputRef.current?.focus();
+  };
+
+  // Close search on outside click
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (isSearchActive && !searchInputRef.current?.contains(event.target as Node)) {
+        const searchContainer = document.querySelector('.search-container');
+        if (!searchContainer?.contains(event.target as Node)) {
+          setIsSearchActive(false);
+          setSearchQuery('');
+          setSearchResults([]);
+        }
+      }
+    };
+
+    if (isSearchActive) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isSearchActive]);
+
+  // Close search when hovering over nav sections
+  useEffect(() => {
+    if (hoveredSection && isSearchActive) {
+      setIsSearchActive(false);
+      setSearchQuery('');
+      setSearchResults([]);
+    }
+  }, [hoveredSection, isSearchActive]);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -213,6 +269,9 @@ const Header = () => {
     setIsMobileMenuOpen(false);
     setActiveSection(null);
     setHoveredSection(null);
+    setIsSearchActive(false);
+    setSearchQuery('');
+    setSearchResults([]);
   }, [pathname]);
 
   // Navigation items for the new layout
@@ -459,35 +518,154 @@ const Header = () => {
         {/* Search Bar */}
         <AnimatePresence>
           {isSearchActive && (
-              <motion.div
+            <motion.div
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
-                transition={{ duration: 0.3 }}
-              className="border-t border-gray-200"
+              transition={{ duration: 0.3 }}
+              className="search-container absolute top-full left-0 right-0 border-t border-gray-200 max-h-[80vh] overflow-hidden shadow-lg z-40"
               style={{ 
-                backgroundColor: isHomePage && !isScrolled ? "rgba(255, 255, 255, 0.95)" : "white"
+                backgroundColor: "rgba(255, 255, 255, 0.98)",
+                backdropFilter: "blur(10px)"
               }}
-              >
-              <div className="max-w-7xl mx-auto px-6 py-4">
+            >
+              <div className="max-w-7xl mx-auto px-6 py-3">
+                {/* Search Input */}
                 <div className="relative">
                   <input 
                     ref={searchInputRef}
                     type="text" 
+                    value={searchQuery}
+                    onChange={(e) => handleSearch(e.target.value)}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' && searchQuery.trim()) {
+                        window.location.href = `/search?q=${encodeURIComponent(searchQuery)}`;
+                      }
+                    }}
                     placeholder="Rechercher dans le musée..."
-                    className="w-full bg-transparent border-b-2 border-gray-300 focus:border-accent-gold py-3 px-0 text-gray-900 focus:outline-none placeholder-gray-500"
+                    className="w-full bg-transparent border-b border-gray-300 focus:border-accent-gold py-2 px-0 text-gray-900 focus:outline-none placeholder-gray-500 font-bodoni"
                   />
-                  <motion.button 
-                    className="absolute right-0 top-1/2 transform -translate-y-1/2 text-gray-600 hover:text-accent-gold cursor-pointer"
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <FiSearch size={20} />
-                  </motion.button>
+                  <div className="absolute right-0 top-1/2 transform -translate-y-1/2 flex items-center space-x-3">
+                    {searchQuery && (
+                      <motion.button 
+                        onClick={clearSearch}
+                        className="text-gray-400 hover:text-gray-600 cursor-pointer p-1"
+                        whileTap={{ scale: 0.95 }}
+                        whileHover={{ scale: 1.1 }}
+                      >
+                        <FiX size={22} />
+                      </motion.button>
+                    )}
+                    <motion.button 
+                      onClick={() => {
+                        if (searchQuery.trim()) {
+                          window.location.href = `/search?q=${encodeURIComponent(searchQuery)}`;
+                        }
+                      }}
+                      className="text-gray-600 hover:text-accent-gold cursor-pointer p-1"
+                      whileTap={{ scale: 0.95 }}
+                      whileHover={{ scale: 1.1 }}
+                    >
+                      <FiSearch size={20} />
+                    </motion.button>
+                  </div>
                 </div>
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
+
+                {/* Search Results */}
+                {searchQuery && (
+                  <div className="max-h-[50vh] overflow-y-auto mt-3 border-t border-gray-100 pt-3">
+                    {searchResults.length > 0 ? (
+                      <div className="space-y-2">
+                        <div className="flex items-center justify-between mb-2">
+                          <p className="text-xs text-gray-600 font-bodoni">
+                            {searchResults.length} résultat{searchResults.length > 1 ? 's' : ''}
+                          </p>
+                          <Link 
+                            href={`/search?q=${encodeURIComponent(searchQuery)}`}
+                            className="text-xs text-accent-gold hover:underline font-bodoni"
+                            onClick={() => setIsSearchActive(false)}
+                          >
+                            Voir tous les résultats
+                          </Link>
+                        </div>
+                        {searchResults.slice(0, 5).map((result, index) => (
+                          <motion.div
+                            key={result.id}
+                            initial={{ opacity: 0, y: 5 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: index * 0.03, duration: 0.2 }}
+                            className="group"
+                          >
+                            <Link 
+                              href={result.url}
+                              onClick={() => setIsSearchActive(false)}
+                              className="flex items-start space-x-3 p-2 rounded hover:bg-gray-50 transition-colors"
+                            >
+                              {/* Image */}
+                              {result.image && (
+                                <div className="flex-shrink-0 w-12 h-12 bg-gray-200 rounded overflow-hidden">
+                                  <Image
+                                    src={result.image}
+                                    alt={result.title}
+                                    width={48}
+                                    height={48}
+                                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                  />
+                                </div>
+                              )}
+                              
+                              {/* Content */}
+                              <div className="flex-grow min-w-0">
+                                <h3 className="font-bodoni text-sm text-gray-900 group-hover:text-accent-gold transition-colors line-clamp-1 mb-1">
+                                  {result.title}
+                                </h3>
+                                <p className="text-xs text-gray-600 line-clamp-2">
+                                  {result.excerpt}
+                                </p>
+                              </div>
+                            </Link>
+                          </motion.div>
+                        ))}
+                      </div>
+                    ) : (
+                      <div className="text-center py-6">
+                        <p className="text-gray-600 font-bodoni text-sm mb-1">
+                          Aucun résultat trouvé
+                        </p>
+                        <p className="text-gray-500 text-xs">
+                          Essayez avec d'autres mots-clés
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                )}
+                
+                {/* Search Tips */}
+                {!searchQuery && (
+                  <div className="text-center py-4 mt-3 border-t border-gray-100 pt-3">
+                    <p className="text-gray-700 font-bodoni text-sm mb-2">
+                      Recherches populaires
+                    </p>
+                    <div className="flex flex-wrap justify-center gap-2 text-xs">
+                      {['Affiches orientalistes', 'Bijoux marocains', 'Casa Drawing', 'Céramique Fès', 'Tempus Fugit'].map((suggestion) => (
+                        <button
+                          key={suggestion}
+                          onClick={() => {
+                            handleSearch(suggestion);
+                            searchInputRef.current?.focus();
+                          }}
+                          className="px-3 py-1 bg-gray-100 text-gray-600 rounded-full hover:bg-accent-gold hover:text-white transition-colors font-bodoni"
+                        >
+                          {suggestion}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         {/* Desktop Dropdown Menus */}
         <AnimatePresence>
