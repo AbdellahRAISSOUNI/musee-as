@@ -95,14 +95,15 @@ const NoiseOnPaperPage = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: 0.2, ease: [0.4, 0, 0.2, 1] }}
-              className="mb-10 flex justify-center"
+              className="mb-8 flex justify-center"
             >
-              <div className="relative w-full max-w-xl h-[340px] md:h-[420px]">
+              <div className="relative w-full max-w-2xl">
                 <Image
                   src="/images/expositions-temporaires/noise-on-paper/photo_rognee.jpg"
                   alt="Noise on Paper Exhibition"
-                  fill
-                  className="object-contain"
+                  width={800}
+                  height={600}
+                  className="w-full h-auto object-contain"
                   priority
                 />
               </div>

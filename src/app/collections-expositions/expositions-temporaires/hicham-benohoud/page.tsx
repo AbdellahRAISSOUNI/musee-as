@@ -3,124 +3,121 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import Link from 'next/link';
-import PageLayout from '../../../../components/PageLayout';
-import ReturnButton from '../../../../components/ReturnButton';
+import ReturnButton from '@/components/ReturnButton';
+
+const gold = '#bfa76a';
 
 const HichamBenohoudPage = () => {
   return (
-    <PageLayout title="HICHAM BENOHOUD: 25 ANS DE PHOTOGRAPHIE">
-      <main className="min-h-screen bg-white text-gray-800">
-        {/* Hero Section */}
-        <section className="relative py-32 bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white overflow-hidden">
-          <div className="absolute inset-0">
-            <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-black/80"></div>
-            <Image
-              src="/images/expositions-temporaires/hicham-benohoud/Exposition-HICHAM-BENOHOUD-25-ANS-DE-PHOTOGRAPHIE.png"
-              alt="HICHAM BENOHOUD: 25 ANS DE PHOTOGRAPHIE"
-              fill
-              className="object-cover opacity-30"
-            />
-          </div>
-          <div className="container mx-auto px-6 relative z-10">
-            <div className="max-w-4xl mx-auto text-center">
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-              >
-                <h1 className="font-bodoni text-3xl md:text-4xl lg:text-5xl mb-6 tracking-tight">
-                  HICHAM BENOHOUD
-                </h1>
-                <div className="w-24 h-[2px] bg-accent-gold mx-auto mb-6"></div>
-                <p className="text-xl md:text-2xl text-white/90 font-light">
-                  25 ANS DE PHOTOGRAPHIE
-                </p>
-              </motion.div>
-            </div>
-          </div>
-        </section>
+    <main className="min-h-screen bg-white text-gray-900">
+      {/* Hero Section */}
+      <section className="relative h-[60vh] flex items-center justify-center bg-black">
+        <div className="absolute inset-0">
+          <Image
+            src="/images/expositions-temporaires/hicham-benohoud/Exposition-HICHAM-BENOHOUD-25-ANS-DE-PHOTOGRAPHIE.png"
+            alt="Hicham Benohoud Exhibition"
+            fill
+            className="object-cover object-center opacity-60"
+            priority
+          />
+          <div className="absolute inset-0 bg-black/70" />
+        </div>
+        <div className="relative z-10 w-full">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: [0.4, 0, 0.2, 1] }}
+            className="max-w-3xl mx-auto text-center px-4"
+          >
+            <h1 className="font-bodoni text-4xl md:text-5xl lg:text-6xl uppercase tracking-tight text-white mb-4">
+              Hicham Benohoud
+            </h1>
+            <div className="w-20 h-[2px] mx-auto mb-6" style={{ backgroundColor: gold }} />
+            <p className="text-lg md:text-2xl text-white/90 font-light font-bodoni">
+              25 ans de photographie
+            </p>
+          </motion.div>
+        </div>
+      </section>
 
-        {/* Main Content */}
-        <section className="py-20 bg-white">
-          <div className="container mx-auto px-6">
-            <div className="max-w-4xl mx-auto">
-              {/* Featured Image */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-                className="mb-12"
-              >
-                <div className="relative aspect-[4/3] rounded-lg overflow-hidden shadow-2xl">
-                  <Image
-                    src="/images/expositions-temporaires/hicham-benohoud/Exposition-HICHAM-BENOHOUD-25-ANS-DE-PHOTOGRAPHIE.png"
-                    alt="HICHAM BENOHOUD: 25 ANS DE PHOTOGRAPHIE"
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-              </motion.div>
+      {/* Main Content */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-6">
+          <div className="max-w-3xl mx-auto">
+            {/* Section Title */}
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: 0.1, ease: [0.4, 0, 0.2, 1] }}
+              className="text-center mb-12"
+            >
+              <h2 className="font-bodoni text-2xl md:text-3xl uppercase tracking-wide mb-2" style={{ color: gold }}>
+                Exposition rétrospective
+              </h2>
+              <div className="w-12 h-[2px] mx-auto mb-4" style={{ backgroundColor: gold }} />
+              <h3 className="font-bodoni text-3xl md:text-4xl text-gray-900 mb-4">
+                Du 7 avril au 7 mai 2016
+              </h3>
+            </motion.div>
 
-              {/* Content */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                className="prose prose-lg max-w-none"
-              >
-                <div className="text-lg leading-relaxed space-y-6 text-gray-700">
-                  <p>
-                    Les photographies d'Hicham Benohoud ne cessent d'interroger sur l'identité. La sienne bien sûr, mais dans un processus de création plus large que la seule expérience du récit autobiographique, son travail questionne aussi l'identité de ceux qui l'entourent. La prédestination sociale comme source d'enfermement, mise en scène dans des situations souvent inhabituelles, est une notion récurrente dans le travail d'Hicham Benohoud.
-                  </p>
-
-                  <p>
-                    À travers ses portraits, Hicham Benouhoud présente un Maroc contrasté où des ânes laborieux trônent dans des salons luxueux et dans lequel le poids social peut conduire à se mettre dans un trou.
-                  </p>
-
-                  <div className="bg-accent-gold/10 p-6 rounded-lg border-l-4 border-accent-gold">
-                    <p className="font-medium text-gray-900 mb-2">Exposition à voir</p>
-                    <p className="text-gray-700 mb-4">Du 7 avril au 7 mai 2016</p>
-                    <p className="font-medium text-gray-900 mb-2">Deux lieux :</p>
-                    <ul className="text-gray-700 space-y-1">
-                      <li>• Musée de la Fondation Abderrahman Slaoui</li>
-                      <li>• Loft Art Gallery : <Link href="http://loftartgallery.net/" className="text-accent-gold hover:underline" target="_blank" rel="noopener noreferrer">loftartgallery.net</Link></li>
-                    </ul>
-                  </div>
-
-                  <div className="bg-gray-50 p-6 rounded-lg">
-                    <h3 className="font-bodoni text-xl text-gray-900 mb-4">Pour aller plus loin :</h3>
-                    <p className="text-gray-700">
-                      Visite commentée de l'exposition par Hicham Benohoud et Marie Moignard le 16 avril à 17h
-                    </p>
-                  </div>
-
-                  <div className="border-t pt-6">
-                    <h3 className="font-bodoni text-2xl text-gray-900 mb-4">Exposition organisée par :</h3>
-                    <div className="text-gray-700 space-y-2">
-                      <p>• Institut français de Casablanca</p>
-                      <p>• Musée de la Fondation Abderrahman Slaoui</p>
-                      <p>• Loft Art Gallery</p>
-                    </div>
-                    
-                    <h3 className="font-bodoni text-2xl text-gray-900 mb-4 mt-6">En partenariat avec :</h3>
-                    <div className="text-gray-700 space-y-2">
-                      <p>• Galerie Vu (Paris)</p>
-                      <p>• Atelier 21 (Casablanca)</p>
-                      <p>• CulturesInterface (Casablanca)</p>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-
-              <div className="mt-16 flex justify-end">
-                <ReturnButton href="/collections-expositions/expositions-temporaires" />
+            {/* Exhibition Image */}
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: 0.2, ease: [0.4, 0, 0.2, 1] }}
+              className="mb-8 flex justify-center"
+            >
+              <div className="relative w-full max-w-2xl">
+                <Image
+                  src="/images/expositions-temporaires/hicham-benohoud/Exposition-HICHAM-BENOHOUD-25-ANS-DE-PHOTOGRAPHIE.png"
+                  alt="Hicham Benohoud Exhibition"
+                  width={800}
+                  height={600}
+                  className="w-full h-auto object-contain"
+                  priority
+                />
               </div>
+            </motion.div>
+
+            {/* Article Content */}
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: 0.3, ease: [0.4, 0, 0.2, 1] }}
+              className="prose prose-lg max-w-none mx-auto text-gray-800 font-light mb-10"
+              style={{ fontFamily: 'var(--font-sans, Inter, Arial, sans-serif)' }}
+            >
+              <p>
+                Les photographies d'Hicham Benohoud ne cessent d'interroger sur l'identité. La sienne bien sûr, mais dans un processus de création plus large que la seule expérience du récit autobiographique, son travail questionne aussi l'identité de ceux qui l'entourent.
+              </p>
+              <p>
+                La prédestination sociale comme source d'enfermement, mise en scène dans des situations souvent inhabituelles, est une notion récurrente dans le travail d'Hicham Benohoud. À travers ses portraits, Hicham Benouhoud présente un Maroc contrasté où des ânes laborieux trônent dans des salons luxueux et dans lequel le poids social peut conduire à se mettre dans un trou.
+              </p>
+              <div className="mt-8 p-6 border-l-4 border-current space-y-4" style={{ borderColor: gold, backgroundColor: '#fffbe6' }}>
+                <div>
+                  <p className="font-semibold text-gray-900 mb-2">Deux lieux d'exposition :</p>
+                  <ul className="text-gray-700 space-y-1">
+                    <li>• Musée de la Fondation Abderrahman Slaoui</li>
+                    <li>• Loft Art Gallery</li>
+                  </ul>
+                </div>
+                <div>
+                  <p className="font-semibold text-gray-900 mb-2">Visite commentée :</p>
+                  <p className="text-gray-700">Le 16 avril à 17h par Hicham Benohoud et Marie Moignard</p>
+                </div>
+              </div>
+            </motion.div>
+
+            <div className="mt-16 flex justify-end">
+              <ReturnButton href="/collections-expositions/expositions-temporaires" />
             </div>
           </div>
-        </section>
-      </main>
-    </PageLayout>
+        </div>
+      </section>
+    </main>
   );
 };
 
