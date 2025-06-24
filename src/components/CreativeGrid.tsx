@@ -55,7 +55,7 @@ const CreativeGrid: React.FC<CreativeGridProps> = ({
       opacity: 1, 
       y: 0,
       transition: {
-        type: "spring",
+        type: "spring" as const,
         stiffness: 100,
         damping: 15,
         mass: 1
@@ -71,7 +71,7 @@ const CreativeGrid: React.FC<CreativeGridProps> = ({
       y: 0,
       transition: {
         duration: 0.8,
-        ease: [0.4, 0, 0.2, 1]
+        ease: "easeOut" as const
       }
     }
   };
@@ -99,7 +99,7 @@ const CreativeGrid: React.FC<CreativeGridProps> = ({
   });
 
   return (
-    <section className="py-16 px-6 bg-white">
+    <section className="py-12 sm:py-16 px-4 sm:px-6 bg-white">
       <div className="container mx-auto max-w-7xl">
         {title && (
           <motion.div
@@ -107,15 +107,15 @@ const CreativeGrid: React.FC<CreativeGridProps> = ({
             whileInView="visible"
             viewport={{ once: true }}
             variants={titleVariants}
-            className="mb-12"
+            className="mb-8 sm:mb-12"
           >
-            <h2 className="text-4xl md:text-5xl font-bodoni-regular text-black text-center">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bodoni-regular text-black text-center">
               {title}
             </h2>
             <motion.div 
-              className="w-24 h-1 bg-accent-gold mx-auto mt-6"
+              className="w-16 sm:w-24 h-1 bg-accent-gold mx-auto mt-4 sm:mt-6"
               initial={{ width: 0 }}
-              whileInView={{ width: 96 }}
+              whileInView={{ width: "auto" }}
               viewport={{ once: true }}
               transition={{ duration: 1, delay: 0.3 }}
             ></motion.div>
@@ -123,9 +123,9 @@ const CreativeGrid: React.FC<CreativeGridProps> = ({
         )}
 
         {artistic ? (
-          // Artistic, asymmetrical layout
+          // Artistic, asymmetrical layout with improved mobile experience
           <motion.div 
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 relative"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 relative"
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
@@ -138,65 +138,65 @@ const CreativeGrid: React.FC<CreativeGridProps> = ({
               let marginTop = '';
               
               if (item.featured) {
-                sizeClasses = 'md:col-span-2 lg:col-span-2';
-                aspectRatio = 'aspect-[16/9]';
+                sizeClasses = 'sm:col-span-2 lg:col-span-2';
+                aspectRatio = 'aspect-[4/3] sm:aspect-[16/9]';
               } else {
                 switch(item.size) {
                   case 'small':
                     sizeClasses = '';
-                    aspectRatio = 'aspect-square';
+                    aspectRatio = 'aspect-[4/3] sm:aspect-square';
                     break;
                   case 'medium':
                     sizeClasses = 'lg:col-span-1';
                     aspectRatio = 'aspect-[4/3]';
                     break;
                   case 'large':
-                    sizeClasses = 'md:col-span-2';
-                    aspectRatio = 'aspect-[16/9]';
+                    sizeClasses = 'sm:col-span-2';
+                    aspectRatio = 'aspect-[4/3] sm:aspect-[16/9]';
                     break;
                   case 'wide':
-                    sizeClasses = 'md:col-span-2 lg:col-span-2';
-                    aspectRatio = 'aspect-[2/1]';
+                    sizeClasses = 'sm:col-span-2 lg:col-span-2';
+                    aspectRatio = 'aspect-[4/3] sm:aspect-[2/1]';
                     break;
                   case 'tall':
                     sizeClasses = '';
-                    aspectRatio = 'aspect-[2/3]';
+                    aspectRatio = 'aspect-[4/3] sm:aspect-[2/3]';
                     break;
                   default:
                     sizeClasses = '';
-                    aspectRatio = 'aspect-square';
+                    aspectRatio = 'aspect-[4/3] sm:aspect-square';
                 }
               }
               
-              // Add offset for some items to create asymmetry
+              // Add offset for some items to create asymmetry - only on larger screens
               if (item.offset && !item.featured) {
-                marginTop = 'md:mt-12';
+                marginTop = 'lg:mt-12';
               }
               
               return (
                 <motion.div
                   key={item.id}
                   variants={itemVariants}
-                  className={`group bg-white overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-500 ${sizeClasses} ${marginTop}`}
+                  className={`group bg-white overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-500 rounded-lg ${sizeClasses} ${marginTop}`}
                 >
                   <Link href={item.link} className="block h-full">
                     <div className="relative h-full">
                       {/* Category Label */}
                       <div className="absolute top-0 left-0 z-10">
-                        <div className="bg-accent-gold text-white text-xs uppercase tracking-wider py-1 px-3 font-semibold">
+                        <div className="bg-accent-gold text-white text-xs uppercase tracking-wider py-2 px-3 font-semibold rounded-br-lg">
                           {item.category}
                         </div>
                       </div>
                       
                       {/* Image Container */}
                       <div 
-                        className={`relative overflow-hidden ${aspectRatio}`}
+                        className={`relative overflow-hidden rounded-t-lg ${aspectRatio}`}
                       >
                         <Image
                           src={item.image}
                           alt={item.title}
                           fill
-                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                           className="object-cover transition-transform duration-700 group-hover:scale-105"
                           priority={item.priority}
                         />
@@ -206,17 +206,17 @@ const CreativeGrid: React.FC<CreativeGridProps> = ({
                         <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                       </div>
                       
-                      {/* Text Content */}
-                      <div className="p-4">
-                        <h3 className="font-bodoni-regular text-lg md:text-xl text-black mb-2 group-hover:text-accent-gold transition-colors line-clamp-2">
+                      {/* Text Content with improved mobile spacing */}
+                      <div className="p-4 sm:p-5">
+                        <h3 className="font-bodoni-regular text-xl sm:text-lg md:text-xl text-black mb-3 group-hover:text-accent-gold transition-colors line-clamp-2 leading-tight">
                           {item.title}
                         </h3>
                         
-                        <p className="text-gray-700 text-sm mb-3 line-clamp-2">
+                        <p className="text-gray-700 text-sm sm:text-sm mb-4 line-clamp-3 leading-relaxed">
                           {item.description}
                         </p>
                         
-                        <div className="inline-flex items-center text-gray-800 border-b border-gray-800 group-hover:border-accent-gold group-hover:text-accent-gold transition-colors">
+                        <div className="inline-flex items-center text-gray-800 border-b border-gray-800 group-hover:border-accent-gold group-hover:text-accent-gold transition-colors text-sm font-medium">
                           <span>En savoir plus</span>
                           <svg className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>

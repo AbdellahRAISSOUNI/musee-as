@@ -36,17 +36,18 @@ const ParallaxSection: React.FC<ParallaxSectionProps> = ({
   const contentRef = useRef<HTMLDivElement>(null);
   const [elementTop, setElementTop] = useState(0);
   const [clientHeight, setClientHeight] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
   
   const { scrollY } = useScroll();
   
-  // Calculate the parallax effect with enhanced strength
+  // Calculate the parallax effect with enhanced strength - only for mobile
   const y = useTransform(
     scrollY,
     [elementTop - clientHeight, elementTop + clientHeight],
     reverse ? [`${parallaxStrength * 1.5}%`, '0%'] : ['0%', `-${parallaxStrength * 1.5}%`]
   );
   
-  // Enhanced scale effect for more dramatic parallax
+  // Enhanced scale effect for more dramatic parallax - only for mobile
   const scale = useTransform(
     scrollY,
     [elementTop - clientHeight, elementTop, elementTop + clientHeight],
@@ -60,17 +61,17 @@ const ParallaxSection: React.FC<ParallaxSectionProps> = ({
     [0.4, 0.6, 0.4]
   );
   
-  // Sophisticated text animations
+  // Reduced text animations to keep content within image bounds
   const textY = useTransform(
     scrollY,
     [elementTop - clientHeight, elementTop, elementTop + clientHeight],
-    ['-10%', '0%', '10%']
+    ['0%', '0%', '0%']
   );
   
   const textOpacity = useTransform(
     scrollY,
     [elementTop - clientHeight/2, elementTop, elementTop + clientHeight/2],
-    [0.7, 1, 0.7]
+    [1, 1, 1]
   );
 
   // Floating elements animation
@@ -87,6 +88,7 @@ const ParallaxSection: React.FC<ParallaxSectionProps> = ({
         const rect = element.getBoundingClientRect();
         setElementTop(rect.top + window.scrollY);
         setClientHeight(window.innerHeight);
+        setIsMobile(window.innerWidth < 768);
       }
     };
     
@@ -117,7 +119,10 @@ const ParallaxSection: React.FC<ParallaxSectionProps> = ({
       {/* Enhanced Parallax Image with Multiple Layers */}
       <motion.div 
         className="absolute inset-0 w-full h-full z-0"
-        style={{ y, scale }}
+        style={{ 
+          y: isMobile ? y : 0, 
+          scale: isMobile ? scale : 1 
+        }}
         transition={{ type: "spring", stiffness: 300, damping: 30 }}
       >
         <div className="w-full h-full relative">
@@ -248,7 +253,7 @@ const ParallaxSection: React.FC<ParallaxSectionProps> = ({
                   >
                     <Link 
                       href={buttonLink}
-                      className="group relative inline-flex items-center justify-center px-12 py-5 overflow-hidden font-medium text-white bg-transparent border border-[#bfa76a] transition-all duration-500 hover:border-white"
+                      className="group relative inline-flex items-center justify-center px-12 py-5 overflow-hidden font-medium text-white bg-transparent border border-[#bfa76a] transition-all duration-500 hover:border-white md:backdrop-blur-sm md:bg-black/10"
                     >
                       <span className="absolute inset-0 w-0 h-full transition-all duration-500 ease-out bg-[#bfa76a] group-hover:w-full"></span>
                       <span className="absolute right-0 pr-4 duration-200 ease-out group-hover:translate-x-12">

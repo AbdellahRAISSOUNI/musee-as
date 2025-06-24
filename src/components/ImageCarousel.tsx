@@ -202,7 +202,7 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({
             <motion.button
               whileHover={{ y: -2, scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="relative overflow-hidden px-8 py-4 bg-transparent border-2 text-gray-900 font-bodoni text-lg font-medium transition-all duration-300 hover:text-white group"
+              className="relative overflow-hidden px-8 py-4 bg-transparent border-2 text-gray-900 font-bodoni text-lg font-medium transition-all duration-300 hover:text-white group cursor-pointer"
               style={{ borderColor: gold }}
             >
               <span className="relative z-10">{buttonText}</span>

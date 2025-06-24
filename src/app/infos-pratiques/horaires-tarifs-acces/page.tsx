@@ -192,11 +192,19 @@ const HorairesTarifsAccesPage = () => {
               <p className="font-bodoni text-lg text-gray-700 mb-8">
                 Contactez-nous si vous avez des questions
               </p>
-              <Link
-                href="/infos-pratiques/contact"
-                className="inline-block bg-accent-gold hover:bg-accent-gold/80 text-white px-8 py-3 font-bodoni text-lg transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
-              >
-                Nous Contacter
+              <Link href="/infos-pratiques/contact">
+                <motion.button
+                  whileHover={{ y: -2, scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="relative overflow-hidden px-8 py-4 bg-transparent border-2 text-gray-900 font-bodoni text-lg font-medium transition-all duration-300 hover:text-white group cursor-pointer"
+                  style={{ borderColor: gold }}
+                >
+                  <span className="relative z-10">Nous Contacter</span>
+                  <div 
+                    className="absolute inset-0 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"
+                    style={{ backgroundColor: gold }}
+                  ></div>
+                </motion.button>
               </Link>
             </motion.div>
           </div>

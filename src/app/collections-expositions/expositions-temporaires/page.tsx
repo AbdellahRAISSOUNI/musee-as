@@ -181,25 +181,25 @@ const ExpositionsTemporairesPage = () => {
   return (
     <main className="min-h-screen bg-white text-gray-800">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white py-20">
+      <section className="relative bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white pt-20 pb-12 md:pt-24 md:pb-20 mt-16 md:mt-0">
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-black/80"></div>
           <div className="absolute inset-0 opacity-10">
             <div className="w-full h-full bg-[url('/images/hero-background.jpg')] bg-cover bg-center"></div>
           </div>
         </div>
-        <div className="container mx-auto px-6 relative z-10">
+        <div className="container mx-auto px-4 md:px-6 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             className="max-w-4xl mx-auto text-center"
           >
-            <h1 className="font-bodoni text-4xl md:text-5xl lg:text-6xl mb-6 tracking-tight">
+            <h1 className="font-bodoni text-3xl md:text-4xl lg:text-5xl xl:text-6xl mb-4 md:mb-6 tracking-tight leading-tight">
               Expositions Temporaires
             </h1>
-            <div className="w-24 h-[2px] bg-accent-gold mx-auto mb-6"></div>
-            <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto">
+            <div className="w-16 md:w-24 h-[2px] bg-accent-gold mx-auto mb-4 md:mb-6"></div>
+            <p className="text-base md:text-lg lg:text-xl text-white/90 max-w-2xl mx-auto leading-relaxed">
               Découvrez notre riche programmation d'expositions temporaires qui dialogue avec notre collection permanente
             </p>
           </motion.div>
@@ -274,11 +274,19 @@ const ExpositionsTemporairesPage = () => {
               <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
                 Suivez notre programmation culturelle et ne manquez aucune de nos expositions temporaires qui enrichissent le dialogue entre tradition et modernité.
               </p>
-              <Link 
-                href="/infos-pratiques/contact"
-                className="inline-flex items-center px-8 py-3 bg-accent-gold text-white rounded-md hover:bg-accent-gold/90 transition-colors duration-300 font-medium"
-              >
-                Nous contacter
+              <Link href="/infos-pratiques/contact">
+                <motion.button
+                  whileHover={{ y: -2, scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="relative overflow-hidden px-8 py-4 bg-transparent border-2 text-gray-900 font-bodoni text-lg font-medium transition-all duration-300 hover:text-white group cursor-pointer"
+                  style={{ borderColor: '#bfa76a' }}
+                >
+                  <span className="relative z-10">Nous contacter</span>
+                  <div 
+                    className="absolute inset-0 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"
+                    style={{ backgroundColor: '#bfa76a' }}
+                  ></div>
+                </motion.button>
               </Link>
             </motion.div>
           </div>
