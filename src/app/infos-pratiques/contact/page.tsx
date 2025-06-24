@@ -74,7 +74,7 @@ ${formData.message}
         {/* Background Image with overlay */}
         <div className="absolute inset-0">
           <Image
-            src="/images/projet-musee/espace-museographique/espace_3.jpg"
+            src="/images/entree_musee.jpg"
             alt="Contact - Musée Abderrahman Slaoui"
             fill
             className="object-cover opacity-60"
