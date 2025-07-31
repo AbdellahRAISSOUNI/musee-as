@@ -11,7 +11,8 @@ import {
   FaInstagram, 
   FaFacebookF, 
   FaTripadvisor,
-  FaArrowRight
+  FaArrowRight,
+  FaGlobe
 } from 'react-icons/fa';
 
 const Footer = () => {
@@ -179,6 +180,22 @@ const Footer = () => {
             <span>Mentions légales</span>
             <span>Politique de confidentialité</span>
             <span>Crédits</span>
+          </div>
+          
+          {/* Developer Signature */}
+          <div className="flex items-center gap-2 mt-4 md:mt-0">
+            <a 
+              href="https://abdellah-raissouni-2025.vercel.app/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="group flex items-center gap-2 text-soft-white/60 hover:text-accent-gold transition-all duration-300"
+            >
+              <span className="text-xs font-medium">Made by Abdellah Raissouni</span>
+              <FaGlobe 
+                size={12} 
+                className="opacity-0 group-hover:opacity-100 transform scale-0 group-hover:scale-100 transition-all duration-300 ease-out" 
+              />
+            </a>
           </div>
         </div>
       </div>
