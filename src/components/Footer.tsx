@@ -188,11 +188,11 @@ const Footer = () => {
               href="https://abdellah-raissouni-2025.vercel.app/" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="group flex items-center gap-2 text-soft-white/60 hover:text-accent-gold transition-all duration-300"
+              className="group flex items-center gap-3 text-soft-white/80 hover:text-accent-gold transition-all duration-300"
             >
-              <span className="text-xs font-medium">Made by Abdellah Raissouni</span>
+              <span className="text-base font-semibold tracking-wide">Made by Abdellah Raissouni</span>
               <FaGlobe 
-                size={12} 
+                size={16} 
                 className="opacity-0 group-hover:opacity-100 transform scale-0 group-hover:scale-100 transition-all duration-300 ease-out" 
               />
             </a>
